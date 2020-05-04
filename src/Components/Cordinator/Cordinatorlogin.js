@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import "./../../App.css";
 import { RootContext } from "./../../RContext";
 import { Link } from "react-router-dom";
-import { MdVpnKey } from "react-icons/md";
-import { FaUniversity } from "react-icons/fa";
+import { MdVpnKey, MdEmail } from "react-icons/md";
 import {
   Form,
   FormGroup,
@@ -14,7 +13,7 @@ import {
   Input,
   Button,
 } from "reactstrap";
-export default class Studentlogin extends Component {
+export default class Cordinaotlogin extends Component {
   static contextType = RootContext;
   state = {
     url: this.context.url,
@@ -35,20 +34,24 @@ export default class Studentlogin extends Component {
         </div>
         <div className="login-content">
           <Form className=" border bg-gray-200 rounded rounded-lg  hover:shadow-lg">
-            <h4 className="bg-red-500 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
+            <h4 className="bg-teal-500 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
               Login
             </h4>
             <FormGroup className="mx-8 my-4">
               <Label className="text-lg font-semibold text-gray-800 tracking-wider uppercase">
-                usn:
+                email:
               </Label>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <FaUniversity className="text-red-500" />
+                    <MdEmail className="text-teal-500" />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" bsSize="lg" placeholder="1ga16is456" />
+                <Input
+                  type="text"
+                  bsSize="lg"
+                  placeholder="yourmail@email.com"
+                />
               </InputGroup>
             </FormGroup>
             <FormGroup className="mx-8 ">
@@ -58,14 +61,14 @@ export default class Studentlogin extends Component {
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <MdVpnKey className="text-red-500" />
+                    <MdVpnKey className="text-teal-500" />
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input type="password" bsSize="lg" placeholder="Password" />
               </InputGroup>
             </FormGroup>
             <FormGroup className="flex justify-center">
-              <Button className="m-6  px-4 " type="submit" color="success">
+              <Button className="m-6  px-4" type="submit" color="success">
                 Login
               </Button>
             </FormGroup>

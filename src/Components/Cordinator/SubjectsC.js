@@ -7,12 +7,17 @@ import {
   Label,
   Input,
   Spinner,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
-import { MdLibraryAdd, MdClose } from "react-icons/md";
+import { MdLibraryAdd, MdClose, MdDelete } from "react-icons/md";
 import Axios from "axios";
 import { FaFilter, FaSearch } from "react-icons/fa";
 import Select from "react-select";
 import { RootContext } from "./../../RContext";
+
 export default class Subjects extends Component {
   static contextType = RootContext;
   state = {
@@ -27,6 +32,8 @@ export default class Subjects extends Component {
     search: "",
     selected: 0,
     url: this.context.url,
+    deleteId: "",
+    deleteModal: false,
   };
   options = [
     {
@@ -85,6 +92,23 @@ export default class Subjects extends Component {
             <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
               SECTION : '{el.section}'-section
             </p>
+            <div className="flex justify-center">
+              <Button
+                color="danger"
+                outline
+                onClick={() =>
+                  this.setState({
+                    deleteId: el._id,
+                    deleteModal: !this.state.deleteModal,
+                  })
+                }
+              >
+                <span className="flex justify-center font-semibold text-lg items-center">
+                  <MdDelete className="mr-1" />
+                  Delete
+                </span>
+              </Button>
+            </div>
           </div>
         );
       });
@@ -143,6 +167,20 @@ export default class Subjects extends Component {
       [name]: value,
     });
   };
+  deleteSubject = async () => {
+    try {
+      const _id = this.state.deleteId;
+      const res = await Axios.delete(`${this.state.url}/cordinator/subjects`, {
+        headers: { _id },
+      });
+
+      if (res.status === 200 && res.data.status === "success") {
+        window.location.reload(false);
+      }
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
   render() {
     const customStyles = {
       control: (base, state) => {
@@ -153,13 +191,7 @@ export default class Subjects extends Component {
         };
       },
     };
-    // const selected=this.state.subjects.filter(subject=>{
-    //     if(this.state.selected!==0)
-    //     return subject.props.id===this.state.selected
-    //     else
-    //     return subject
-    // })
-    // console.log(selected)
+
     if (this.state.loading)
       return (
         <div className="flex flex-col justify-center items-center">
@@ -338,6 +370,33 @@ export default class Subjects extends Component {
             else return subject;
           })}
         </div>
+        <Modal isOpen={this.state.deleteModal} centered={true}>
+          <ModalHeader className="bg-red-600 text-white capitalize">
+            are you sure?
+          </ModalHeader>
+          <ModalBody className="text-gray-700 font-semibold capitalize">
+            this subject will be deleted from the database.
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color="danger"
+              className="capitalize"
+              onClick={this.deleteSubject}
+              outline
+            >
+              confirm
+            </Button>
+            <Button
+              onClick={() =>
+                this.setState({ deleteModal: !this.state.deleteModal })
+              }
+              className="capitalize"
+              outline
+            >
+              cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }

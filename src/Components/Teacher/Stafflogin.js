@@ -60,13 +60,13 @@ export default class Stafflogin extends Component {
   };
   render() {
     return (
-      <div className="staff-container mx-4">
-        {/* <TeacherContext.Consumer>
-          {(context) => console.log(context)}
-        </TeacherContext.Consumer> */}
-        <div className="staff-back  ">
+      <div className="staff-container ">
+        <div className="staff-back border rounded-lg p-3 ">
+          <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
+            clg website
+          </p>
           <Link
-            className="mx-4 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
+            className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
             to="/"
           >
             Back

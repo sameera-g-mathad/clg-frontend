@@ -13,6 +13,7 @@ import Internals1 from "./Components/Teacher/Internals1";
 import Internals2 from "./Components/Teacher/Internals2";
 import Internals3 from "./Components/Teacher/Internals3";
 import Studentlogin from "./Components/Students/Studentlogin";
+import Cordinatorlogin from "./Components/Cordinator/Cordinatorlogin";
 // eslint-disable-next-line
 import { Protected } from "./Protected";
 // eslint-disable-next-line
@@ -55,10 +56,12 @@ function App() {
           //Cordinator
         }
         <Route path="/cordinator" component={Cordinator} />
+        <Route exact path="/cordinator-login" component={Cordinatorlogin} />
 
         {
           //Student
         }
+        <Route path="/student-login" component={Studentlogin} />
       </Switch>
     </div>
   );
