@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import { Link } from "react-router-dom";
-import { Label, FormGroup, Input, Button, FormFeedback } from "reactstrap";
-// eslint-disable-next-line
+import { Label, FormGroup, Input, Button, FormText } from "reactstrap";
+import { RootContext } from "./../../RContext";
 import Axios from "axios";
 export default class PaperDetails extends Component {
+  static contextType = RootContext;
   match = this.props.match.url;
   subjectDetails = this.props.history.location.state.subject;
   state = {
+    teacherId: JSON.parse(localStorage.getItem("id")),
     subject: this.subjectDetails.subjectName,
     subjectCode: this.subjectDetails.subjectCode,
     sem: this.subjectDetails.sem,
@@ -16,6 +18,9 @@ export default class PaperDetails extends Component {
     internals: "",
     questions: "",
     marks: "",
+    url: this.context.url,
+    wInfo: false,
+    wIngomsg:""
   };
   options = [
     {
@@ -32,26 +37,29 @@ export default class PaperDetails extends Component {
     },
   ];
   async componentDidMount() {
-    // try {
-    //   const { subject, subjectCode, dept, sem, section } = this.state;
-    //   const res = await Axios.get("http://127.0.0.1:3000/staff/set-paper", {
-    //     headers: { subject, subjectCode, dept, sem, section }
-    //   });
-    //   const found = res.data.found;
-    //   const result = found.map(data => {
-    //     return data.internals;
-    //   });
-    //   console.log(result);
-    //   const neww = this.options.filter(option => {
-    //     return result.map(value => {
-    //       return value.localeCompare(option.value);
-    //     });
-    //   });
-    //   console.log(neww);
-    //   // this.options = this.options.filter(option);
-    // } catch (err) {
-    //   console.log(err.response);
-    // }
+    try {
+      const {
+        teacherId,
+        subject,
+        subjectCode,
+        dept,
+        sem,
+        section,
+      } = this.state;
+      const res = await Axios.get(`${this.state.url}/staff/set-paper`, {
+        headers: { teacherId, subject, subjectCode, dept, sem, section },
+      });
+
+      const internals = res.data.found.map((internal) => {
+        return internal.internals;
+      });
+      this.options.map((el) => {
+        if (internals.includes(el.value)) return (el.isDisabled = true);
+        else return el;
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
   }
   selectChange = (e) => {
     const value = e.value;
@@ -71,6 +79,26 @@ export default class PaperDetails extends Component {
       [name]: parseInt(value) || "",
     });
   };
+  checkMarks = () => {
+    if(this.state.internals==="" || this.state.marks==="" || this.state.questions==="")
+    {
+      return this.setState({
+        wInfo:true,
+        wIngomsg:"Enter the fields present"
+      })
+    }
+    if (this.state.marks % 2 === 0 && this.state.questions % 2 === 0) {
+      this.props.history.push({
+        pathname: `${this.match}/questions`,
+        state: this.state,
+      });
+    } else {
+      this.setState({
+        wInfo: true,
+        wIngomsg:"Entered questions and marks should be a even number"
+      });
+    }
+  };
   render() {
     return (
       <div>
@@ -86,7 +114,7 @@ export default class PaperDetails extends Component {
           </Link>
         </div>
         <div className="flex justify-center">
-          <div className=" border   w-1/2 rounded-lg hover:shadow-lg bg-gray-100 ">
+          <div className=" border  sm:w-1/2 w-full rounded-lg hover:shadow-lg bg-gray-100 ">
             <p className="w-full bg-red-500 uppercase font-bold text-lg tracking-wide p-4 rounded-lg ">
               enter details
             </p>
@@ -94,7 +122,12 @@ export default class PaperDetails extends Component {
               <Label for="subject" className="font-bold">
                 Subject:
               </Label>
-              <Input id="subject" value={this.state.subject} readOnly={true} />
+              <Input
+                className="capitalize"
+                id="subject"
+                value={this.state.subject}
+                readOnly={true}
+              />
             </FormGroup>
 
             <FormGroup className="mx-8 my-2">
@@ -151,9 +184,6 @@ export default class PaperDetails extends Component {
                 placeholder="Ex :8"
                 maxLength={2}
               />
-              <FormFeedback className="capitalize">
-                Questions must be even number
-              </FormFeedback>
             </FormGroup>
 
             <FormGroup className="mx-8 my-2">
@@ -168,19 +198,20 @@ export default class PaperDetails extends Component {
                 placeholder="Ex :30"
                 maxLength={2}
               />
-              <FormFeedback className="capitalize">
-                marks must be multiple of 10
-              </FormFeedback>
             </FormGroup>
-
-            <FormGroup className="mt-2 flex justify-center">
+            <FormGroup className="flex justify-center flex-wrap">
+              <FormText
+                style={{ display: this.state.wInfo ? "block" : "none" }}
+                color="danger"
+                className="capitalize font-semibold"
+              >
+                {this.state.wIngomsg}
+              </FormText>
+            </FormGroup>
+            <FormGroup className="mt-2  flex justify-center">
               <Button
                 className="px-4 py-2"
-                tag={Link}
-                to={{
-                  pathname: `${this.match}/questions`,
-                  state: this.state,
-                }}
+                onClick={this.checkMarks}
                 color="success"
               >
                 Next

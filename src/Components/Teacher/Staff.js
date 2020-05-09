@@ -61,19 +61,19 @@ export default class Staff extends Component {
       const sub1 = sub1Res.map((subject) => {
         return (
           <div id={subject._id}>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               SUBJECT : {subject.subjectName}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 uppercase hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider uppercase hover:underline">
               SUBJECT-CODE : {subject.subjectCode}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               DEPARTMENT : {subject.dept}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               SEMESTER : {subject.sem}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               SECTION : '{subject.section}'-section
             </p>
           </div>
@@ -82,19 +82,19 @@ export default class Staff extends Component {
       const sub2 = sub2Res.map((subject) => {
         return (
           <div id={subject._id}>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize  hover:underline">
               SUBJECT : {subject.subjectName}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 uppercase hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider uppercase hover:underline">
               SUBJECT-CODE : {subject.subjectCode}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               DEPARTMENT : {subject.dept}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               SEMESTER : {subject.sem}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 tracking-wider capitalize hover:underline">
               SECTION : '{subject.section}'-section
             </p>
           </div>
@@ -127,8 +127,8 @@ export default class Staff extends Component {
         </div>
       );
     return (
-      <div className="teacher-container mx-4 ">
-        <div className="teacher-details border hover:shadow-lg mt-4 bg-blue-200 rounded-lg ">
+      <div className="teacher-container mx-4 bg-gray-100">
+        <div className="teacher-details  tracking-wider border hover:shadow-lg mt-4  rounded-lg ">
           <Button
             className="mx-4 float-right my-2"
             tag={Link}
@@ -143,13 +143,13 @@ export default class Staff extends Component {
           </Button>
           {this.state.teacher}
         </div>
-        <div className="teacher-subject1  border-2 border-purple-500 bg-gray-200 mb-4  hover:shadow-lg rounded-lg  ">
-          <p className="bg-purple-500 w-full rounded-b text-purple-800 tracking-widest font-semibold underline text-lg  uppercase  p-4">
+        <div className="teacher-subject1  bg-gray-100 mb-4  hover:shadow-lg rounded-lg  ">
+          <p className="bg-blue-300 w-full rounded-lg text-gray-700 tracking-widest font-semibold  text-lg  uppercase  p-4">
             subject details:
           </p>
           <div className="p-4">
             {this.state.subjects[0]}
-            <div className="flex justify-end ">
+            <div className="flex justify-end tracking-wider">
               <Button
                 color="primary"
                 outline
@@ -176,13 +176,13 @@ export default class Staff extends Component {
             </div>
           </div>
         </div>
-        <div className="teacher-subject2 border-2 border-red-500 bg-gray-200  mb-4 hover:shadow-lg rounded-lg ">
-          <p className="bg-red-500 rounded-b w-full text-red-800 tracking-widest font-semibold underline text-lg  uppercase  p-4">
+        <div className="teacher-subject2  bg-gray-100  mb-4 hover:shadow-lg rounded-lg ">
+          <p className="bg-green-400 rounded-lg w-full text-gray-700 tracking-widest font-semibold  text-lg  uppercase  p-4">
             subject details:
           </p>
           <div className="p-4">
             {this.state.subjects[1]}
-            <div className="flex justify-end ">
+            <div className="flex justify-end tracking-wider">
               <Button
                 color="primary"
                 outline
