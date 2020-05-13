@@ -12,13 +12,15 @@ import "./../../App.css";
 import { GoAlert } from "react-icons/go";
 import { FaLightbulb } from "react-icons/fa";
 export default class OddQuestions extends Component {
+  subquestCO = [];
   state = {
     subquestions: [],
     count: 0,
     question: "",
     total: 0,
     co: "",
-    display:false
+    coToggle: false,
+    coCount:0
   };
   alphas = ["a", "b", "c"];
   addTextbox = () => {
@@ -44,14 +46,19 @@ export default class OddQuestions extends Component {
   };
   addSubQuestionValue = (e, index) => {
     let sum = 0;
-    // eslint-disable-next-line
-    this.state.subquestions[index] = parseInt(e.target.value) || "";
+
+    if (parseInt(e.target.value))
+      // eslint-disable-next-line
+      this.state.subquestions[index] = {
+        subquestions: parseInt(e.target.value) || "",
+      };
+    else return (e.target.value = "");
     this.setState({
       subquestions: this.state.subquestions,
     });
     for (let i = 0; i < this.state.subquestions.length; i++) {
       if (this.state.subquestions[i] !== "") {
-        sum = sum + this.state.subquestions[i];
+        sum = sum + this.state.subquestions[i].subquestions;
         this.setState({
           total: sum,
         });
@@ -60,17 +67,33 @@ export default class OddQuestions extends Component {
   };
   coChange = (e) => {
     const { name, value } = e.target;
-    const newValue=value.toUpperCase()
+    const newValue = value.toUpperCase();
     this.setState({
       [name]: newValue || "",
     });
   };
-  changeSwitch=(e)=>
-  {
+  changeSwitch = (e) => {
+    this.setState({
+      coToggle: !this.state.coToggle,
+      co: "",
+    });
+  };
+  subQuestionCoChange = (e, index) => {
+    const co = e.target.value || "";
+    const newValue = co.toUpperCase();
+    this.subquestCO.splice(index, 1, {
+      subquestions: this.state.subquestions[index].subquestions,
+      subco: newValue,
+    });
+    if(newValue.length===3)
+    {
       this.setState({
-        display:!this.state.display
+        coCount:this.state.coCount+1
       })
-  }
+    }
+    // console.log(this.subquestCO);
+    // console.log(this.state.subquestions);
+  };
   render() {
     return (
       <div>
@@ -81,7 +104,7 @@ export default class OddQuestions extends Component {
             </Label>
             <Input
               type="text"
-              id="questions"
+              id={`questions${this.props.number}`}
               name="question"
               value={this.state.question}
               onChange={this.addQuestionValue}
@@ -95,20 +118,24 @@ export default class OddQuestions extends Component {
             </Label>
             <Input
               style={{ width: "100px" }}
-              disabled={this.state.display}
+              disabled={this.state.coToggle}
               className="mx-2"
               type="text"
-              id="cos"
+              id={`cos${this.props.number}`}
               name="co"
               value={this.state.co}
               autoComplete="off"
               maxLength={3}
               onChange={this.coChange}
             />
-            <span className="flex items-center">
-              <CustomInput type="switch" id="switch" onChange={this.changeSwitch}/>
-              <FormText className="font-semibold ">
-                Click the switch if subquestions has different cos.
+            <span className="flex items-center ">
+              <CustomInput
+                type="switch"
+                id="switch"
+                onChange={this.changeSwitch}
+              />
+              <FormText color="primary" className="font-semibold  ">
+                Click the switch if subquestions has different CO`s.
               </FormText>
             </span>
           </FormGroup>
@@ -118,6 +145,7 @@ export default class OddQuestions extends Component {
             </Label>
             <Button
               id="questionsButton"
+              disabled={this.state.question === "" ? true : false}
               onClick={this.addTextbox}
               color="primary"
               className="mx-2"
@@ -126,6 +154,7 @@ export default class OddQuestions extends Component {
             </Button>
             <Button
               id="questionsButton"
+              disabled={this.state.question === "" ? true : false}
               color="danger"
               onClick={this.removeTextbox}
             >
@@ -156,15 +185,27 @@ export default class OddQuestions extends Component {
                     id="subquestions"
                     autoComplete="off"
                     type="text"
-                    value={question}
                     onChange={(e) => this.addSubQuestionValue(e, index)}
                   />
                 </FormGroup>
-                <FormGroup   className="w-32 flex" >
-                  <Label style={{display:this.state.display?"block":"none"}} className="mr-2 text-lg mt-1" for="subco">
+                <FormGroup className="w-32 flex">
+                  <Label
+                    style={{ display: this.state.coToggle ? "block" : "none" }}
+                    className="mr-2 text-lg mt-1"
+                    for="subco"
+                  >
                     CO:
                   </Label>
-                  <Input style={{display:this.state.display?"block":"none"}} type="text" id="subco" />
+                  <Input
+                    style={{ display: this.state.coToggle ? "block" : "none" }}
+                    type="text"
+                    id="subco"
+                    autoComplete="off"
+                    maxLength={3}
+                    onChange={(e) => {
+                      this.subQuestionCoChange(e, index);
+                    }}
+                  />
                 </FormGroup>
               </div>
             );
@@ -180,10 +221,29 @@ export default class OddQuestions extends Component {
           ) : (
             ""
           )}
-          {this.state.total === this.state.question
+          {this.state.total === this.state.question && this.state.coToggle===false
             ? this.props.render({
                 question: this.state.question,
                 subquestions: this.state.subquestions,
+                co: this.state.co,
+              })
+            : ""}
+            
+          {this.state.total === this.state.question &&
+          this.state.coToggle === true && this.state.coCount===this.state.count
+            ? this.props.render({
+                question: this.state.question,
+                subquestions: this.subquestCO,
+                co: "",
+              })
+            : ""}
+          {this.state.total === 0 &&
+          this.state.question !== "" &&
+          this.state.co !== "" &&
+          this.state.coToggle === false
+            ? this.props.render({
+                question: this.state.question,
+                subquestions: [],
                 co: this.state.co,
               })
             : ""}

@@ -86,6 +86,26 @@ export default class Questions extends Component {
               key={i}
               number={i}
               render={({ question, subquestions, co }) => {
+                console.log(
+                  "this is from question\n",
+                  question,
+                  subquestions,
+                  co
+                );
+                if (co === "")
+                  // eslint-disable-next-line
+                  this.state.questionpaper[i] = {
+                    questionNumber: i,
+                    question,
+                    subquestions,
+                  };
+                if (subquestions.length === 0)
+                  // eslint-disable-next-line
+                  this.state.questionpaper[i] = {
+                    questionNumber: i,
+                    question,
+                    co,
+                  };
                 // eslint-disable-next-line
                 this.state.questionpaper[i] = {
                   questionNumber: i,
@@ -110,7 +130,9 @@ export default class Questions extends Component {
       sum = sum + newarray[i];
     }
     let disable;
-    sum > this.state.marks ? (disable = true) : (disable = false);
+    sum !== this.state.marks && sum !== 0
+      ? (disable = true)
+      : (disable = false);
     return (
       <div className="m-4">
         <div className="questions-container border m-4 rounded-lg bg-gray-200 shadow">
