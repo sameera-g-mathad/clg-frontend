@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { FormGroup, Button, Label, Input, Alert } from "reactstrap";
+import {
+  FormGroup,
+  Button,
+  Label,
+  Input,
+  Alert,
+  CustomInput,
+  FormText,
+} from "reactstrap";
 import "./../../App.css";
 import { GoAlert } from "react-icons/go";
 import { FaLightbulb } from "react-icons/fa";
 export default class EvenQuestions extends Component {
+  subquestco = [];
   state = {
     subquestions: [],
     count: 0,
@@ -11,6 +20,8 @@ export default class EvenQuestions extends Component {
     total: 0,
     co: "",
     number: this.props.number,
+    coToggle: false,
+    coCount: 0,
   };
   alphas = ["a", "b", "c"];
   addTextbox = () => {
@@ -30,20 +41,27 @@ export default class EvenQuestions extends Component {
   };
   addQuestionValue = (e) => {
     const value = this.props.value[this.state.number];
-    this.setState({
-      question: value,
-    });
+
+    if (value === undefined) return;
+    if (value !== "" || value !== 0 || value !== undefined)
+      this.setState({
+        question: value,
+      });
   };
   addSubQuestionValue = (e, index) => {
     let sum = 0;
-    // eslint-disable-next-line
-    this.state.subquestions[index] = parseInt(e.target.value) || "";
+    if (parseInt(e.target.value))
+      // eslint-disable-next-line
+      this.state.subquestions[index] = {
+        subquestions: parseInt(e.target.value) || "",
+      };
+    else return (e.target.value = "");
     this.setState({
       subquestions: this.state.subquestions,
     });
     for (let i = 0; i < this.state.subquestions.length; i++) {
       if (this.state.subquestions[i] !== "") {
-        sum = sum + this.state.subquestions[i];
+        sum = sum + this.state.subquestions[i].subquestions;
         this.setState({
           total: sum,
         });
@@ -52,9 +70,31 @@ export default class EvenQuestions extends Component {
   };
   coChange = (e) => {
     const { name, value } = e.target;
+    const newValue = value.toUpperCase();
     this.setState({
-      [name]: value || "",
+      [name]: newValue || "",
     });
+  };
+  changeSwitch = (e) => {
+    this.setState({
+      coToggle: !this.state.coToggle,
+      co: "",
+    });
+  };
+  subQuestionCoChange = (e, index) => {
+    const co = e.target.value || "";
+    const newValue = co.toUpperCase();
+    this.subquestCO.splice(index, 1, {
+      subquestions: this.state.subquestions[index].subquestions,
+      subco: newValue,
+    });
+    if (newValue.length === 3) {
+      this.setState({
+        coCount: this.state.coCount + 1,
+      });
+    }
+    // console.log(this.subquestCO);
+    // console.log(this.state.subquestions);
   };
   render() {
     return (
@@ -66,26 +106,39 @@ export default class EvenQuestions extends Component {
             </Label>
             <Input
               type="text"
-              id="questions"
+              id={`questions${this.props.number}`}
               name="question"
               value={this.state.question}
               onClick={this.addQuestionValue}
               readOnly={true}
             />
           </FormGroup>
-          <FormGroup className="w-64">
+          <FormGroup className="flex items-center flex-wrap">
             <Label className="font-semibold text-xl capitalize" for="cos">
               Enter CO:
             </Label>
             <Input
+              style={{ width: "100px" }}
+              disabled={this.state.coToggle}
+              className="mx-2"
               type="text"
-              id="cos"
+              id={`cos${this.props.number}`}
               name="co"
               value={this.state.co}
               autoComplete="off"
               maxLength={3}
               onChange={this.coChange}
             />
+            <span className="flex items-center ">
+              <CustomInput
+                type="switch"
+                id={`switch${this.props.number}`}
+                onChange={this.changeSwitch}
+              />
+              <FormText color="primary" className="font-semibold  ">
+                Click the switch if subquestions has different CO`s.
+              </FormText>
+            </span>
           </FormGroup>
           <FormGroup>
             <Label for="questionsButton" className="font-semibold text-lg">
@@ -93,6 +146,7 @@ export default class EvenQuestions extends Component {
             </Label>
             <Button
               id="questionsButton"
+              disabled={this.state.question === "" ? true : false}
               onClick={this.addTextbox}
               color="primary"
               className="mx-2"
@@ -101,6 +155,7 @@ export default class EvenQuestions extends Component {
             </Button>
             <Button
               id="questionsButton"
+              disabled={this.state.question === "" ? true : false}
               color="danger"
               onClick={this.removeTextbox}
             >
@@ -108,7 +163,8 @@ export default class EvenQuestions extends Component {
             </Button>
           </FormGroup>
           <hr />
-          {this.state.total > this.state.question ? (
+          {this.state.total !== this.state.question &&
+          this.state.total !== 0 ? (
             <Alert className="flex" color="danger">
               <span className="flex items-center uppercase font-bold">
                 <GoAlert className="mr-3" />
@@ -121,18 +177,38 @@ export default class EvenQuestions extends Component {
           )}
           {this.state.subquestions.map((question, index) => {
             return (
-              <FormGroup className="w-64 flex" key={index}>
-                <Label className="mr-2 text-lg mt-1" for="subquestions">
-                  {this.alphas[index]}:
-                </Label>
-                <Input
-                  id="subquestions"
-                  type="text"
-                  value={question}
-                  autoComplete="off"
-                  onChange={(e) => this.addSubQuestionValue(e, index)}
-                />
-              </FormGroup>
+              <div key={index} className="flex">
+                <FormGroup className="w-64 flex">
+                  <Label className="mr-2 text-lg mt-1" for="subquestions">
+                    {this.alphas[index]}:
+                  </Label>
+                  <Input
+                    id="subquestions"
+                    type="text"
+                    autoComplete="off"
+                    onChange={(e) => this.addSubQuestionValue(e, index)}
+                  />
+                </FormGroup>
+                <FormGroup className="w-32 flex">
+                  <Label
+                    style={{ display: this.state.coToggle ? "block" : "none" }}
+                    className="mr-2 text-lg mt-1"
+                    for="subco"
+                  >
+                    CO:
+                  </Label>
+                  <Input
+                    style={{ display: this.state.coToggle ? "block" : "none" }}
+                    type="text"
+                    id="subco"
+                    autoComplete="off"
+                    maxLength={3}
+                    onChange={(e) => {
+                      this.subQuestionCoChange(e, index);
+                    }}
+                  />
+                </FormGroup>
+              </div>
             );
           })}
           {this.state.count >= 3 ? (
@@ -146,11 +222,34 @@ export default class EvenQuestions extends Component {
           ) : (
             ""
           )}
-          {this.props.render({
-            question: this.state.question,
-            subquestions: this.state.subquestions,
-            co: this.state.co,
-          })}
+          {this.state.total === this.state.question &&
+          this.state.coToggle === false
+            ? this.props.render({
+                question: this.state.question,
+                subquestions: this.state.subquestions,
+                co: this.state.co,
+              })
+            : ""}
+
+          {this.state.total === this.state.question &&
+          this.state.coToggle === true &&
+          this.state.coCount === this.state.count
+            ? this.props.render({
+                question: this.state.question,
+                subquestions: this.subquestCO,
+                co: "",
+              })
+            : ""}
+          {this.state.total === 0 &&
+          this.state.question !== "" &&
+          this.state.co !== "" &&
+          this.state.coToggle === false
+            ? this.props.render({
+                question: this.state.question,
+                subquestions: [],
+                co: this.state.co,
+              })
+            : ""}
         </div>
       </div>
     );

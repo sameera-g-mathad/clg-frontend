@@ -112,7 +112,7 @@ export default class OddQuestions extends Component {
               pattern={[0 - 9]}
             />
           </FormGroup>
-          <FormGroup className="flex items-center">
+          <FormGroup className="flex items-center flex-wrap">
             <Label className="font-semibold text-xl capitalize" for="cos">
               Enter CO:
             </Label>
@@ -131,7 +131,7 @@ export default class OddQuestions extends Component {
             <span className="flex items-center ">
               <CustomInput
                 type="switch"
-                id="switch"
+                id={`switch${this.props.number}`}
                 onChange={this.changeSwitch}
               />
               <FormText color="primary" className="font-semibold  ">

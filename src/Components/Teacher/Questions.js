@@ -86,12 +86,6 @@ export default class Questions extends Component {
               key={i}
               number={i}
               render={({ question, subquestions, co }) => {
-                console.log(
-                  "this is from question\n",
-                  question,
-                  subquestions,
-                  co
-                );
                 if (co === "")
                   // eslint-disable-next-line
                   this.state.questionpaper[i] = {
@@ -99,13 +93,14 @@ export default class Questions extends Component {
                     question,
                     subquestions,
                   };
-                if (subquestions.length === 0)
+                else if (subquestions.length === 0)
                   // eslint-disable-next-line
                   this.state.questionpaper[i] = {
                     questionNumber: i,
                     question,
                     co,
                   };
+                  else
                 // eslint-disable-next-line
                 this.state.questionpaper[i] = {
                   questionNumber: i,
@@ -113,6 +108,7 @@ export default class Questions extends Component {
                   co,
                   subquestions,
                 };
+                console.log(this.state.questionpaper[i])
                 // eslint-disable-next-line
                 this.state.comparemarks[i] = question;
                 // eslint-disable-next-line
