@@ -95,6 +95,7 @@ export default class Subjects extends Component {
             <div className="flex justify-center">
               <Button
                 color="danger"
+                disabled={el.assigned===true?true:false}
                 outline
                 onClick={() =>
                   this.setState({
@@ -204,7 +205,7 @@ export default class Subjects extends Component {
         </div>
       );
     return (
-      <div className="m-4">
+      <div className="m-2 mt-4">
         <Alert
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="success"
@@ -350,7 +351,7 @@ export default class Subjects extends Component {
             <Select
               className="w-32 sm:w-64 "
               styles={customStyles}
-              placeholder="Filter By Sem"
+              placeholder="Sem"
               onChange={this.selectChange}
               options={this.options}
             />

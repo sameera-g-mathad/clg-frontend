@@ -5,8 +5,9 @@ import { Button, Alert } from "reactstrap";
 import "./../../App.css";
 import axios from "axios";
 import { GoAlert } from "react-icons/go";
-
+import {RootContext} from "./../../RContext"
 export default class Questions extends Component {
+  static contextType=RootContext
   location = this.props.location.state;
   arr = [];
 
@@ -24,6 +25,7 @@ export default class Questions extends Component {
     comparemarks: [],
     questionpaper: [],
     questionmarks: [],
+    url:this.context.url
   };
   submit = async () => {
     try {
@@ -38,7 +40,7 @@ export default class Questions extends Component {
         (el) => el !== null
       );
       const res = await axios.post(
-        `http://127.0.0.1:4000/staff/set-paper/questions`,
+        `${this.state.url}/staff/set-paper/questions`,
         {
           subject,
           subjectCode,
@@ -68,13 +70,30 @@ export default class Questions extends Component {
               number={i}
               value={this.state.questionmarks}
               render={({ question, subquestions, co }) => {
+                if (co === "")
+                  // eslint-disable-next-line
+                  this.state.questionpaper[i] = {
+                    questionNumber: i,
+                    question,
+                    subquestions,
+                  };
+                else if (subquestions.length === 0)
+                  // eslint-disable-next-line
+                  this.state.questionpaper[i] = {
+                    questionNumber: i,
+                    question,
+                    co,
+                  };
+                
+                else
                 // eslint-disable-next-line
-                this.state.questionpaper[i] = {
-                  questionNumber: i,
-                  question,
-                  co,
-                  subquestions,
-                };
+                  this.state.questionpaper[i] = {
+                    questionNumber: i,
+                    question,
+                    co,
+                    subquestions,
+                  };
+                console.log(this.state.questionpaper[i]);
                 this.setState({
                   questionpaper: this.state.questionpaper,
                 });
@@ -100,15 +119,16 @@ export default class Questions extends Component {
                     question,
                     co,
                   };
-                  else
+                
+                else
                 // eslint-disable-next-line
-                this.state.questionpaper[i] = {
-                  questionNumber: i,
-                  question,
-                  co,
-                  subquestions,
-                };
-                console.log(this.state.questionpaper[i])
+                  this.state.questionpaper[i] = {
+                    questionNumber: i,
+                    question,
+                    co,
+                    subquestions,
+                  };
+                console.log(this.state.questionpaper[i]);
                 // eslint-disable-next-line
                 this.state.comparemarks[i] = question;
                 // eslint-disable-next-line

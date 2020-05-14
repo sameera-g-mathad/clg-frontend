@@ -12,7 +12,7 @@ import "./../../App.css";
 import { GoAlert } from "react-icons/go";
 import { FaLightbulb } from "react-icons/fa";
 export default class EvenQuestions extends Component {
-  subquestco = [];
+  subquestCO = [];
   state = {
     subquestions: [],
     count: 0,
@@ -178,7 +178,7 @@ export default class EvenQuestions extends Component {
           {this.state.subquestions.map((question, index) => {
             return (
               <div key={index} className="flex">
-                <FormGroup className="w-64 flex">
+                <FormGroup className="w-64 flex mr-4">
                   <Label className="mr-2 text-lg mt-1" for="subquestions">
                     {this.alphas[index]}:
                   </Label>

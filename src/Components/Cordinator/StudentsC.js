@@ -13,6 +13,7 @@ import {
   ModalHeader,
   ModalFooter,
   FormFeedback,
+  FormText,
 } from "reactstrap";
 import { MdLibraryAdd, MdDelete, MdClose } from "react-icons/md";
 import { FaEye, FaSearch, FaFilter } from "react-icons/fa";
@@ -35,6 +36,7 @@ export default class Students extends Component {
     studentName: "",
     studentUsn: "",
     dept: "",
+    dob: "",
     year: "",
     sem: "",
     section: "",
@@ -43,6 +45,7 @@ export default class Students extends Component {
     image: "",
     disabled: "",
     url: this.context.url,
+    doberr: false,
   };
   options = [
     {
@@ -176,6 +179,9 @@ export default class Students extends Component {
                 department : {student.dept}
               </p>
               <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+                d.o.b : '{student.dob}'
+              </p>
+              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
                 year : {student.year}
               </p>
               <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
@@ -273,12 +279,13 @@ export default class Students extends Component {
   submit = async (e) => {
     try {
       e.preventDefault();
-      const { studentName, studentUsn, dept, year, sem, section } = this.state;
+      const { studentName, studentUsn, dept ,dob, year, sem, section } = this.state;
       const formdata = new FormData();
       formdata.append("photo", this.state.image, this.state.image.name);
       formdata.append("studentName", studentName);
       formdata.append("studentUsn", studentUsn);
       formdata.append("dept", dept);
+      formdata.append("dob",dob)
       formdata.append("year", year);
       formdata.append("sem", sem);
       formdata.append("section", section);
@@ -306,6 +313,37 @@ export default class Students extends Component {
       disabled: false,
     });
   };
+  handledob = (e) => {
+    const { name, value } = e.target;
+    if (value.match("^[0-9]{4}-[0-9][0-9]-[0-9][0-9]$") !== null)
+      {
+        const date=value.split("-")
+        console.log(date)
+        const year=parseInt(date[0])
+        const month=parseInt(date[1])
+        const day=parseInt(date[2])
+        if(year<1995)
+        return
+        if(month<0 || month>12)
+        return
+        if(day<0 || day>31)
+        return
+        if(month===2 && day===29 && year%4!==0)
+        return
+        if((month===1||month===3||month===5||month===7||month===8||month===10||month===12)&& day>31)
+        return
+        if((month===4||month===6 ||month===9 || month===11)&& day>30)
+        return
+        this.setState({
+        [name]: value, 
+        doberr: false,
+      });}
+    else {
+      this.setState({
+        doberr: true,
+      });
+    }
+  };
   render() {
     const customStyles = {
       control: (base, state) => {
@@ -328,7 +366,7 @@ export default class Students extends Component {
         </div>
       );
     return (
-      <div className="m-4">
+      <div className="m-2 mt-4">
         <Alert
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="info"
@@ -410,6 +448,25 @@ export default class Students extends Component {
               maxLength={3}
               onChange={this.handleChange}
             />
+          </FormGroup>
+          <FormGroup className="mx-8">
+            <Label
+              className="text-lg font-semibold text-gray-800 capitalize"
+              for="dob"
+            >
+              D.O.B:
+            </Label>
+            <Input
+              id="dob"
+              type="text"
+              name="dob"
+              maxLength={10}
+              autoComplete="off"
+              onChange={this.handledob}
+            />
+            <FormText color="danger" className="capitalize font-semibold" style={{display:this.state.doberr?"block":"none"}} >
+              the d.o.b must match the format YYYY-MM-DD . 
+            </FormText>
           </FormGroup>
 
           <FormGroup className="mx-8">
@@ -520,7 +577,7 @@ export default class Students extends Component {
             <Select
               className="w-32 sm:w-64 "
               styles={customStyles}
-              placeholder="Filter By Year"
+              placeholder="Year"
               onChange={this.selectChange}
               options={this.options}
             />

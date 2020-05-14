@@ -34,7 +34,7 @@ export default class Cordinaotlogin extends Component {
         </div>
         <div className="login-content">
           <Form className=" border bg-gray-200 rounded rounded-lg  hover:shadow-lg">
-            <h4 className="bg-teal-500 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
+            <h4 className="bg-yellow-400 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
               Login
             </h4>
             <FormGroup className="mx-8 my-4">
@@ -44,7 +44,7 @@ export default class Cordinaotlogin extends Component {
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <MdEmail className="text-teal-500" />
+                    <MdEmail className="text-yellow-400" />
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -61,7 +61,7 @@ export default class Cordinaotlogin extends Component {
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <MdVpnKey className="text-teal-500" />
+                    <MdVpnKey className="text-yellow-400" />
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input type="password" bsSize="lg" placeholder="Password" />
