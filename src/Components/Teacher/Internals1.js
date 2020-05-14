@@ -10,14 +10,18 @@ import {
   FormText,
   Spinner,
   Form,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import { FaLightbulb } from "react-icons/fa";
 import "./../../App.css";
-import {RootContext} from "./../../RContext"
+import { RootContext } from "./../../RContext";
 //import error from "./error.png";
 import { Link } from "react-router-dom";
 export default class Internals1 extends Component {
-  static contextType=RootContext
+  static contextType = RootContext;
   location = this.props.history.location.state;
   subarr = [];
   questionarr = [];
@@ -36,11 +40,12 @@ export default class Internals1 extends Component {
     questionpaper: [],
     allocatedMarks: 0,
     marks: 0,
-    url:this.context.url,
+    url: this.context.url,
     loading: true,
     failed: false,
     failedmsg: "",
     disabled: false,
+    modalOpen: false,
     checked: false,
     performance: [
       {
@@ -143,6 +148,22 @@ export default class Internals1 extends Component {
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals1/${this.state.usn}`,
         { internals1: { subject, performance, marks } }
+      );
+      console.log(res);
+      if (res.status === 200) {
+        this.props.history.push({ pathname: "/staff/students" });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  absentSubmit = async () => {
+    try {
+      const subject = this.state.subject;
+      const marks = -1;
+      const res = await Axios.patch(
+        `${this.state.url}/staff/students/internals1/${this.state.usn}`,
+        { internals1: { subject, marks } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -396,6 +417,18 @@ export default class Internals1 extends Component {
             </p>
           </div>
         </div>
+        <Alert className="m-4 flex flex-wrap items-center" color="danger">
+          Absent for {this.state.internals}?
+          <Button
+            onClick={() => {
+              this.setState({ modalOpen: !this.state.modalOpen });
+            }}
+            className="ml-4 tracking-wider"
+            color="danger"
+          >
+            Absent
+          </Button>
+        </Alert>
         <Form>
           {this.state.questionpaper}
           <Alert className="m-4 capitalize font-semibold tracking-widest">
@@ -422,6 +455,33 @@ export default class Internals1 extends Component {
             Enter marks correctly...
           </Alert>
         </Form>
+        <Modal isOpen={this.state.modalOpen} centered={true}>
+          <ModalHeader className="bg-red-600 tracking-wider">
+            Warning
+          </ModalHeader>
+          <ModalBody className="text-gray-700 capitalize">
+            The student was absent for {this.state.internals}.
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              outline
+              color="danger"
+              className="capitalize tracking-wider"
+              onClick={this.absentSubmit}
+            >
+              confirm
+            </Button>
+            <Button
+              outline
+              className="capitalize tracking-wider"
+              onClick={() => {
+                this.setState({ modalOpen: !this.state.modalOpen });
+              }}
+            >
+              cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }

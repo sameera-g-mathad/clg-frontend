@@ -79,7 +79,11 @@ export default class StudentT extends Component {
                 })}
                 <span>
                   {this.internals1 !== "" ? (
-                    <span className="font-semibold">{this.internals1}</span>
+                    this.internals1 <= 0 ? (
+                      <span className="font-semibold text-red-500">Ab</span>
+                    ) : (
+                      <span className="font-semibold">{this.internals1}</span>
+                    )
                   ) : (
                     "-"
                   )}
@@ -123,7 +127,11 @@ export default class StudentT extends Component {
                 })}
                 <span>
                   {this.internals2 !== "" ? (
-                    <span className="font-semibold">{this.internals2}</span>
+                    this.internals2 <= 0 ? (
+                      <span className="font-semibold text-red-500">Ab</span>
+                    ) : (
+                      <span className="font-semibold">{this.internals2}</span>
+                    )
                   ) : (
                     "-"
                   )}
@@ -165,7 +173,11 @@ export default class StudentT extends Component {
                 })}
                 <span>
                   {this.internals3 !== "" ? (
-                    <span className="font-semibold">{this.internals3}</span>
+                    this.internals3 <= 0 ? (
+                      <span className="font-semibold text-red-500">Ab</span>
+                    ) : (
+                      <span className="font-semibold">{this.internals3}</span>
+                    )
                   ) : (
                     "-"
                   )}
