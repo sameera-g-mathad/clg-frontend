@@ -13,9 +13,11 @@ import {
 } from "reactstrap";
 import { FaLightbulb } from "react-icons/fa";
 import "./../../App.css";
+import {RootContext} from "./../../RContext"
 //import error from "./error.png";
 import { Link } from "react-router-dom";
 export default class Internals1 extends Component {
+  static contextType=RootContext
   location = this.props.history.location.state;
   subarr = [];
   questionarr = [];
@@ -34,6 +36,7 @@ export default class Internals1 extends Component {
     questionpaper: [],
     allocatedMarks: 0,
     marks: 0,
+    url:this.context.url,
     loading: true,
     failed: false,
     failedmsg: "",
@@ -138,7 +141,7 @@ export default class Internals1 extends Component {
       e.preventDefault();
       const { subject, performance, marks } = this.state;
       const res = await Axios.patch(
-        `http://127.0.0.1:4000/staff/students/internals1/${this.state.usn}`,
+        `${this.state.url}/staff/students/internals1/${this.state.usn}`,
         { internals1: { subject, performance, marks } }
       );
       console.log(res);
@@ -153,7 +156,7 @@ export default class Internals1 extends Component {
     try {
       const { teacherid, subject, sem, section, dept, internals } = this.state;
       const res = await Axios.get(
-        `http://127.0.0.1:4000/staff/students/internals1/${this.state.usn}`,
+        `${this.state.url}/staff/students/internals1/${this.state.usn}`,
         { headers: { teacherid, subject, sem, section, dept, internals } }
       );
 
@@ -208,9 +211,13 @@ export default class Internals1 extends Component {
                 </span>
               </span>
               <hr />
-              <span className="w-24 text-lg text-gray-700 ml-2 font-semibold uppercase tracking-widest flex items-center">
-                co: <Input readOnly={true} value={que.co} />
-              </span>
+              {que.hasOwnProperty("co") ? (
+                <span className="w-24 text-lg text-gray-700 ml-2 font-semibold uppercase tracking-widest flex items-center">
+                  co: <Input readOnly={true} value={que.co} />
+                </span>
+              ) : (
+                ""
+              )}
 
               <span>
                 {que.subquestions.length >= 1 ? (
@@ -233,16 +240,29 @@ export default class Internals1 extends Component {
                             bsSize="sm"
                             maxLength={2}
                             className="mx-2"
-                            onChange={(e) => this.subChange(e, index, i, sub)}
+                            onChange={(e) =>
+                              this.subChange(e, index, i, sub.subquestions)
+                            }
                             required={true}
                           />
                           <span className="mx-2 text-3xl">/</span>
                           <Input
                             bsSize="sm"
                             readOnly={true}
-                            value={sub}
+                            value={sub.subquestions}
                             className="mx-2"
                           />
+                          {sub.hasOwnProperty("subco") ? (
+                            <span className="ml-2 w-64">
+                              <Input
+                                value={sub.subco}
+                                readOnly={true}
+                                bsSize="sm"
+                              />
+                            </span>
+                          ) : (
+                            ""
+                          )}
                         </span>
                       </span>
                     );

@@ -164,7 +164,7 @@ export default class OddQuestions extends Component {
           <hr />
           {this.state.total !== this.state.question &&
           this.state.total !== 0 ? (
-            <Alert className="flex" color="danger">
+            <Alert className="flex flex-wrap" color="danger">
               <span className="flex items-center font-bold">
                 <GoAlert className="mr-3" />
                 Warning
@@ -211,7 +211,7 @@ export default class OddQuestions extends Component {
             );
           })}
           {this.state.count >= 3 ? (
-            <Alert className="flex" color="success">
+            <Alert className="flex flex-wrap" color="success">
               <span className="flex items-center font-bold">
                 <FaLightbulb className="mr-3" />
                 Note
