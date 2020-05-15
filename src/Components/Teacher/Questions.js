@@ -5,9 +5,9 @@ import { Button, Alert } from "reactstrap";
 import "./../../App.css";
 import axios from "axios";
 import { GoAlert } from "react-icons/go";
-import {RootContext} from "./../../RContext"
+import { RootContext } from "./../../RContext";
 export default class Questions extends Component {
-  static contextType=RootContext
+  static contextType = RootContext;
   location = this.props.location.state;
   arr = [];
 
@@ -25,7 +25,7 @@ export default class Questions extends Component {
     comparemarks: [],
     questionpaper: [],
     questionmarks: [],
-    url:this.context.url
+    url: this.context.url,
   };
   submit = async () => {
     try {
@@ -84,15 +84,15 @@ export default class Questions extends Component {
                     question,
                     co,
                   };
-                
-                else
-                // eslint-disable-next-line
+                else {
+                  // eslint-disable-next-line
                   this.state.questionpaper[i] = {
                     questionNumber: i,
                     question,
                     co,
                     subquestions,
                   };
+                }
                 console.log(this.state.questionpaper[i]);
                 this.setState({
                   questionpaper: this.state.questionpaper,
@@ -119,15 +119,15 @@ export default class Questions extends Component {
                     question,
                     co,
                   };
-                
-                else
-                // eslint-disable-next-line
+                else {
+                  // eslint-disable-next-line
                   this.state.questionpaper[i] = {
                     questionNumber: i,
                     question,
                     co,
                     subquestions,
                   };
+                }
                 console.log(this.state.questionpaper[i]);
                 // eslint-disable-next-line
                 this.state.comparemarks[i] = question;
@@ -177,6 +177,7 @@ export default class Questions extends Component {
             Total Marks:"{this.state.marks}"
           </div>
         </div>
+
         {this.arr}
         {disable === true ? (
           <Alert className="flex  " color="danger">
@@ -194,7 +195,7 @@ export default class Questions extends Component {
             color="primary"
             onClick={this.submit}
             disabled={disable}
-            className="px-4 py-2 uppercase tracking-wide"
+            className="px-4 py-2 uppercase tracking-wider"
           >
             Submit
           </Button>

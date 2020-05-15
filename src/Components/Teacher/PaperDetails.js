@@ -20,7 +20,7 @@ export default class PaperDetails extends Component {
     marks: "",
     url: this.context.url,
     wInfo: false,
-    wIngomsg:""
+    wIngomsg: "",
   };
   options = [
     {
@@ -80,12 +80,15 @@ export default class PaperDetails extends Component {
     });
   };
   checkMarks = () => {
-    if(this.state.internals==="" || this.state.marks==="" || this.state.questions==="")
-    {
+    if (
+      this.state.internals === "" ||
+      this.state.marks === "" ||
+      this.state.questions === ""
+    ) {
       return this.setState({
-        wInfo:true,
-        wIngomsg:"Enter the fields present"
-      })
+        wInfo: true,
+        wIngomsg: "Enter the fields present",
+      });
     }
     if (this.state.marks % 2 === 0 && this.state.questions % 2 === 0) {
       this.props.history.push({
@@ -95,7 +98,7 @@ export default class PaperDetails extends Component {
     } else {
       this.setState({
         wInfo: true,
-        wIngomsg:"Entered questions and marks should be a even number"
+        wIngomsg: "Entered questions and marks should be a even number",
       });
     }
   };
@@ -210,7 +213,7 @@ export default class PaperDetails extends Component {
             </FormGroup>
             <FormGroup className="mt-2  flex justify-center">
               <Button
-                className="px-4 py-2"
+                className="px-4 py-2 tracking-wider"
                 onClick={this.checkMarks}
                 color="success"
               >

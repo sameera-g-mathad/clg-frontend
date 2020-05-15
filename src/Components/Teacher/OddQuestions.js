@@ -20,7 +20,7 @@ export default class OddQuestions extends Component {
     total: 0,
     co: "",
     coToggle: false,
-    coCount:0
+    coCount: 0,
   };
   alphas = ["a", "b", "c"];
   addTextbox = () => {
@@ -85,11 +85,10 @@ export default class OddQuestions extends Component {
       subquestions: this.state.subquestions[index].subquestions,
       subco: newValue,
     });
-    if(newValue.length===3)
-    {
+    if (newValue.length === 3) {
       this.setState({
-        coCount:this.state.coCount+1
-      })
+        coCount: this.state.coCount + 1,
+      });
     }
     // console.log(this.subquestCO);
     // console.log(this.state.subquestions);
@@ -221,16 +220,18 @@ export default class OddQuestions extends Component {
           ) : (
             ""
           )}
-          {this.state.total === this.state.question && this.state.coToggle===false
+          {this.state.total === this.state.question &&
+          this.state.coToggle === false
             ? this.props.render({
                 question: this.state.question,
                 subquestions: this.state.subquestions,
                 co: this.state.co,
               })
             : ""}
-            
+
           {this.state.total === this.state.question &&
-          this.state.coToggle === true && this.state.coCount===this.state.count
+          this.state.coToggle === true &&
+          this.state.coCount === this.state.count
             ? this.props.render({
                 question: this.state.question,
                 subquestions: this.subquestCO,
