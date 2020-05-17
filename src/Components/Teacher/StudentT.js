@@ -4,6 +4,7 @@ import { Spinner, Button, FormGroup } from "reactstrap";
 import Axios from "axios";
 import "./../../App.css";
 import { FaSearch } from "react-icons/fa";
+
 export default class StudentT extends Component {
   subject = JSON.parse(sessionStorage.getItem("subject"));
   img = "";
@@ -111,7 +112,6 @@ export default class StudentT extends Component {
                 >
                   Add
                 </Button>
-                {(this.internals1 = "")}
               </div>
               <div className="p-2  internals-content">
                 <span className="capitalize text-lg text-gray-800 font-semibold hover:underline">
@@ -205,6 +205,26 @@ export default class StudentT extends Component {
                   Add
                 </Button>
               </div>
+              {this.internals1 !== "" &&
+              this.internals2 !== "" &&
+              this.internals3 !== "" ? (
+                <Link
+                  className="capitalize hover:no-underline p-2"
+                  to={{
+                    pathname: `/staff/co-analysis/${student.studentUsn}`,
+                    state: {
+                      student,
+                      subject: this.subject.subjectName,
+                    },
+                  }}
+                >
+                  <span className="flex items-center justify-end tracking-wider font-semibold">
+                    co analysis
+                  </span>
+                </Link>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         );

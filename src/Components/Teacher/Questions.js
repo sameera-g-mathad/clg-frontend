@@ -195,7 +195,7 @@ export default class Questions extends Component {
             color="primary"
             onClick={this.submit}
             disabled={disable}
-            className="px-4 py-2 uppercase tracking-wider"
+            className="px-4 py-2 capitalize tracking-wider"
           >
             Submit
           </Button>
