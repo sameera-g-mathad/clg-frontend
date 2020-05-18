@@ -46,11 +46,25 @@ export default class Coanalysis extends Component {
           return (this.performance[2] = el.performance);
         else return "";
       });
-
       this.internals1 = Internals[0];
       this.internals2 = Internals[1];
       this.internals3 = Internals[2];
-      console.log(this.internals1);
+      console.log(this.performance, this.internals1);
+      this.performance[0].map((el, index) => {
+        if (el.attended === true) {
+          if (this.internals1.questionpaper[index].hasOwnProperty("co"))
+            return (this.coanalysis[this.internals1.questionpaper[index].co] = [
+              {
+                assigned: this.internals1.questionpaper[index].question,
+                scored: el.question,
+                number: index + 1,
+              },
+            ]);
+          else return "";
+        } else return "";
+      });
+
+      console.log(this.coanalysis);
     } catch (err) {
       console.log(err);
     }
