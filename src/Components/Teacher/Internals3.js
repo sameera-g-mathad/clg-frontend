@@ -63,6 +63,7 @@ export default class Internals2 extends Component {
       // eslint-disable-next-line
       this.state.performance[index] = {
         question: value,
+        attended: true,
       };
       this.questionarr.splice(index, 1, value);
     } else e.target.value = "";
@@ -93,6 +94,7 @@ export default class Internals2 extends Component {
         // eslint-disable-next-line
         this.state.performance[index] = {
           question: this.state.performance[index].question,
+          attended: true,
           subquestions: [...this.subarr[index]],
         };
       else e.target.value = "";
@@ -118,6 +120,7 @@ export default class Internals2 extends Component {
       // eslint-disable-next-line
       this.state.performance[index] = {
         question: 0,
+        attended: false,
       };
       this.questionarr.splice(index, 1, 0);
 

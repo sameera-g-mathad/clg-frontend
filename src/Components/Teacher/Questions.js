@@ -39,6 +39,7 @@ export default class Questions extends Component {
       const questionpaper = this.state.questionpaper.filter(
         (el) => el !== null
       );
+      console.log(questionpaper);
       const res = await axios.post(
         `${this.state.url}/staff/set-paper/questions`,
         {
@@ -70,21 +71,22 @@ export default class Questions extends Component {
               number={i}
               value={this.state.questionmarks}
               render={({ question, subquestions, co }) => {
-                if (co === "")
+                if (co === "") {
                   // eslint-disable-next-line
                   this.state.questionpaper[i] = {
                     questionNumber: i,
                     question,
                     subquestions,
                   };
-                else if (subquestions.length === 0)
+                } else if (subquestions.length === 0) {
+                  console.log("working");
                   // eslint-disable-next-line
                   this.state.questionpaper[i] = {
                     questionNumber: i,
                     question,
                     co,
                   };
-                else {
+                } else {
                   // eslint-disable-next-line
                   this.state.questionpaper[i] = {
                     questionNumber: i,

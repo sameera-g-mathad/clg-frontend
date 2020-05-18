@@ -3,6 +3,11 @@ import { RootContext } from "./../../RContext";
 import Axios from "axios";
 export default class Coanalysis extends Component {
   static contextType = RootContext;
+  internals1 = "";
+  internals2 = "";
+  internals3 = "";
+  coanalysis = {};
+  performance = [];
   img = "";
   student = this.props.location.state.student;
   state = {
@@ -25,13 +30,32 @@ export default class Coanalysis extends Component {
         },
       });
       const Internals = res.data.Internals;
-      console.log(Internals);
+      console.log(this.student);
+      this.student.internals1.map((el) => {
+        if (el.subject === this.state.subject)
+          return (this.performance[0] = el.performance);
+        else return "";
+      });
+      this.student.internals2.map((el) => {
+        if (el.subject === this.state.subject)
+          return (this.performance[1] = el.performance);
+        else return "";
+      });
+      this.student.internals3.map((el) => {
+        if (el.subject === this.state.subject)
+          return (this.performance[2] = el.performance);
+        else return "";
+      });
+
+      this.internals1 = Internals[0];
+      this.internals2 = Internals[1];
+      this.internals3 = Internals[2];
+      console.log(this.internals1);
     } catch (err) {
       console.log(err);
     }
   }
   render() {
-    console.log(this.props);
     const imgage64falg = "data:image/jpeg;base64,";
     let imgstr = this.arrayToImage(this.student.photo.data.data);
     this.img = imgage64falg + imgstr;
