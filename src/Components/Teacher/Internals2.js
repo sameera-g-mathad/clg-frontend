@@ -63,6 +63,7 @@ export default class Internals2 extends Component {
         question: value,
         attended: true,
       };
+      console.log(this.state.performance);
       this.questionarr.splice(index, 1, value);
     } else e.target.value = "";
     if (index % 2 !== 0) {
@@ -96,6 +97,7 @@ export default class Internals2 extends Component {
           subquestions: [...this.subarr[index]],
         };
       else e.target.value = "";
+      console.log(this.state.performance);
     } else {
       e.target.value = "";
       this.subarr[index].splice(i, 1);

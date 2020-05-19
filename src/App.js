@@ -13,7 +13,7 @@ import Internals1 from "./Components/Teacher/Internals1";
 import Internals2 from "./Components/Teacher/Internals2";
 import Internals3 from "./Components/Teacher/Internals3";
 import Coanalysis from "./Components/Teacher/Coanalysis";
-
+import ResetEmail from "./Components/Teacher/ResetEmail";
 //students
 import Studentlogin from "./Components/Students/Studentlogin";
 
@@ -60,6 +60,7 @@ function App() {
           component={Internals3}
         />
         <Route exact path="/staff/co-analysis/:id" component={Coanalysis} />
+        <Route exact path="/staffEmail" component={ResetEmail} />
         {
           //Cordinator
         }

@@ -195,8 +195,14 @@ export default class Stafflogin extends Component {
                 <Button className="m-3" type="submit" color="success">
                   Login
                 </Button>
-                <Button className="m-3" type="button" color="info">
-                  Forgot Password
+                <Button
+                  className="m-3"
+                  type="button"
+                  color="info"
+                  tag={Link}
+                  to="/staffEmail"
+                >
+                  Reset Password
                 </Button>
               </FormGroup>
             </Form>

@@ -14,6 +14,7 @@ export default class Coanalysis extends Component {
     url: this.context.url,
     teacherid: JSON.parse(localStorage.getItem("id")),
     subject: this.props.location.state.subject,
+    cofinal: "",
   };
   arrayToImage = (buffer) => {
     let binary = "";
@@ -49,22 +50,217 @@ export default class Coanalysis extends Component {
       this.internals1 = Internals[0];
       this.internals2 = Internals[1];
       this.internals3 = Internals[2];
-      console.log(this.performance, this.internals1);
+      console.log(this.performance, this.internals1, this.internals2);
       this.performance[0].map((el, index) => {
         if (el.attended === true) {
-          if (this.internals1.questionpaper[index].hasOwnProperty("co"))
-            return (this.coanalysis[this.internals1.questionpaper[index].co] = [
-              {
+          if (this.internals1.questionpaper[index].hasOwnProperty("co")) {
+            if (
+              this.coanalysis.hasOwnProperty([
+                this.internals1.questionpaper[index].co,
+              ])
+            )
+              return this.coanalysis[
+                this.internals1.questionpaper[index].co
+              ].push({
                 assigned: this.internals1.questionpaper[index].question,
                 scored: el.question,
                 number: index + 1,
-              },
-            ]);
-          else return "";
+                internals: this.internals1.internals,
+              });
+            else
+              return (this.coanalysis[
+                this.internals1.questionpaper[index].co
+              ] = [
+                {
+                  assigned: this.internals1.questionpaper[index].question,
+                  scored: el.question,
+                  number: index + 1,
+                  internals: this.internals1.internals,
+                },
+              ]);
+          } else
+            return this.internals1.questionpaper[index].subquestions.map(
+              (sub, i) => {
+                if (sub.hasOwnProperty("subco")) {
+                  if (this.coanalysis.hasOwnProperty(sub.subco))
+                    return this.coanalysis[sub.subco].push({
+                      assigned: sub.subquestions,
+                      scored: el.subquestions[i],
+                      number: index + 1,
+                      sub_number: i + 1,
+                      internals: this.internals1.internals,
+                    });
+                  else
+                    return (this.coanalysis[sub.subco] = [
+                      {
+                        assigned: sub.subquestions,
+                        scored: el.subquestions[i],
+                        number: index + 1,
+                        sub_number: i + 1,
+                        internals: this.internals2.internals,
+                      },
+                    ]);
+                } else return "";
+              }
+            );
         } else return "";
       });
 
+      this.performance[1].map((el, index) => {
+        if (el.attended === true) {
+          if (this.internals2.questionpaper[index].hasOwnProperty("co")) {
+            if (
+              this.coanalysis.hasOwnProperty([
+                this.internals2.questionpaper[index].co,
+              ])
+            )
+              return this.coanalysis[
+                this.internals2.questionpaper[index].co
+              ].push({
+                assigned: this.internals2.questionpaper[index].question,
+                scored: el.question,
+                number: index + 1,
+                internals: this.internals2.internals,
+              });
+            else
+              return (this.coanalysis[
+                this.internals2.questionpaper[index].co
+              ] = [
+                {
+                  assigned: this.internals2.questionpaper[index].question,
+                  scored: el.question,
+                  number: index + 1,
+                  internals: this.internals2.internals,
+                },
+              ]);
+          } else
+            return this.internals2.questionpaper[index].subquestions.map(
+              (sub, i) => {
+                if (sub.hasOwnProperty("subco")) {
+                  if (this.coanalysis.hasOwnProperty(sub.subco))
+                    return this.coanalysis[sub.subco].push({
+                      assigned: sub.subquestions,
+                      scored: el.subquestions[i],
+                      number: index + 1,
+                      sub_number: i + 1,
+                      internals: this.internals2.internals,
+                    });
+                  else
+                    return (this.coanalysis[sub.subco] = [
+                      {
+                        assigned: sub.subquestions,
+                        scored: el.subquestions[i],
+                        number: index + 1,
+                        sub_number: i + 1,
+                        internals: this.internals2.internals,
+                      },
+                    ]);
+                } else return "";
+              }
+            );
+        } else return "";
+      });
+
+      this.performance[2].map((el, index) => {
+        if (el.attended === true) {
+          if (this.internals3.questionpaper[index].hasOwnProperty("co")) {
+            if (
+              this.coanalysis.hasOwnProperty([
+                this.internals3.questionpaper[index].co,
+              ])
+            )
+              return this.coanalysis[
+                this.internals3.questionpaper[index].co
+              ].push({
+                assigned: this.internals3.questionpaper[index].question,
+                scored: el.question,
+                number: index + 1,
+                internals: this.internals3.internals,
+              });
+            else
+              return (this.coanalysis[
+                this.internals3.questionpaper[index].co
+              ] = [
+                {
+                  assigned: this.internals3.questionpaper[index].question,
+                  scored: el.question,
+                  number: index + 1,
+                  internals: this.internals3.internals,
+                },
+              ]);
+          } else
+            return this.internals3.questionpaper[index].subquestions.map(
+              (sub, i) => {
+                if (sub.hasOwnProperty("subco")) {
+                  if (this.coanalysis.hasOwnProperty(sub.subco))
+                    return this.coanalysis[sub.subco].push({
+                      assigned: sub.subquestions,
+                      scored: el.subquestions[i],
+                      number: index + 1,
+                      sub_number: i + 1,
+                      internals: this.internals3.internals,
+                    });
+                  else
+                    return (this.coanalysis[sub.subco] = [
+                      {
+                        assigned: sub.subquestions,
+                        scored: el.subquestions[i],
+                        number: index + 1,
+                        sub_number: i + 1,
+                        internals: this.internals3.internals,
+                      },
+                    ]);
+                } else return "";
+              }
+            );
+        } else return "";
+      });
       console.log(this.coanalysis);
+      const cofinal = Object.keys(this.coanalysis).map((el, i) => {
+        let assignedTotal = 0,
+          scoredTotal = 0;
+        const alpha = ["a", "b", "c"];
+        return (
+          <div
+            key={i}
+            className="m-4 border rounded-lg shadow-sm px-4 bg-gray-200"
+          >
+            <span className="text-gray-700 text-2xl font-bold  tracking-wider">
+              {el} :
+            </span>
+            {this.coanalysis[el].map((co, si) => {
+              assignedTotal = assignedTotal + co.assigned;
+              scoredTotal = scoredTotal + co.scored;
+              return (
+                <div key={`${i}${si}`} className="px-2 flex flex-col">
+                  <span className="text-xl font-semibold py-2 tracking-wide underline italic text-indigo-600">
+                    {co.internals} :
+                  </span>
+                  <span className="px-2 py-1 capitalize tracking-wide font-medium text-green-600">
+                    Question : {co.number}
+                    {co.hasOwnProperty("sub_number")
+                      ? alpha[co.sub_number]
+                      : ""}
+                  </span>
+
+                  <span className="px-2 py-1 capitalize tracking-wide font-medium text-yellow-600">
+                    assigned : {co.assigned}
+                  </span>
+                  <span className="px-2 py-1 capitalize tracking-wide font-medium text-red-600">
+                    scored : {co.scored}
+                  </span>
+                </div>
+              );
+            })}
+            <h5 className="py-2 tracking-wider text-blue-700">
+              Total Performace = {scoredTotal} / {assignedTotal}
+            </h5>
+          </div>
+        );
+      });
+      this.setState({
+        cofinal: [...cofinal],
+      });
     } catch (err) {
       console.log(err);
     }
@@ -109,6 +305,7 @@ export default class Coanalysis extends Component {
         <h4 className="m-4 capitalize text-gray-700 tracking-wider">
           Course outcome analysis
         </h4>
+        {this.state.cofinal}
       </div>
     );
   }
