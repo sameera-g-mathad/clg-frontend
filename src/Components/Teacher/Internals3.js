@@ -151,10 +151,10 @@ export default class Internals2 extends Component {
     try {
       e.preventDefault();
       console.log(this.state.performance);
-      const { subject, performance, marks } = this.state;
+      const { subject, sem, performance, marks } = this.state;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals3/${this.state.usn}`,
-        { internals3: { subject, performance, marks } }
+        { internals3: { subject, sem, performance, marks } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -168,9 +168,10 @@ export default class Internals2 extends Component {
     try {
       const subject = this.state.subject;
       const marks = -1;
+      const sem = this.state.sem;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals3/${this.state.usn}`,
-        { internals3: { subject, marks } }
+        { internals3: { subject, sem, marks } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -276,7 +277,7 @@ export default class Internals2 extends Component {
                           <Input
                             bsSize="sm"
                             readOnly={true}
-                            value={sub}
+                            value={sub.subquestions}
                             className="mx-2"
                           />
                           {sub.hasOwnProperty("subco") ? (

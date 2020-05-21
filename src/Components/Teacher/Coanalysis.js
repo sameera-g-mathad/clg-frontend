@@ -51,170 +51,174 @@ export default class Coanalysis extends Component {
       this.internals2 = Internals[1];
       this.internals3 = Internals[2];
       console.log(this.performance, this.internals1, this.internals2);
-      this.performance[0].map((el, index) => {
-        if (el.attended === true) {
-          if (this.internals1.questionpaper[index].hasOwnProperty("co")) {
-            if (
-              this.coanalysis.hasOwnProperty([
-                this.internals1.questionpaper[index].co,
-              ])
-            )
-              return this.coanalysis[
-                this.internals1.questionpaper[index].co
-              ].push({
-                assigned: this.internals1.questionpaper[index].question,
-                scored: el.question,
-                number: index + 1,
-                internals: this.internals1.internals,
-              });
-            else
-              return (this.coanalysis[
-                this.internals1.questionpaper[index].co
-              ] = [
-                {
+      if (this.internals1.marks > 0) {
+        this.performance[0].map((el, index) => {
+          if (el.attended === true) {
+            if (this.internals1.questionpaper[index].hasOwnProperty("co")) {
+              if (
+                this.coanalysis.hasOwnProperty([
+                  this.internals1.questionpaper[index].co,
+                ])
+              )
+                return this.coanalysis[
+                  this.internals1.questionpaper[index].co
+                ].push({
                   assigned: this.internals1.questionpaper[index].question,
                   scored: el.question,
                   number: index + 1,
                   internals: this.internals1.internals,
-                },
-              ]);
-          } else
-            return this.internals1.questionpaper[index].subquestions.map(
-              (sub, i) => {
-                if (sub.hasOwnProperty("subco")) {
-                  if (this.coanalysis.hasOwnProperty(sub.subco))
-                    return this.coanalysis[sub.subco].push({
-                      assigned: sub.subquestions,
-                      scored: el.subquestions[i],
-                      number: index + 1,
-                      sub_number: i + 1,
-                      internals: this.internals1.internals,
-                    });
-                  else
-                    return (this.coanalysis[sub.subco] = [
-                      {
+                });
+              else
+                return (this.coanalysis[
+                  this.internals1.questionpaper[index].co
+                ] = [
+                  {
+                    assigned: this.internals1.questionpaper[index].question,
+                    scored: el.question,
+                    number: index + 1,
+                    internals: this.internals1.internals,
+                  },
+                ]);
+            } else
+              return this.internals1.questionpaper[index].subquestions.map(
+                (sub, i) => {
+                  if (sub.hasOwnProperty("subco")) {
+                    if (this.coanalysis.hasOwnProperty(sub.subco))
+                      return this.coanalysis[sub.subco].push({
                         assigned: sub.subquestions,
                         scored: el.subquestions[i],
                         number: index + 1,
                         sub_number: i + 1,
-                        internals: this.internals2.internals,
-                      },
-                    ]);
-                } else return "";
-              }
-            );
-        } else return "";
-      });
-
-      this.performance[1].map((el, index) => {
-        if (el.attended === true) {
-          if (this.internals2.questionpaper[index].hasOwnProperty("co")) {
-            if (
-              this.coanalysis.hasOwnProperty([
-                this.internals2.questionpaper[index].co,
-              ])
-            )
-              return this.coanalysis[
-                this.internals2.questionpaper[index].co
-              ].push({
-                assigned: this.internals2.questionpaper[index].question,
-                scored: el.question,
-                number: index + 1,
-                internals: this.internals2.internals,
-              });
-            else
-              return (this.coanalysis[
-                this.internals2.questionpaper[index].co
-              ] = [
-                {
+                        internals: this.internals1.internals,
+                      });
+                    else
+                      return (this.coanalysis[sub.subco] = [
+                        {
+                          assigned: sub.subquestions,
+                          scored: el.subquestions[i],
+                          number: index + 1,
+                          sub_number: i + 1,
+                          internals: this.internals2.internals,
+                        },
+                      ]);
+                  } else return "";
+                }
+              );
+          } else return "";
+        });
+      }
+      if (this.internals2.marks > 0) {
+        this.performance[1].map((el, index) => {
+          if (el.attended === true) {
+            if (this.internals2.questionpaper[index].hasOwnProperty("co")) {
+              if (
+                this.coanalysis.hasOwnProperty([
+                  this.internals2.questionpaper[index].co,
+                ])
+              )
+                return this.coanalysis[
+                  this.internals2.questionpaper[index].co
+                ].push({
                   assigned: this.internals2.questionpaper[index].question,
                   scored: el.question,
                   number: index + 1,
                   internals: this.internals2.internals,
-                },
-              ]);
-          } else
-            return this.internals2.questionpaper[index].subquestions.map(
-              (sub, i) => {
-                if (sub.hasOwnProperty("subco")) {
-                  if (this.coanalysis.hasOwnProperty(sub.subco))
-                    return this.coanalysis[sub.subco].push({
-                      assigned: sub.subquestions,
-                      scored: el.subquestions[i],
-                      number: index + 1,
-                      sub_number: i + 1,
-                      internals: this.internals2.internals,
-                    });
-                  else
-                    return (this.coanalysis[sub.subco] = [
-                      {
+                });
+              else
+                return (this.coanalysis[
+                  this.internals2.questionpaper[index].co
+                ] = [
+                  {
+                    assigned: this.internals2.questionpaper[index].question,
+                    scored: el.question,
+                    number: index + 1,
+                    internals: this.internals2.internals,
+                  },
+                ]);
+            } else
+              return this.internals2.questionpaper[index].subquestions.map(
+                (sub, i) => {
+                  if (sub.hasOwnProperty("subco")) {
+                    if (this.coanalysis.hasOwnProperty(sub.subco))
+                      return this.coanalysis[sub.subco].push({
                         assigned: sub.subquestions,
                         scored: el.subquestions[i],
                         number: index + 1,
                         sub_number: i + 1,
                         internals: this.internals2.internals,
-                      },
-                    ]);
-                } else return "";
-              }
-            );
-        } else return "";
-      });
-
-      this.performance[2].map((el, index) => {
-        if (el.attended === true) {
-          if (this.internals3.questionpaper[index].hasOwnProperty("co")) {
-            if (
-              this.coanalysis.hasOwnProperty([
-                this.internals3.questionpaper[index].co,
-              ])
-            )
-              return this.coanalysis[
-                this.internals3.questionpaper[index].co
-              ].push({
-                assigned: this.internals3.questionpaper[index].question,
-                scored: el.question,
-                number: index + 1,
-                internals: this.internals3.internals,
-              });
-            else
-              return (this.coanalysis[
-                this.internals3.questionpaper[index].co
-              ] = [
-                {
+                      });
+                    else
+                      return (this.coanalysis[sub.subco] = [
+                        {
+                          assigned: sub.subquestions,
+                          scored: el.subquestions[i],
+                          number: index + 1,
+                          sub_number: i + 1,
+                          internals: this.internals2.internals,
+                        },
+                      ]);
+                  } else return "";
+                }
+              );
+          } else return "";
+        });
+      }
+      if (this.internals3.marks > 0) {
+        this.performance[2].map((el, index) => {
+          if (el.attended === true) {
+            if (this.internals3.questionpaper[index].hasOwnProperty("co")) {
+              if (
+                this.coanalysis.hasOwnProperty([
+                  this.internals3.questionpaper[index].co,
+                ])
+              )
+                return this.coanalysis[
+                  this.internals3.questionpaper[index].co
+                ].push({
                   assigned: this.internals3.questionpaper[index].question,
                   scored: el.question,
                   number: index + 1,
                   internals: this.internals3.internals,
-                },
-              ]);
-          } else
-            return this.internals3.questionpaper[index].subquestions.map(
-              (sub, i) => {
-                if (sub.hasOwnProperty("subco")) {
-                  if (this.coanalysis.hasOwnProperty(sub.subco))
-                    return this.coanalysis[sub.subco].push({
-                      assigned: sub.subquestions,
-                      scored: el.subquestions[i],
-                      number: index + 1,
-                      sub_number: i + 1,
-                      internals: this.internals3.internals,
-                    });
-                  else
-                    return (this.coanalysis[sub.subco] = [
-                      {
+                });
+              else
+                return (this.coanalysis[
+                  this.internals3.questionpaper[index].co
+                ] = [
+                  {
+                    assigned: this.internals3.questionpaper[index].question,
+                    scored: el.question,
+                    number: index + 1,
+                    internals: this.internals3.internals,
+                  },
+                ]);
+            } else
+              return this.internals3.questionpaper[index].subquestions.map(
+                (sub, i) => {
+                  if (sub.hasOwnProperty("subco")) {
+                    if (this.coanalysis.hasOwnProperty(sub.subco))
+                      return this.coanalysis[sub.subco].push({
                         assigned: sub.subquestions,
                         scored: el.subquestions[i],
                         number: index + 1,
                         sub_number: i + 1,
                         internals: this.internals3.internals,
-                      },
-                    ]);
-                } else return "";
-              }
-            );
-        } else return "";
-      });
+                      });
+                    else
+                      return (this.coanalysis[sub.subco] = [
+                        {
+                          assigned: sub.subquestions,
+                          scored: el.subquestions[i],
+                          number: index + 1,
+                          sub_number: i + 1,
+                          internals: this.internals3.internals,
+                        },
+                      ]);
+                  } else return "";
+                }
+              );
+          } else return "";
+        });
+      }
       console.log(this.coanalysis);
       const cofinal = Object.keys(this.coanalysis).map((el, i) => {
         let assignedTotal = 0,

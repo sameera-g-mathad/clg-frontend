@@ -151,10 +151,10 @@ export default class Internals2 extends Component {
     try {
       e.preventDefault();
       console.log(this.state.performance);
-      const { subject, performance, marks } = this.state;
+      const { subject, sem, performance, marks } = this.state;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals2/${this.state.usn}`,
-        { internals2: { subject, performance, marks } }
+        { internals2: { subject, sem, performance, marks } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -168,9 +168,10 @@ export default class Internals2 extends Component {
     try {
       const subject = this.state.subject;
       const marks = -1;
+      const sem = this.state.sem;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals2/${this.state.usn}`,
-        { internals2: { subject, marks } }
+        { internals2: { subject, sem, marks } }
       );
       console.log(res);
       if (res.status === 200) {
