@@ -43,6 +43,12 @@ export default class Studentlogin extends Component {
         studentUsn,
         password,
       });
+      if (res.status === 200) {
+        this.props.history.push({
+          pathname: "/student",
+          state: { student: res.data.student },
+        });
+      }
     } catch (err) {
       console.log(err);
     }

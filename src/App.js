@@ -16,6 +16,7 @@ import Coanalysis from "./Components/Teacher/Coanalysis";
 import ResetEmail from "./Components/Teacher/ResetEmail";
 //students
 import Studentlogin from "./Components/Students/Studentlogin";
+import Student from "./Components/Students/Student";
 
 //cordinator
 import Cordinator from "./Components/Cordinator/Cordinator";
@@ -70,7 +71,8 @@ function App() {
         {
           //Student
         }
-        <Route path="/student-login" component={Studentlogin} />
+        <Route exact path="/student-login" component={Studentlogin} />
+        <Route path="/student" component={Student} />
       </Switch>
     </div>
   );
