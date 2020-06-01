@@ -11,7 +11,9 @@ export default class Student extends Component {
     url: this.context.url,
     student: this.props.location.state.student,
     sem: this.props.location.state.student.sem,
-    internals: [],
+    internals1: [],
+    internals2: [],
+    internals3: [],
     internals_select: "Internals 1",
   };
   options = [
@@ -33,60 +35,69 @@ export default class Student extends Component {
     const internals2 = this.state.student.internals2;
     const internals3 = this.state.student.internals3;
     const display_internals1 = internals1.map((el) => {
-      return (
-        <div
-          key={el._id}
-          internals="Internals 1"
-          className=" m-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-green-500"
-        >
-          <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
-            subject : {el.subject}
-          </p>
-          <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
-            sem : {el.sem}
-          </p>
-          <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
-            marks :{" "}
-            {el.marks < 0 ? <span className="text-red-500">Ab</span> : el.marks}
-          </p>
-        </div>
-      );
+      if (el.sem === this.state.sem)
+        return (
+          <div
+            key={el._id}
+            className=" m-3 p-2 pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-indigo-500"
+          >
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              subject : {el.subject}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              sem : {el.sem}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              marks :{" "}
+              {el.marks < 0 ? (
+                <span className="text-red-500">Ab</span>
+              ) : (
+                el.marks
+              )}
+            </p>
+          </div>
+        );
+      else return "";
     });
     const display_internals2 = internals2.map((el) => {
-      return (
-        <div
-          key={el._id}
-          internals="Internals 2"
-          className=" m-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-yellow-500"
-        >
-          <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
-            subject : {el.subject}
-          </p>
-          <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
-            sem : {el.sem}
-          </p>
-          <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
-            marks :{" "}
-            {el.marks < 0 ? <span className="text-red-500">Ab</span> : el.marks}
-          </p>
-        </div>
-      );
+      if (el.sem === this.state.sem)
+        return (
+          <div
+            key={el._id}
+            className=" m-3  pl-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-green-600"
+          >
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              subject : {el.subject}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              sem : {el.sem}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              marks :{" "}
+              {el.marks < 0 ? (
+                <span className="text-red-500">Ab</span>
+              ) : (
+                el.marks
+              )}
+            </p>
+          </div>
+        );
+      else return "";
     });
     const display_internals3 = internals3.map((el) => {
       if (el.sem === this.state.sem)
         return (
           <div
             key={el._id}
-            internals="Internals 3"
-            className=" m-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-red-500"
+            className=" m-3 p-2  pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-orange-500"
           >
-            <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               subject : {el.subject}
             </p>
-            <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               sem : {el.sem}
             </p>
-            <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               marks :{" "}
               {el.marks < 0 ? (
                 <span className="text-red-500">Ab</span>
@@ -99,11 +110,9 @@ export default class Student extends Component {
       else return "";
     });
     this.setState({
-      internals: [
-        ...display_internals1,
-        ...display_internals2,
-        ...display_internals3,
-      ],
+      internals1: [...display_internals1],
+      internals2: [...display_internals2],
+      internals3: [...display_internals3],
     });
   }
   arraytoImage = (buffer) => {
@@ -122,6 +131,7 @@ export default class Student extends Component {
     const base64flag = "data:image/jpeg;base64,";
     const imgstr = this.arraytoImage(this.state.student.photo.data.data);
     this.img = base64flag + imgstr;
+
     return (
       <div>
         <div className="p-2 py-4 mx-3 mt-2 border rounded-lg ">
@@ -162,23 +172,17 @@ export default class Student extends Component {
           />
         </div>
         {this.state.internals_select === "Internals 1" ? (
-          <div className="studentdisplay-content">
-            {this.state.internals[0]}
-          </div>
+          <div className="studentdisplay-content">{this.state.internals1}</div>
         ) : (
           ""
         )}
         {this.state.internals_select === "Internals 2" ? (
-          <div className="studentdisplay-content">
-            {this.state.internals[1]}
-          </div>
+          <div className="studentdisplay-content">{this.state.internals2}</div>
         ) : (
           ""
         )}
         {this.state.internals_select === "Internals 3" ? (
-          <div className="studentdisplay-content">
-            {this.state.internals[2]}
-          </div>
+          <div className="studentdisplay-content">{this.state.internals3}</div>
         ) : (
           ""
         )}
