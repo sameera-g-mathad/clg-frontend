@@ -50,7 +50,7 @@ export default class Studentlogin extends Component {
         });
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
   render() {
