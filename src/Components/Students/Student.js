@@ -30,10 +30,18 @@ export default class Student extends Component {
       value: "Internals 3",
     },
   ];
+  compare = (a, b) => {
+    if (a.subjectCode < b.subjectCode) return -1;
+    if (a.subjectCode > b.subjectCode) return 1;
+    return 0;
+  };
   componentDidMount() {
     const internals1 = this.state.student.internals1;
+    internals1.sort(this.compare);
     const internals2 = this.state.student.internals2;
+    internals2.sort(this.compare);
     const internals3 = this.state.student.internals3;
+    internals3.sort(this.compare);
     const display_internals1 = internals1.map((el) => {
       if (el.sem === this.state.sem)
         return (
@@ -43,6 +51,9 @@ export default class Student extends Component {
           >
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               subject : {el.subject}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              sem : {el.subjectCode}
             </p>
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               sem : {el.sem}
@@ -70,6 +81,9 @@ export default class Student extends Component {
               subject : {el.subject}
             </p>
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              sem : {el.subjectCode}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               sem : {el.sem}
             </p>
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
@@ -93,6 +107,9 @@ export default class Student extends Component {
           >
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               subject : {el.subject}
+            </p>
+            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+              sem : {el.subjectCode}
             </p>
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               sem : {el.sem}

@@ -33,6 +33,7 @@ export default class Internals1 extends Component {
     sem: this.location.sem,
     dept: this.location.dept,
     subject: this.location.subject,
+    subjectCode: "",
     internals: "Internal 1",
     usn: this.location.usn,
     name: this.location.name,
@@ -148,10 +149,10 @@ export default class Internals1 extends Component {
   submit = async (e) => {
     try {
       e.preventDefault();
-      const { subject, sem, performance, marks } = this.state;
+      const { subject, subjectCode, sem, performance, marks } = this.state;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals1/${this.state.usn}`,
-        { internals1: { subject, sem, performance, marks } }
+        { internals1: { subject, subjectCode, sem, performance, marks } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -166,9 +167,10 @@ export default class Internals1 extends Component {
       const subject = this.state.subject;
       const marks = -1;
       const sem = this.state.sem;
+      const subjectCode = this.state.subjectCode;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals1/${this.state.usn}`,
-        { internals1: { subject, sem, marks } }
+        { internals1: { subject, subjectCode, sem, marks } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -190,6 +192,7 @@ export default class Internals1 extends Component {
       console.log(paper);
       this.setState({
         allocatedMarks: paper.marks,
+        subjectCode: paper.subjectCode,
       });
       const questionpaper = paper.questionpaper;
 
@@ -297,13 +300,13 @@ export default class Internals1 extends Component {
                   <div>
                     <br />
 
-                    <Alert className="flex" color="warning">
+                    <Alert className="flex flex-wrap" color="warning">
                       <span className="flex items-center font-bold uppercase">
-                        <FaLightbulb className="mr-3" />
-                        Note
+                        <FaLightbulb className="mr-2" />
+                        Note :
                       </span>
                       <span className="capitalize">
-                        :there are no sub-Questions.
+                        there are no sub-Questions.
                       </span>
                     </Alert>
                     <br />
