@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { RootContext } from "./../../RContext";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button, FormGroup } from "reactstrap";
 import "./../../App.css";
 import Select from "react-select";
 import { FaEye } from "react-icons/fa";
@@ -16,6 +16,7 @@ export default class Student extends Component {
     internals2: [],
     internals3: [],
     internals_select: "Internal 1",
+    color: "indigo-400",
   };
   options = [
     {
@@ -48,13 +49,13 @@ export default class Student extends Component {
         return (
           <div
             key={el._id}
-            className=" m-3 p-2 pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-indigo-500"
+            className=" m-3 p-2 pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-indigo-400"
           >
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               subject : {el.subject}
             </p>
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
-              sem : {el.subjectCode}
+              subject-code : {el.subjectCode}
             </p>
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               sem : {el.sem}
@@ -62,18 +63,29 @@ export default class Student extends Component {
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               marks :{" "}
               {el.marks < 0 ? (
-                <span className="text-red-500">Ab</span>
+                <span className="text-red-600">Ab</span>
               ) : (
                 el.marks
               )}
             </p>
-            <div className="flex justify-end ">
+            <div className="flex justify-end text-red-500">
               <Button
-                color="primary"
+                color="warning"
                 outline
                 disabled={el.marks < 0 ? true : false}
                 tag={Link}
-                to="/student/internals1"
+                to={{
+                  pathname: "/student/internals",
+                  state: {
+                    subject: el.subject,
+                    subjectCode: el.subjectCode,
+                    sem: el.sem,
+                    internal: "Internal 1",
+                    section: this.state.student.section,
+                    student: this.state.student,
+                    internals: this.state.student.internals1,
+                  },
+                }}
               >
                 <span className="flex justify-center font-semibold text-lg items-center capitalize tracking-wider">
                   <FaEye className="mr-1" />
@@ -90,7 +102,7 @@ export default class Student extends Component {
         return (
           <div
             key={el._id}
-            className=" m-3  pl-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-green-600"
+            className=" m-3  pl-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-green-400"
           >
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               subject : {el.subject}
@@ -104,18 +116,29 @@ export default class Student extends Component {
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               marks :{" "}
               {el.marks < 0 ? (
-                <span className="text-red-500">Ab</span>
+                <span className="text-red-600">Ab</span>
               ) : (
                 el.marks
               )}
             </p>
-            <div className="flex justify-end ">
+            <div className="flex justify-end  ">
               <Button
-                color="primary"
+                color="danger"
                 outline
                 disabled={el.marks < 0 ? true : false}
                 tag={Link}
-                to="/student/internals2"
+                to={{
+                  pathname: "/student/internals",
+                  state: {
+                    subject: el.subject,
+                    subjectCode: el.subjectCode,
+                    sem: el.sem,
+                    internal: "Internal 2",
+                    section: this.state.student.section,
+                    student: this.state.student,
+                    internals: this.state.student.internals2,
+                  },
+                }}
               >
                 <span className="flex justify-center font-semibold text-lg items-center capitalize tracking-wider">
                   <FaEye className="mr-1" />
@@ -132,7 +155,7 @@ export default class Student extends Component {
         return (
           <div
             key={el._id}
-            className=" m-3 p-2  pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-orange-500"
+            className=" m-3 p-2  pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-orange-400"
           >
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               subject : {el.subject}
@@ -146,7 +169,7 @@ export default class Student extends Component {
             <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
               marks :{" "}
               {el.marks < 0 ? (
-                <span className="text-red-500">Ab</span>
+                <span className="text-red-600">Ab</span>
               ) : (
                 el.marks
               )}
@@ -157,7 +180,18 @@ export default class Student extends Component {
                 outline
                 disabled={el.marks < 0 ? true : false}
                 tag={Link}
-                to="/student/internals3"
+                to={{
+                  pathname: "/student/internals",
+                  state: {
+                    subject: el.subject,
+                    subjectCode: el.subjectCode,
+                    sem: el.sem,
+                    internal: "Internal 3",
+                    section: this.state.student.section,
+                    student: this.state.student,
+                    internals: this.state.student.internals3,
+                  },
+                }}
               >
                 <span className="flex justify-center font-semibold text-lg items-center capitalize tracking-wider">
                   <FaEye className="mr-1" />
@@ -183,18 +217,33 @@ export default class Student extends Component {
   };
   selectChange = (e) => {
     const value = e.value;
+    let color;
+    if (e.value === "Internal 1") color = "indigo-400";
+    if (e.value === "Internal 2") color = "green-400";
+    if (e.value === "Internal 3") color = "orange-400";
     this.setState({
       internals_select: value,
+      color,
     });
   };
   render() {
     const base64flag = "data:image/jpeg;base64,";
     const imgstr = this.arraytoImage(this.state.student.photo.data.data);
     this.img = base64flag + imgstr;
-
+    const customStyles = {
+      control: (base, state) => {
+        return {
+          ...base,
+          border: "none",
+          boxShadow: state.isFocused ? null : null,
+        };
+      },
+    };
     return (
       <div>
-        <div className="p-2 py-4 mx-3 mt-2 border rounded-lg ">
+        <div
+          className={`p-2 py-4 mx-3 mt-2 shadow-sm bg-gray-200 border-2 border-${this.state.color} rounded-lg `}
+        >
           <Button
             className="mx-4 float-right my-2"
             tag={Link}
@@ -225,15 +274,19 @@ export default class Student extends Component {
             </div>
           </div>
         </div>
-        <div className="w-40 sm:w-64 m-3">
+        <FormGroup
+          className={`border-2 border-${this.state.color} p-1 m-3 rounded-lg w-40 sm:w-64 font-semibold  flex items-center`}
+        >
           <Select
-            className="font-semibold"
+            className="w-40 sm:w-64 "
+            styles={customStyles}
             placeholder="Internals"
             options={this.options}
             defaultValue={{ label: "Internal 1", value: "Internal 1" }}
             onChange={this.selectChange}
           />
-        </div>
+        </FormGroup>
+
         {this.state.internals_select === "Internal 1" ? (
           <div className="studentdisplay-content">{this.state.internals1}</div>
         ) : (

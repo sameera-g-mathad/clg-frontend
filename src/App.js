@@ -17,6 +17,7 @@ import ResetEmail from "./Components/Teacher/ResetEmail";
 //students
 import Studentlogin from "./Components/Students/Studentlogin";
 import Student from "./Components/Students/Student";
+import Internals from "./Components/Students/Internals";
 
 //cordinator
 import Cordinator from "./Components/Cordinator/Cordinator";
@@ -72,7 +73,8 @@ function App() {
           //Student
         }
         <Route exact path="/student-login" component={Studentlogin} />
-        <Route path="/student" component={Student} />
+        <Route exact path="/student" component={Student} />
+        <Route exact path="/student/internals" component={Internals} />
       </Switch>
     </div>
   );

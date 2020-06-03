@@ -40,7 +40,7 @@ export default class SingleStudent extends Component {
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline flex justify-between px-2 ">
             <span>internals 1</span>
             {el.marks < 0 ? (
-              <span className="text-red-500 pr-8">'A'</span>
+              <span className="text-red-600 pr-8">'A'</span>
             ) : (
               <span className="pr-8">{el.marks}</span>
             )}
@@ -48,7 +48,7 @@ export default class SingleStudent extends Component {
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline  flex justify-between px-2">
             <span>internals 2</span>
             {this.int2 < 0 ? (
-              <span className="text-red-500 pr-8">'A'</span>
+              <span className="text-red-600 pr-8">'A'</span>
             ) : (
               <span className="pr-8">
                 {this.int2 === "" ? <span>'-'</span> : this.int2}
@@ -58,7 +58,7 @@ export default class SingleStudent extends Component {
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline  flex justify-between px-2">
             <span>internals 3</span>
             {this.int3 < 0 ? (
-              <span className="text-red-500 pr-8">'A'</span>
+              <span className="text-red-600 pr-8">'A'</span>
             ) : (
               <span className="pr-8">
                 {this.int3 === "" ? <span>'-'</span> : this.int3}
