@@ -36,10 +36,11 @@ export default class SingleStudent extends Component {
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline px-2">
             sem : {el.sem}
           </p>
+          <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline px-2"></p>
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline flex justify-between px-2 ">
             <span>internals 1</span>
             {el.marks < 0 ? (
-              <span className="text-red-500 pr-8">Ab</span>
+              <span className="text-red-500 pr-8">'A'</span>
             ) : (
               <span className="pr-8">{el.marks}</span>
             )}
@@ -47,20 +48,20 @@ export default class SingleStudent extends Component {
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline  flex justify-between px-2">
             <span>internals 2</span>
             {this.int2 < 0 ? (
-              <span className="text-red-500 pr-8">Ab</span>
+              <span className="text-red-500 pr-8">'A'</span>
             ) : (
               <span className="pr-8">
-                {this.int2 === "" ? <span>"-"</span> : this.int2}
+                {this.int2 === "" ? <span>'-'</span> : this.int2}
               </span>
             )}
           </p>
           <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold hover:underline  flex justify-between px-2">
             <span>internals 3</span>
             {this.int3 < 0 ? (
-              <span className="text-red-500 pr-8">Ab</span>
+              <span className="text-red-500 pr-8">'A'</span>
             ) : (
               <span className="pr-8">
-                {this.int3 === "" ? <span>"-"</span> : this.int3}
+                {this.int3 === "" ? <span>'-'</span> : this.int3}
               </span>
             )}
           </p>
@@ -99,6 +100,9 @@ export default class SingleStudent extends Component {
               </p>
               <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
                 department : {this.student.dept}
+              </p>
+              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+                section : "{this.student.section}"
               </p>
             </div>
           </div>

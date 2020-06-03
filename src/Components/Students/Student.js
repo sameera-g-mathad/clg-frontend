@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import "./../../App.css";
 import Select from "react-select";
+import { FaEye } from "react-icons/fa";
 export default class Student extends Component {
   static contextType = RootContext;
   img = "";
@@ -14,20 +15,20 @@ export default class Student extends Component {
     internals1: [],
     internals2: [],
     internals3: [],
-    internals_select: "Internals 1",
+    internals_select: "Internal 1",
   };
   options = [
     {
-      label: "Internals 1",
-      value: "Internals 1",
+      label: "Internal 1",
+      value: "Internal 1",
     },
     {
-      label: "Internals 2",
-      value: "Internals 2",
+      label: "Internal 2",
+      value: "Internal 2",
     },
     {
-      label: "Internals 3",
-      value: "Internals 3",
+      label: "Internal 3",
+      value: "Internal 3",
     },
   ];
   compare = (a, b) => {
@@ -66,6 +67,20 @@ export default class Student extends Component {
                 el.marks
               )}
             </p>
+            <div className="flex justify-end ">
+              <Button
+                color="primary"
+                outline
+                disabled={el.marks < 0 ? true : false}
+                tag={Link}
+                to="/student/internals1"
+              >
+                <span className="flex justify-center font-semibold text-lg items-center capitalize tracking-wider">
+                  <FaEye className="mr-1" />
+                  view
+                </span>
+              </Button>
+            </div>
           </div>
         );
       else return "";
@@ -94,6 +109,20 @@ export default class Student extends Component {
                 el.marks
               )}
             </p>
+            <div className="flex justify-end ">
+              <Button
+                color="primary"
+                outline
+                disabled={el.marks < 0 ? true : false}
+                tag={Link}
+                to="/student/internals2"
+              >
+                <span className="flex justify-center font-semibold text-lg items-center capitalize tracking-wider">
+                  <FaEye className="mr-1" />
+                  view
+                </span>
+              </Button>
+            </div>
           </div>
         );
       else return "";
@@ -122,6 +151,20 @@ export default class Student extends Component {
                 el.marks
               )}
             </p>
+            <div className="flex justify-end ">
+              <Button
+                color="primary"
+                outline
+                disabled={el.marks < 0 ? true : false}
+                tag={Link}
+                to="/student/internals3"
+              >
+                <span className="flex justify-center font-semibold text-lg items-center capitalize tracking-wider">
+                  <FaEye className="mr-1" />
+                  view
+                </span>
+              </Button>
+            </div>
           </div>
         );
       else return "";
@@ -176,6 +219,9 @@ export default class Student extends Component {
               <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
                 department : {this.state.student.dept}
               </p>
+              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+                section : "{this.state.student.section}"
+              </p>
             </div>
           </div>
         </div>
@@ -184,21 +230,21 @@ export default class Student extends Component {
             className="font-semibold"
             placeholder="Internals"
             options={this.options}
-            defaultValue={{ label: "Internals 1", value: "Internals 1" }}
+            defaultValue={{ label: "Internal 1", value: "Internal 1" }}
             onChange={this.selectChange}
           />
         </div>
-        {this.state.internals_select === "Internals 1" ? (
+        {this.state.internals_select === "Internal 1" ? (
           <div className="studentdisplay-content">{this.state.internals1}</div>
         ) : (
           ""
         )}
-        {this.state.internals_select === "Internals 2" ? (
+        {this.state.internals_select === "Internal 2" ? (
           <div className="studentdisplay-content">{this.state.internals2}</div>
         ) : (
           ""
         )}
-        {this.state.internals_select === "Internals 3" ? (
+        {this.state.internals_select === "Internal 3" ? (
           <div className="studentdisplay-content">{this.state.internals3}</div>
         ) : (
           ""
