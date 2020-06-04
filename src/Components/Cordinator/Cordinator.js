@@ -8,6 +8,10 @@ import SingleStudent from "./SingleStudent";
 import updateStudent from "./updateStudent";
 import { GiHamburgerMenu } from "react-icons/gi";
 export default class Cordinator extends Component {
+  state = {
+    display: false,
+    color: "indigo",
+  };
   render() {
     return (
       <div>
@@ -39,13 +43,68 @@ export default class Cordinator extends Component {
             </Link>
           </div>
           <div className="cordinator-half">
-            <button className="mb-3 mx-2 px-1 py-1">
-              <span className="font-bold text-xl">
-                <GiHamburgerMenu />
+            <button
+              className="mb-3 mx-2 px-2 py-1"
+              onClick={() => {
+                this.setState({ display: !this.state.display });
+              }}
+            >
+              <span className={`font-bold text-xl `}>
+                <GiHamburgerMenu className={`text-${this.state.color}-500`} />
               </span>
             </button>
           </div>
         </nav>
+        <div
+          className={`h-48 mx-3 flex flex-col items-start px-3 border-2 border-${this.state.color}-500 bg-${this.state.color}-200 rounded-lg shadow-sm`}
+          style={{ display: this.state.display ? "flex" : "none" }}
+        >
+          <div className="py-2 mt-2 ">
+            <Link
+              to="/cordinator/staff"
+              className="uppercase text-gray-700 font-semibold   hover:no-underline tracking-widest hover:text-blue-500  "
+              onClick={() => {
+                this.setState({ color: "indigo" });
+              }}
+            >
+              Teachers
+            </Link>
+          </div>
+          <div className="py-2">
+            <Link
+              to="/cordinator/subjects"
+              className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-green-500 "
+              onClick={() => {
+                this.setState({ color: "green" });
+              }}
+            >
+              Subjects
+            </Link>
+          </div>
+          <div className="py-2">
+            <Link
+              to="/cordinator/students"
+              className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-teal-500 "
+              onClick={() => {
+                this.setState({ color: "teal" });
+              }}
+            >
+              Students
+            </Link>
+          </div>
+          <div className="py-2">
+            <Link
+              to="/cordinator/students"
+              className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-red-500 "
+              onClick={() => {
+                this.setState({ color: "red" });
+              }}
+            >
+              logout
+            </Link>
+          </div>
+        </div>
+
         <Switch>
           {/*Teacher*/}
           <Route exact path="/cordinator/staff" component={Teachers} />
