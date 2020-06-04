@@ -162,7 +162,7 @@ export default class Internals extends Component {
     return (
       <div>
         <div
-          className={`p-2 py-4 mx-3 mt-2 shadow bg-gray-200 border-2  border-${this.color} rounded-lg `}
+          className={`p-2 py-4 mx-3 mt-2 shadow bg-gray-700 border-2  border-${this.color} rounded-lg `}
         >
           <div className="flex items-center flex-wrap">
             <img
@@ -171,27 +171,39 @@ export default class Internals extends Component {
               alt=""
             />
             <div className="ml-2">
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.color} tracking-widest font-semibold hover:underline`}
+              >
                 name : {this.details.student.studentName}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.color} tracking-widest font-semibold hover:underline`}
+              >
                 usn : {this.details.student.studentUsn}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.color} tracking-widest font-semibold hover:underline`}
+              >
                 department : {this.details.student.dept}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.color} tracking-widest font-semibold hover:underline`}
+              >
                 section : "{this.details.student.section}"
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.color} tracking-widest font-semibold hover:underline`}
+              >
                 internals : {this.details.internal}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold ">
+              <p
+                className={`capitalize text-lg text-${this.color} tracking-widest font-semibold `}
+              >
                 Marks obtained:
                 <span className="w-48  flex justify-between items-center">
                   <Input
                     bsSize="sm"
-                    className="mx-2"
+                    className="mx-2 pl-4"
                     readOnly={true}
                     value={this.state.scored}
                   />

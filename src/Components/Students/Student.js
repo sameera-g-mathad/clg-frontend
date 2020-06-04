@@ -49,18 +49,26 @@ export default class Student extends Component {
         return (
           <div
             key={el._id}
-            className=" m-3 p-2 pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-indigo-400"
+            className=" m-3 p-2 pl-3 bg-gray-700 rounded-lg border-b-4 hover:shadow-lg border-indigo-400"
           >
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               subject : {el.subject}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               subject-code : {el.subjectCode}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               sem : {el.sem}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               marks :{" "}
               {el.marks < 0 ? (
                 <span className="text-red-600">Ab</span>
@@ -102,18 +110,18 @@ export default class Student extends Component {
         return (
           <div
             key={el._id}
-            className=" m-3  pl-3 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-green-400"
+            className=" m-3  pl-3 p-2 bg-gray-700 rounded-lg border-b-4 hover:shadow-lg border-green-400"
           >
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
               subject : {el.subject}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
-              sem : {el.subjectCode}
+            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
+              subject-code : {el.subjectCode}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
               sem : {el.sem}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
               marks :{" "}
               {el.marks < 0 ? (
                 <span className="text-red-600">Ab</span>
@@ -155,18 +163,18 @@ export default class Student extends Component {
         return (
           <div
             key={el._id}
-            className=" m-3 p-2  pl-3 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-orange-400"
+            className=" m-3 p-2  pl-3 bg-gray-700 rounded-lg border-b-4 hover:shadow-lg border-orange-400"
           >
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
               subject : {el.subject}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
-              sem : {el.subjectCode}
+            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
+              subject-code : {el.subjectCode}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
               sem : {el.sem}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wide font-semibold hover:underline">
+            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
               marks :{" "}
               {el.marks < 0 ? (
                 <span className="text-red-600">Ab</span>
@@ -242,7 +250,7 @@ export default class Student extends Component {
     return (
       <div>
         <div
-          className={`p-2 py-4 mx-3 mt-2 shadow-sm bg-gray-200 border-2 border-${this.state.color} rounded-lg `}
+          className={`p-2 py-4 mx-3 mt-2 shadow-sm bg-gray-700 border-2 border-${this.state.color} rounded-lg `}
         >
           <Button
             className="mx-4 float-right my-2"
@@ -259,26 +267,34 @@ export default class Student extends Component {
               alt=""
             />
             <div className="ml-2">
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.state.color}   tracking-widest font-semibold hover:underline`}
+              >
                 name : {this.state.student.studentName}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.state.color} tracking-widest font-semibold hover:underline`}
+              >
                 usn : {this.state.student.studentUsn}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.state.color} tracking-widest font-semibold hover:underline`}
+              >
                 department : {this.state.student.dept}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p
+                className={`capitalize text-lg text-${this.state.color} tracking-widest font-semibold hover:underline`}
+              >
                 section : "{this.state.student.section}"
               </p>
             </div>
           </div>
         </div>
         <FormGroup
-          className={`border-2 border-${this.state.color} p-1 m-3 rounded-lg w-40 sm:w-64 font-semibold  flex items-center`}
+          className={`border-2 border-${this.state.color}  p-1 m-3 rounded-lg w-40 sm:w-64 tracking-wider font-semibold  flex items-center`}
         >
           <Select
-            className="w-40 sm:w-64 "
+            className="w-40 sm:w-64"
             styles={customStyles}
             placeholder="Internals"
             options={this.options}
