@@ -6,7 +6,7 @@ import Subjects from "./SubjectsC";
 import Students from "./StudentsC";
 import SingleStudent from "./SingleStudent";
 import updateStudent from "./updateStudent";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { FaBars } from "react-icons/fa";
 export default class Cordinator extends Component {
   state = {
     display: false,
@@ -50,7 +50,7 @@ export default class Cordinator extends Component {
               }}
             >
               <span className={`font-bold text-xl `}>
-                <GiHamburgerMenu className={`text-${this.state.color}-500`} />
+                <FaBars className={`text-${this.state.color}-500`} />
               </span>
             </button>
           </div>

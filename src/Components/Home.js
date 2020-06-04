@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { FaBars } from "react-icons/fa";
 export default class Home extends Component {
   state = {
     display: false,
@@ -40,7 +40,7 @@ export default class Home extends Component {
               }}
             >
               <span className={`font-bold text-xl `}>
-                <GiHamburgerMenu
+                <FaBars
                 // className={`text-${this.state.color}-500`}
                 />
               </span>
@@ -49,7 +49,7 @@ export default class Home extends Component {
         </nav>
         <div className="md:hidden">
           <div
-            className={`h-40 mx-3  flex flex-col items-start px-3 border-2 border-blue-500 bg-gray-200 rounded-lg shadow-sm `}
+            className={`h-40 mx-3  flex flex-col items-start px-3 border-2  bg-gray-200 rounded-lg shadow-sm `}
             style={{
               display: this.state.display === true ? "flex" : "none",
             }}
