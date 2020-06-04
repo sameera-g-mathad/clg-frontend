@@ -183,7 +183,7 @@ body {
 
 .students-content {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 @media (max-width: 500px) {
   .students-content {
@@ -234,4 +234,20 @@ body {
 .studentdisplay-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+@media (max-width: 900px) {
+  .cordinator-full {
+    display: none;
+  }
+  .cordinator-half {
+    display: block;
+  }
+}
+@media (min-width: 900px) {
+  .cordinator-full {
+    display: block;
+  }
+  .cordinator-half {
+    display: none;
+  }
 }

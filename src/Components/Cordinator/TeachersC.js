@@ -78,19 +78,19 @@ export default class Teachers extends Component {
                 alt="no"
               />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-800 uppercase hover:underline">
+                <p className="text-lg font-semibold text-gray-700 uppercase hover:underline tracking-wider">
                   Name : {el.name}
                 </p>
-                <p className="text-lg font-semibold text-gray-800 hover:underline">
+                <p className="text-lg font-semibold text-gray-700 hover:underline tracking-wider">
                   EMAIL : {el.email}
                 </p>
-                <p className="text-lg font-semibold text-gray-800 uppercase hover:underline">
+                <p className="text-lg font-semibold text-gray-700 uppercase hover:underline tracking-wider">
                   department : '{el.dept}'
                 </p>
-                <p className="text-lg font-semibold text-gray-800 uppercase hover:underline">
+                <p className="text-lg font-semibold text-gray-700 uppercase hover:underline tracking-wider">
                   subject 1 : '{el.subject1}'
                 </p>
-                <p className="text-lg font-semibold text-gray-800 uppercase hover:underline">
+                <p className="text-lg font-semibold text-gray-700 uppercase hover:underline tracking-wider">
                   subject 2 : '{el.subject2}'
                 </p>
               </div>
@@ -260,7 +260,7 @@ export default class Teachers extends Component {
         </div>
       );
     return (
-      <div className="m-4">
+      <div className="m-2">
         <Alert
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="primary"

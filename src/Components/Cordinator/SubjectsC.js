@@ -77,25 +77,25 @@ export default class Subjects extends Component {
             name={el.subjectName}
             className="border-green-500 m-2 p-2 bg-gray-200 hover:shadow-lg border-b-4 sm:border-b-0 sm:border-l-4  rounded-lg"
           >
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline tracking-wider">
               SUBJECT : {el.subjectName}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline tracking-wider">
               SUBJECT-CODE : {el.subjectCode}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline tracking-wider">
               DEPARTMENT : {el.dept}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline tracking-wider">
               SEMESTER : {el.sem}
             </p>
-            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline">
+            <p className="ml-4 text-lg font-semibold text-gray-700 capitalize hover:underline tracking-wider">
               SECTION : '{el.section}'-section
             </p>
             <div className="flex justify-center">
               <Button
                 color="danger"
-                disabled={el.assigned===true?true:false}
+                disabled={el.assigned === true ? true : false}
                 outline
                 onClick={() =>
                   this.setState({
@@ -205,7 +205,7 @@ export default class Subjects extends Component {
         </div>
       );
     return (
-      <div className="m-2 mt-4">
+      <div className="m-2">
         <Alert
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="success"

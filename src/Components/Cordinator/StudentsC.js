@@ -169,25 +169,25 @@ export default class Students extends Component {
             className="flex items-center justify-evenly m-2 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-teal-500"
           >
             <div className="py-2">
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 name : {student.studentName}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 usn : {student.studentUsn}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 department : {student.dept}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 d.o.b : '{student.dob}'
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 year : {student.year}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 semester : {student.sem}
               </p>
-              <p className="capitalize text-lg text-gray-800 font-semibold hover:underline">
+              <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
                 section : {student.section}
               </p>
             </div>
@@ -384,7 +384,7 @@ export default class Students extends Component {
         </div>
       );
     return (
-      <div className="m-2 mt-4">
+      <div className="m-2">
         <Alert
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="info"

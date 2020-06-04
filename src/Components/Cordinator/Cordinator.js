@@ -6,32 +6,45 @@ import Subjects from "./SubjectsC";
 import Students from "./StudentsC";
 import SingleStudent from "./SingleStudent";
 import updateStudent from "./updateStudent";
+import { GiHamburgerMenu } from "react-icons/gi";
 export default class Cordinator extends Component {
   render() {
     return (
       <div>
         <nav
-          className=" flex justify-end rounded-lg shadow-sm border-b-2 bg-gray-300 p-4"
+          className=" flex justify-between items-center px-4 pt-3"
           style={{ width: "100%" }}
         >
-          <Link
-            to="/cordinator/staff"
-            className="hover:text-blue-500  mr-4 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
-          >
-            Teachers
-          </Link>
-          <Link
-            to="/cordinator/subjects"
-            className="text-black hover:text-green-500  mr-4 font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
-          >
-            Subjects
-          </Link>
-          <Link
-            to="/cordinator/students"
-            className="text-black hover:text-teal-500   mr-4 font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
-          >
-            Students
-          </Link>
+          <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+            clg website
+          </p>
+          <div className="cordinator-full">
+            <Link
+              to="/cordinator/staff"
+              className="hover:text-blue-500  mr-4 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
+            >
+              Teachers
+            </Link>
+            <Link
+              to="/cordinator/subjects"
+              className="text-black hover:text-green-500  mr-4 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
+            >
+              Subjects
+            </Link>
+            <Link
+              to="/cordinator/students"
+              className="text-black hover:text-teal-500   mr-4 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
+            >
+              Students
+            </Link>
+          </div>
+          <div className="cordinator-half">
+            <button className="mb-3 mx-2 px-1 py-1">
+              <span className="font-bold text-xl">
+                <GiHamburgerMenu />
+              </span>
+            </button>
+          </div>
         </nav>
         <Switch>
           {/*Teacher*/}
