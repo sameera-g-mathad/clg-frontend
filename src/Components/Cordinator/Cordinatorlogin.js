@@ -86,6 +86,7 @@ export default class Cordinaotlogin extends Component {
                   bsSize="lg"
                   name="email"
                   placeholder="yourmail@email.com"
+                  autoComplete="off"
                   onChange={this.handleChange}
                 />
               </InputGroup>
