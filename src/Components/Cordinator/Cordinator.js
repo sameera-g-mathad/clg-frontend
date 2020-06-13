@@ -16,7 +16,7 @@ export default class Cordinator extends Component {
     return (
       <div>
         <nav
-          className=" flex justify-between items-center px-4 pt-3"
+          className=" flex justify-between items-center px-2 pt-3"
           style={{ width: "100%" }}
         >
           <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
@@ -37,14 +37,14 @@ export default class Cordinator extends Component {
             </Link>
             <Link
               to="/cordinator/students"
-              className="text-black hover:text-teal-500   mr-4 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
+              className="text-black hover:text-teal-500   mr-2 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
             >
               Students
             </Link>
           </div>
           <div className="cordinator-half">
             <button
-              className="mb-3 mx-2 px-2 py-1"
+              className="mb-3 mx-2  py-1"
               onClick={() => {
                 this.setState({ display: !this.state.display });
               }}
@@ -67,7 +67,10 @@ export default class Cordinator extends Component {
                 to="/cordinator/staff"
                 className="uppercase text-gray-700 font-semibold   hover:no-underline tracking-widest hover:text-blue-500  "
                 onClick={() => {
-                  this.setState({ color: "indigo" });
+                  this.setState({
+                    color: "indigo",
+                    display: !this.state.display,
+                  });
                 }}
               >
                 Teachers
@@ -78,7 +81,10 @@ export default class Cordinator extends Component {
                 to="/cordinator/subjects"
                 className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-green-500 "
                 onClick={() => {
-                  this.setState({ color: "green" });
+                  this.setState({
+                    color: "green",
+                    display: !this.state.display,
+                  });
                 }}
               >
                 Subjects
@@ -89,7 +95,10 @@ export default class Cordinator extends Component {
                 to="/cordinator/students"
                 className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-teal-500 "
                 onClick={() => {
-                  this.setState({ color: "teal" });
+                  this.setState({
+                    color: "teal",
+                    display: !this.state.display,
+                  });
                 }}
               >
                 Students

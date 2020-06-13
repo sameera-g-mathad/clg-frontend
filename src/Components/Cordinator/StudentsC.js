@@ -33,6 +33,7 @@ export default class Students extends Component {
     students: [],
     select: 0,
     search: "",
+    studentEmail: "",
     studentName: "",
     studentUsn: "",
     dept: "",
@@ -46,6 +47,10 @@ export default class Students extends Component {
     disabled: "",
     url: this.context.url,
     doberr: false,
+    updatemodal: false,
+    updatestudentName: "",
+    updatestudentSem: 0,
+    updatestudentYear: 0,
   };
   options = [
     {
@@ -213,12 +218,21 @@ export default class Students extends Component {
                 </span>
               </Button>
               <Button
-                color="secondary"
+                color="success"
                 outline
-                tag={Link}
-                to={{
-                  pathname: `/cordinator/students/update/${student.studentUsn}`,
-                }}
+                disabled={student.sem === 8 ? true : false}
+                onClick={() =>
+                  this.updateStudentdetails(
+                    student.studentName,
+                    student.sem,
+                    student.year
+                  )
+                }
+                //onClick=
+                // tag={Link}
+                // to={{
+                //   pathname: `/cordinator/students/update/${student.studentUsn}`,
+                // }}
                 className="mb-2 capitalize"
               >
                 <span className="flex justify-center font-semibold text-lg items-center">
@@ -267,6 +281,24 @@ export default class Students extends Component {
       console.log(err);
     }
   };
+  updateStudentdetails = (name, sem, year) => {
+    const updatedsem = sem + 1;
+    const updatedyear = sem % 2 === 0 ? year + 1 : year;
+    this.setState({
+      updatemodal: !this.state.updatemodal,
+      updatestudentName: name,
+      updatestudentSem: updatedsem,
+      updatestudentYear: updatedyear,
+    });
+  };
+  // updateStudent=async()=>
+  // {
+  //   try {
+  //     const {}
+  //   } catch (err) {
+
+  //   }
+  // }
   searchChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -283,6 +315,7 @@ export default class Students extends Component {
     try {
       e.preventDefault();
       const {
+        studentEmail,
         studentName,
         studentUsn,
         dept,
@@ -293,6 +326,7 @@ export default class Students extends Component {
       } = this.state;
       const formdata = new FormData();
       formdata.append("photo", this.state.image, this.state.image.name);
+      formdata.append("studentEmail", studentEmail);
       formdata.append("studentName", studentName);
       formdata.append("studentUsn", studentUsn);
       formdata.append("dept", dept);
@@ -414,6 +448,23 @@ export default class Students extends Component {
             </span>
           </div>
 
+          <FormGroup className="mx-8">
+            <Label
+              className="text-lg font-semibold text-gray-800 capitalize"
+              for="student-email"
+            >
+              student email:
+            </Label>
+            <Input
+              id="student-email"
+              type="email"
+              name="studentEmail"
+              value={this.state.studentEmail}
+              autoComplete="off"
+              autoFocus="on"
+              onChange={this.handleChange}
+            />
+          </FormGroup>
           <FormGroup className="mx-8">
             <Label
               className="text-lg font-semibold text-gray-800 capitalize"
@@ -616,6 +667,34 @@ export default class Students extends Component {
             else return student;
           })}
         </div>
+        <Modal isOpen={this.state.updatemodal} centered={true}>
+          <ModalHeader className="bg-green-600 text-white capitalize">
+            are you sure?
+          </ModalHeader>
+          <ModalBody className="text-gray-700 font-semibold capitalize">
+            do you want to update {this.state.updatestudentName} to{" "}
+            {this.state.updatestudentSem} sem and {this.state.updatestudentYear}
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color="success"
+              className="capitalize"
+              outline
+              onClick={this.updateStudent}
+            >
+              update
+            </Button>
+            <Button
+              className="capitalize"
+              outline
+              onClick={() => {
+                this.setState({ updatemodal: !this.state.updatemodal });
+              }}
+            >
+              cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
         <Modal isOpen={this.state.modalOpened} centered={true}>
           <ModalHeader className="bg-red-600 text-white capitalize">
             are you sure?

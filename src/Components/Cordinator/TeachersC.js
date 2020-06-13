@@ -184,6 +184,15 @@ export default class Teachers extends Component {
     try {
       e.preventDefault();
       const { tname: name, email, dept } = this.state;
+      if (
+        this.state.tname === "" ||
+        this.state.email === "" ||
+        this.state.dept === "" ||
+        this.state.photo === ""
+      )
+        return this.setState({
+          failed: true,
+        });
       const formdata = new FormData();
       formdata.append("photo", this.state.image, this.state.image.name);
       formdata.append("name", name);
@@ -408,7 +417,8 @@ export default class Teachers extends Component {
           </ModalHeader>
           <ModalBody className="text-gray-700 font-semibold capitalize">
             if any subjects assigned before to this teacher will be deleted from
-            respected teacher account.
+            respected teacher account ,also all the question papers will be
+            deleted.
           </ModalBody>
           <ModalFooter>
             <Button
