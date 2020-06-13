@@ -42,6 +42,7 @@ export default class Teachers extends Component {
     image: "",
     loading: true,
     failed: false,
+    failedmsg: "",
     deletemodal: false,
     url: this.context.url,
     disabled: false,
@@ -192,6 +193,7 @@ export default class Teachers extends Component {
       )
         return this.setState({
           failed: true,
+          failedmsg: "Please enter the fields specified",
         });
       const formdata = new FormData();
       formdata.append("photo", this.state.image, this.state.image.name);
@@ -210,6 +212,7 @@ export default class Teachers extends Component {
       if (err.response.status === 400) {
         this.setState({
           failed: true,
+          failedmsg: "Please provide valid information.",
         });
       }
     }
@@ -369,13 +372,16 @@ export default class Teachers extends Component {
             </FormFeedback>
           </FormGroup>
           <Alert
-            style={{ display: this.state.failed ? "block" : "none" }}
+            isOpen={this.state.failed}
+            toggle={() => {
+              this.setState({ failed: !this.state.failed });
+            }}
             className="mx-8  font-semibold capitalize"
             color="danger"
           >
             <span className="flex items-center">
               <FiAlertCircle className="mr-3" />
-              Please provide valid information.
+              {this.state.failedmsg}
             </span>
           </Alert>
           <FormGroup className="flex justify-center">

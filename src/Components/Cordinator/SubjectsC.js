@@ -15,6 +15,7 @@ import {
 import { MdLibraryAdd, MdClose, MdDelete } from "react-icons/md";
 import Axios from "axios";
 import { FaFilter, FaSearch } from "react-icons/fa";
+import { FiAlertCircle } from "react-icons/fi";
 import Select from "react-select";
 import { RootContext } from "./../../RContext";
 
@@ -34,6 +35,8 @@ export default class Subjects extends Component {
     url: this.context.url,
     deleteId: "",
     deleteModal: false,
+    failed: false,
+    failedmsg: "",
   };
   options = [
     {
@@ -135,6 +138,18 @@ export default class Subjects extends Component {
   submit = async (e) => {
     try {
       e.preventDefault();
+      if (
+        this.state.subject === "" ||
+        this.state.subjectCode === "" ||
+        this.state.dept === "" ||
+        this.state.semester === "" ||
+        this.state.section === ""
+      ) {
+        return this.setState({
+          failed: true,
+          failedmsg: "Please enter the fields specified",
+        });
+      }
       const {
         subject: subjectName,
         subjectCode,
@@ -236,7 +251,7 @@ export default class Subjects extends Component {
           </div>
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold text-secondary capitalize"
               for="subject"
             >
               subject:
@@ -254,7 +269,7 @@ export default class Subjects extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold text-secondary capitalize"
               for="subjectcode"
             >
               subject-code:
@@ -271,7 +286,7 @@ export default class Subjects extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold text-secondary capitalize"
               for="dept"
             >
               department:
@@ -289,7 +304,7 @@ export default class Subjects extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold text-secondary capitalize"
               for="semester"
             >
               semester:
@@ -307,7 +322,7 @@ export default class Subjects extends Component {
           </FormGroup>
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold text-secondary capitalize"
               for="section"
             >
               section:
@@ -322,6 +337,19 @@ export default class Subjects extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
+          <Alert
+            isOpen={this.state.failed}
+            toggle={() => {
+              this.setState({ failed: !this.state.failed });
+            }}
+            className="mx-8  font-semibold capitalize"
+            color="danger"
+          >
+            <span className="flex items-center">
+              <FiAlertCircle className="mr-3" />
+              {this.state.failedmsg}
+            </span>
+          </Alert>
           <FormGroup className="flex justify-center">
             <Button
               color="success"

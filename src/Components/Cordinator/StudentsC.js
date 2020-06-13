@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import { MdLibraryAdd, MdDelete, MdClose } from "react-icons/md";
 import { FaEye, FaSearch, FaFilter } from "react-icons/fa";
+import { FiAlertCircle } from "react-icons/fi";
 import Select from "react-select";
 import { AiFillEdit } from "react-icons/ai";
 import { Spinner } from "reactstrap";
@@ -48,9 +49,12 @@ export default class Students extends Component {
     url: this.context.url,
     doberr: false,
     updatemodal: false,
+    updateid: "",
     updatestudentName: "",
     updatestudentSem: 0,
     updatestudentYear: 0,
+    failed: false,
+    failedmsg: "",
   };
   options = [
     {
@@ -171,7 +175,7 @@ export default class Students extends Component {
             key={student._id}
             name={student.studentName}
             year={student.year}
-            className="flex items-center justify-evenly m-2 p-2 bg-gray-200 rounded-lg border-b-4 hover:shadow-lg border-teal-500"
+            className="flex items-center justify-evenly m-2 p-2 bg-gray-200 rounded-lg border-b-4  hover:shadow-lg border-teal-500"
           >
             <div className="py-2">
               <p className="capitalize text-lg text-gray-700 font-semibold hover:underline tracking-wider">
@@ -223,6 +227,7 @@ export default class Students extends Component {
                 disabled={student.sem === 8 ? true : false}
                 onClick={() =>
                   this.updateStudentdetails(
+                    student._id,
                     student.studentName,
                     student.sem,
                     student.year
@@ -281,24 +286,31 @@ export default class Students extends Component {
       console.log(err);
     }
   };
-  updateStudentdetails = (name, sem, year) => {
+  updateStudentdetails = (id, name, sem, year) => {
     const updatedsem = sem + 1;
     const updatedyear = sem % 2 === 0 ? year + 1 : year;
     this.setState({
       updatemodal: !this.state.updatemodal,
+      updateid: id,
       updatestudentName: name,
       updatestudentSem: updatedsem,
       updatestudentYear: updatedyear,
     });
   };
-  // updateStudent=async()=>
-  // {
-  //   try {
-  //     const {}
-  //   } catch (err) {
-
-  //   }
-  // }
+  updateStudent = async () => {
+    try {
+      const { updateid: _id, updatestudentSem, updatestudentYear } = this.state;
+      const res = await Axios.patch(`${this.state.url}/cordinator/students`, {
+        _id,
+        updatestudentSem,
+        updatestudentYear,
+      });
+      console.log(res);
+      if (res.status === 200) window.location.reload(false);
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
   searchChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -314,6 +326,21 @@ export default class Students extends Component {
   submit = async (e) => {
     try {
       e.preventDefault();
+      if (
+        this.state.studentEmail === "" ||
+        this.state.studentName === "" ||
+        this.state.studentUsn === "" ||
+        this.state.dept === "" ||
+        this.state.dob === "" ||
+        this.state.year === "" ||
+        this.state.sem === "" ||
+        this.state.section === ""
+      ) {
+        return this.setState({
+          failed: true,
+          failedmsg: "Please enter the fields specified",
+        });
+      }
       const {
         studentEmail,
         studentName,
@@ -450,7 +477,7 @@ export default class Students extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold text-secondary capitalize"
               for="student-email"
             >
               student email:
@@ -467,7 +494,7 @@ export default class Students extends Component {
           </FormGroup>
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="student-name"
             >
               student name:
@@ -485,7 +512,7 @@ export default class Students extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="student-usn"
             >
               student usn:
@@ -503,7 +530,7 @@ export default class Students extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="dept"
             >
               department:
@@ -520,7 +547,7 @@ export default class Students extends Component {
           </FormGroup>
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="dob"
             >
               D.O.B:
@@ -535,7 +562,7 @@ export default class Students extends Component {
             />
             <FormText
               color="danger"
-              className="capitalize font-semibold"
+              className="capitalize font-semibold "
               style={{ display: this.state.doberr ? "block" : "none" }}
             >
               the d.o.b must match the format YYYY-MM-DD .
@@ -544,7 +571,7 @@ export default class Students extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="year"
             >
               year:
@@ -559,7 +586,7 @@ export default class Students extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="sem"
             >
               sem:
@@ -583,7 +610,7 @@ export default class Students extends Component {
 
           <FormGroup className="mx-8">
             <Label
-              className="text-lg font-semibold text-gray-800 capitalize"
+              className="text-lg font-semibold  text-secondary capitalize"
               for="section"
             >
               section:
@@ -601,7 +628,7 @@ export default class Students extends Component {
           <FormGroup className="mx-8">
             <Label
               for="image"
-              className="text-lg text-secondary  font-semibold"
+              className="text-lg text-secondary  font-semibold "
             >
               Photo:
             </Label>
@@ -620,6 +647,19 @@ export default class Students extends Component {
               File size should not exceed 5Mb.
             </FormFeedback>
           </FormGroup>
+          <Alert
+            isOpen={this.state.failed}
+            toggle={() => {
+              this.setState({ failed: !this.state.failed });
+            }}
+            className="mx-8  font-semibold capitalize"
+            color="danger"
+          >
+            <span className="flex items-center">
+              <FiAlertCircle className="mr-3" />
+              {this.state.failedmsg}
+            </span>
+          </Alert>
           <FormGroup className="flex justify-center">
             <Button
               color="info"

@@ -3,6 +3,8 @@ import "./../../App.css";
 import { RootContext } from "./../../RContext";
 import { Link } from "react-router-dom";
 import { MdVpnKey, MdEmail } from "react-icons/md";
+import { Alert } from "reactstrap";
+import { FiAlertCircle } from "react-icons/fi";
 import {
   Form,
   FormGroup,
@@ -13,10 +15,39 @@ import {
   Input,
   Button,
 } from "reactstrap";
+import Axios from "axios";
 export default class Cordinaotlogin extends Component {
   static contextType = RootContext;
   state = {
     url: this.context.url,
+    email: "",
+    password: "",
+    failed: false,
+    failedmsg: "",
+  };
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+  submit = async (e) => {
+    try {
+      e.preventDefault();
+      if (this.state.email === "" || this.state.password === "")
+        return this.setState({
+          failed: true,
+          failedmsg: "Please enter the fields specified",
+        });
+      const { email, password } = this.state;
+      const res = await Axios.post(`${this.state.url}/cordinator-login`, {
+        email,
+        password,
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err.response);
+    }
   };
   render() {
     return (
@@ -33,7 +64,10 @@ export default class Cordinaotlogin extends Component {
           </Link>
         </div>
         <div className="login-content">
-          <Form className=" border bg-gray-200 rounded rounded-lg  hover:shadow-lg">
+          <Form
+            className=" border bg-gray-200 rounded rounded-lg  hover:shadow-lg"
+            onSubmit={this.submit}
+          >
             <h4 className="bg-yellow-400 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
               Login
             </h4>
@@ -50,7 +84,9 @@ export default class Cordinaotlogin extends Component {
                 <Input
                   type="text"
                   bsSize="lg"
+                  name="email"
                   placeholder="yourmail@email.com"
+                  onChange={this.handleChange}
                 />
               </InputGroup>
             </FormGroup>
@@ -64,9 +100,28 @@ export default class Cordinaotlogin extends Component {
                     <MdVpnKey className="text-yellow-400" />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input type="password" bsSize="lg" placeholder="Password" />
+                <Input
+                  type="password"
+                  bsSize="lg"
+                  placeholder="Password"
+                  name="password"
+                  onChange={this.handleChange}
+                />
               </InputGroup>
             </FormGroup>
+            <Alert
+              isOpen={this.state.failed}
+              toggle={() => {
+                this.setState({ failed: !this.state.failed });
+              }}
+              className="mx-8  font-semibold capitalize"
+              color="danger"
+            >
+              <span className="flex items-center">
+                <FiAlertCircle className="mr-3" />
+                {this.state.failedmsg}
+              </span>
+            </Alert>
             <FormGroup className="flex justify-center">
               <Button className="m-6  px-4" type="submit" color="success">
                 Login
