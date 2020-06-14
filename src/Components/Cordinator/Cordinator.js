@@ -37,9 +37,16 @@ export default class Cordinator extends Component {
             </Link>
             <Link
               to="/cordinator/students"
-              className="text-black hover:text-teal-500   mr-2 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
+              className="text-black hover:text-teal-500   mr-4 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
             >
               Students
+            </Link>
+            <Link
+              to="/"
+              onClick={() => sessionStorage.clear()}
+              className="text-black hover:text-red-500   mr-2 font-semibold uppercase hover:text-black hover:no-underline tracking-wider"
+            >
+              logout
             </Link>
           </div>
           <div className="cordinator-half">
@@ -106,9 +113,10 @@ export default class Cordinator extends Component {
             </div>
             <div className="py-2">
               <Link
-                to="/cordinator/students"
+                to="/"
                 className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-red-500 "
                 onClick={() => {
+                  sessionStorage.clear();
                   this.setState({ color: "red" });
                 }}
               >

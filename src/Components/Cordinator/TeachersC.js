@@ -33,7 +33,7 @@ export default class Teachers extends Component {
     display: true,
     tname: "",
     email: "",
-    dept: "",
+    dept: JSON.parse(sessionStorage.getItem("dept")),
     search: "",
     modal: false,
     subject1_Id: "",
@@ -46,6 +46,7 @@ export default class Teachers extends Component {
     deletemodal: false,
     url: this.context.url,
     disabled: false,
+    errmsg: "",
   };
   arrayBufferTo64 = (buffer) => {
     let binary = "";
@@ -58,7 +59,9 @@ export default class Teachers extends Component {
   };
   async componentDidMount() {
     try {
-      const res = await Axios.get(`${this.state.url}/cordinator/staff`);
+      const res = await Axios.get(`${this.state.url}/cordinator/staff`, {
+        headers: { dept: this.state.dept },
+      });
       const details = res.data.StaffDetails;
       const base64Flag = "data:image/jpeg;base64,";
       let imgstr;
@@ -134,7 +137,13 @@ export default class Teachers extends Component {
         loading: false,
       });
     } catch (err) {
-      console.log(err.response);
+      //console.log(err.response);
+      if (err.response.status === 404) {
+        return this.setState({
+          loading: false,
+          errmsg: err.response.data.message,
+        });
+      }
     }
   }
   collectTeacher = (id, subject1_Id, subject2_Id) => {
@@ -277,7 +286,9 @@ export default class Teachers extends Component {
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="primary"
         >
-          <span className="mr-4">Add a new teacher to the Ise department.</span>
+          <span className="mr-4">
+            Add a new teacher to the '{this.state.dept}' department.
+          </span>
           <Button
             className=" px-4 py-2"
             style={{ display: this.state.display ? "inline-block" : "none" }}
@@ -343,10 +354,7 @@ export default class Teachers extends Component {
               id="dept"
               name="dept"
               value={this.state.dept}
-              maxLength={3}
-              placeholder="Ex: ISE"
-              autoComplete="off"
-              onChange={this.handleChange}
+              readOnly={true}
             />
           </FormGroup>
           <FormGroup className="mx-8">
@@ -410,13 +418,20 @@ export default class Teachers extends Component {
             />
           </FormGroup>
         </div>
-        <div className="teacherdetails-content">
-          {this.state.details.filter((staff) => {
-            if (this.state.search !== "")
-              return staff.props.id.startsWith(this.state.search);
-            else return staff;
-          })}
-        </div>
+        {this.state.errmsg === "" ? (
+          <div className="teacherdetails-content">
+            {this.state.details.filter((staff) => {
+              if (this.state.search !== "")
+                return staff.props.id.startsWith(this.state.search);
+              else return staff;
+            })}
+          </div>
+        ) : (
+          <div className="mt-4 text-lg text-center font-semibold capitalize text-indigo-500">
+            {this.state.errmsg}
+          </div>
+        )}
+
         <Modal isOpen={this.state.modal} centered={true}>
           <ModalHeader className="bg-teal-600 text-white capitalize">
             are you sure?

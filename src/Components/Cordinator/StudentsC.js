@@ -37,7 +37,7 @@ export default class Students extends Component {
     studentEmail: "",
     studentName: "",
     studentUsn: "",
-    dept: "",
+    dept: JSON.parse(sessionStorage.getItem("dept")),
     dob: "",
     year: "",
     sem: "",
@@ -55,6 +55,7 @@ export default class Students extends Component {
     updatestudentYear: 0,
     failed: false,
     failedmsg: "",
+    errmsg: "",
   };
   options = [
     {
@@ -162,7 +163,9 @@ export default class Students extends Component {
   };
   async componentDidMount() {
     try {
-      const res = await Axios.get(`${this.state.url}/cordinator/students`);
+      const res = await Axios.get(`${this.state.url}/cordinator/students`, {
+        headers: { dept: this.state.dept },
+      });
 
       const results = res.data.Students;
       const base64flag = "data:image/jpeg;base64,";
@@ -266,6 +269,12 @@ export default class Students extends Component {
       });
     } catch (err) {
       console.log(err.response);
+      if (err.response.status === 404) {
+        return this.setState({
+          loading: false,
+          errmsg: err.response.data.message,
+        });
+      }
     }
   }
   collectStudent = (id) => {
@@ -450,7 +459,9 @@ export default class Students extends Component {
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="info"
         >
-          <span className="mr-4">Add subjects to the department:</span>
+          <span className="mr-4">
+            Add subjects to the '{this.state.dept}' department:
+          </span>
           <Button
             className=" px-4 py-2"
             style={{ display: this.state.display ? "inline-block" : "none" }}
@@ -540,9 +551,7 @@ export default class Students extends Component {
               type="text"
               name="dept"
               value={this.state.dept}
-              autoComplete="off"
-              maxLength={3}
-              onChange={this.handleChange}
+              readOnly={true}
             />
           </FormGroup>
           <FormGroup className="mx-8">
@@ -696,17 +705,24 @@ export default class Students extends Component {
             />
           </FormGroup>
         </div>
-        <div className="students-content">
-          {this.state.students.filter((student) => {
-            if (this.state.select !== 0) {
-              if (this.state.search !== "")
+        {this.state.errmsg === "" ? (
+          <div className="students-content">
+            {this.state.students.filter((student) => {
+              if (this.state.select !== 0) {
+                if (this.state.search !== "")
+                  return student.props.name.startsWith(this.state.search);
+                else return student.props.year === this.state.select;
+              } else if (this.state.search !== "")
                 return student.props.name.startsWith(this.state.search);
-              else return student.props.year === this.state.select;
-            } else if (this.state.search !== "")
-              return student.props.name.startsWith(this.state.search);
-            else return student;
-          })}
-        </div>
+              else return student;
+            })}
+          </div>
+        ) : (
+          <div className="mt-4 text-lg text-center font-semibold capitalize text-teal-500">
+            {this.state.errmsg}
+          </div>
+        )}
+
         <Modal isOpen={this.state.updatemodal} centered={true}>
           <ModalHeader className="bg-green-600 text-white capitalize">
             are you sure?

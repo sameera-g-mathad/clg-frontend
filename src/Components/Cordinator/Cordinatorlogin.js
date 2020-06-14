@@ -45,6 +45,13 @@ export default class Cordinaotlogin extends Component {
         password,
       });
       console.log(res);
+      if (res.status === 200) {
+        sessionStorage.setItem(
+          "dept",
+          JSON.stringify(res.data.cordinator.dept)
+        );
+        this.props.history.push("/cordinator/staff");
+      }
     } catch (err) {
       console.log(err.response);
     }
@@ -52,7 +59,7 @@ export default class Cordinaotlogin extends Component {
   render() {
     return (
       <div className="login-container">
-        <div className="login-back border rounded-lg p-3 ">
+        <div className="login-back  p-3 ">
           <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
             clg website
           </p>

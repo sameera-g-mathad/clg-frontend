@@ -26,7 +26,7 @@ export default class Subjects extends Component {
     subjects: [],
     subject: "",
     subjectCode: "",
-    dept: "",
+    dept: JSON.parse(sessionStorage.getItem("dept")),
     semester: "",
     section: "",
     loading: true,
@@ -37,6 +37,7 @@ export default class Subjects extends Component {
     deleteModal: false,
     failed: false,
     failedmsg: "",
+    errmsg: "",
   };
   options = [
     {
@@ -70,7 +71,9 @@ export default class Subjects extends Component {
   ];
   async componentDidMount() {
     try {
-      const res = await Axios.get(`${this.state.url}/cordinator/subjects`);
+      const res = await Axios.get(`${this.state.url}/cordinator/subjects`, {
+        headers: { dept: this.state.dept },
+      });
       const result = res.data.Subjects;
       const mapped = result.map((el) => {
         return (
@@ -121,7 +124,13 @@ export default class Subjects extends Component {
         loading: false,
       });
     } catch (err) {
-      console.log(err.response);
+      //console.log(err.response);
+      if (err.response.status === 404) {
+        return this.setState({
+          loading: false,
+          errmsg: err.response.data.message,
+        });
+      }
     }
   }
   buttonClicked = () => {
@@ -225,7 +234,9 @@ export default class Subjects extends Component {
           className="teacherc-alert p-4 m-2 text-lg font-bold capitalize"
           color="success"
         >
-          <span className="mr-4">Add subjects to the department:</span>
+          <span className="mr-4">
+            Add subjects to the '{this.state.dept}' department:
+          </span>
           <Button
             className=" px-4 py-2"
             style={{ display: this.state.display ? "inline-block" : "none" }}
@@ -295,10 +306,8 @@ export default class Subjects extends Component {
               id="dept"
               type="text"
               name="dept"
-              autoComplete="off"
-              maxLength={3}
               value={this.state.dept}
-              onChange={this.handleChange}
+              readOnly={true}
             />
           </FormGroup>
 
@@ -385,20 +394,26 @@ export default class Subjects extends Component {
             />
           </FormGroup>
         </div>
-        <div className="subjects-content">
-          {this.state.subjects.filter((subject) => {
-            if (this.state.selected !== 0) {
-              if (
-                this.state.search !== "" &&
-                subject.props.sem === this.state.selected
-              )
+        {this.state.errmsg === "" ? (
+          <div className="subjects-content">
+            {this.state.subjects.filter((subject) => {
+              if (this.state.selected !== 0) {
+                if (
+                  this.state.search !== "" &&
+                  subject.props.sem === this.state.selected
+                )
+                  return subject.props.name.startsWith(this.state.search);
+                else return subject.props.sem === this.state.selected;
+              } else if (this.state.search !== "")
                 return subject.props.name.startsWith(this.state.search);
-              else return subject.props.sem === this.state.selected;
-            } else if (this.state.search !== "")
-              return subject.props.name.startsWith(this.state.search);
-            else return subject;
-          })}
-        </div>
+              else return subject;
+            })}
+          </div>
+        ) : (
+          <div className="mt-4 text-lg text-center font-semibold capitalize text-green-500">
+            {this.state.errmsg}
+          </div>
+        )}
         <Modal isOpen={this.state.deleteModal} centered={true}>
           <ModalHeader className="bg-red-600 text-white capitalize">
             are you sure?
