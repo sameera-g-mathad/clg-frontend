@@ -29,6 +29,7 @@ export default class Students extends Component {
   static contextType = RootContext;
   img = "";
   state = {
+    cordinatorToken: JSON.parse(sessionStorage.getItem("cordinatorToken")),
     display: true,
     loading: true,
     students: [],
@@ -164,7 +165,10 @@ export default class Students extends Component {
   async componentDidMount() {
     try {
       const res = await Axios.get(`${this.state.url}/cordinator/students`, {
-        headers: { dept: this.state.dept },
+        headers: {
+          dept: this.state.dept,
+          authorization: this.state.cordinatorToken,
+        },
       });
 
       const results = res.data.Students;
@@ -277,6 +281,7 @@ export default class Students extends Component {
       }
     }
   }
+
   collectStudent = (id) => {
     this.setState({
       deleteid: id,
@@ -287,7 +292,7 @@ export default class Students extends Component {
     try {
       const id = this.state.deleteid;
       const res = await Axios.delete(`${this.state.url}/cordinator/students`, {
-        headers: { id },
+        headers: { id, authorization: this.state.cordinatorToken },
       });
       console.log(res);
       if (res.status === 204) window.location.reload(false);
@@ -309,11 +314,15 @@ export default class Students extends Component {
   updateStudent = async () => {
     try {
       const { updateid: _id, updatestudentSem, updatestudentYear } = this.state;
-      const res = await Axios.patch(`${this.state.url}/cordinator/students`, {
-        _id,
-        updatestudentSem,
-        updatestudentYear,
-      });
+      const res = await Axios.patch(
+        `${this.state.url}/cordinator/students`,
+        {
+          _id,
+          updatestudentSem,
+          updatestudentYear,
+        },
+        { headers: { authorization: this.state.cordinatorToken } }
+      );
       console.log(res);
       if (res.status === 200) window.location.reload(false);
     } catch (err) {
@@ -374,7 +383,10 @@ export default class Students extends Component {
       const res = await Axios.post(
         `${this.state.url}/cordinator/students`,
         formdata,
-        { enctype: "multipart/form-data" }
+        {
+          enctype: "multipart/form-data",
+          headers: { authorization: this.state.cordinatorToken },
+        }
       );
       console.log(res);
       if (res.status === 201 && res.data.status === "success")

@@ -14,6 +14,7 @@ import { RootContext } from "./../../RContext";
 export default class EditStaff extends Component {
   static contextType = RootContext;
   state = {
+    cordinatorToken: JSON.parse(sessionStorage.getItem("cordinatorToken")),
     id: this.props.match.params.id,
     url: this.context.url,
     flag: false,
@@ -35,7 +36,8 @@ export default class EditStaff extends Component {
   async componentDidMount() {
     try {
       const res = await Axios.get(
-        `${this.state.url}/cordinator/staff/${this.state.id}`
+        `${this.state.url}/cordinator/staff/${this.state.id}`,
+        { headers: { authorization: this.state.cordinatorToken } }
       );
       const result = res.data.Teacher;
       this.setState({
@@ -69,7 +71,14 @@ export default class EditStaff extends Component {
             if (this.state.section1 !== "") {
               const res1 = await Axios.get(
                 `${this.state.url}/cordinator/staff/${this.state.id}`,
-                { headers: { dept, semester1, section1 } }
+                {
+                  headers: {
+                    dept,
+                    semester1,
+                    section1,
+                    authorization: this.state.cordinatorToken,
+                  },
+                }
               );
               const result1 = res1.data.subject1.map((el) => {
                 return {
@@ -100,7 +109,14 @@ export default class EditStaff extends Component {
             if (this.state.section2 !== "") {
               const res2 = await Axios.get(
                 `${this.state.url}/cordinator/staff/${this.state.id}`,
-                { headers: { dept, semester2, section2 } }
+                {
+                  headers: {
+                    dept,
+                    semester2,
+                    section2,
+                    authorization: this.state.cordinatorToken,
+                  },
+                }
               );
               const result2 = res2.data.subject2.map((el) => {
                 return {
@@ -136,7 +152,8 @@ export default class EditStaff extends Component {
       const subject2 = this.state.subject2;
       const res = await Axios.patch(
         `${this.state.url}/cordinator/staff/${this.state.id}`,
-        { _id, subject1, subject2 }
+        { _id, subject1, subject2 },
+        { headers: { authorization: this.state.cordinatorToken } }
       );
       console.log(res);
       if (res.status === 200 && res.data.status === "success")

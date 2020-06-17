@@ -217,6 +217,9 @@ export default class Student extends Component {
       internals3: [...display_internals3],
     });
   }
+  componentWillUnmount() {
+    this.props.history.goForward();
+  }
   arraytoImage = (buffer) => {
     let binary = "";
     let bytes = [].slice.call(new Uint8Array(buffer));
@@ -255,6 +258,7 @@ export default class Student extends Component {
           <Button
             className="mx-4 float-right my-2"
             tag={Link}
+            onClick={() => sessionStorage.clear()}
             to="/"
             color="danger"
           >

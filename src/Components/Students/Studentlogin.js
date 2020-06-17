@@ -23,6 +23,7 @@ export default class Studentlogin extends Component {
     usn: "",
     pass: "",
     failedmsg: "",
+    display: false,
   };
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +37,7 @@ export default class Studentlogin extends Component {
       if (this.state.usn === "" || this.state.pass === "") {
         return this.setState({
           failedmsg: "Invalid Usn or Password",
+          display: true,
         });
       }
       const { usn: studentUsn, pass: password } = this.state;
@@ -43,7 +45,12 @@ export default class Studentlogin extends Component {
         studentUsn,
         password,
       });
+      console.log(res);
       if (res.status === 200) {
+        sessionStorage.setItem(
+          "studentToken",
+          JSON.stringify(res.data.studentToken)
+        );
         this.props.history.push({
           pathname: "/student",
           state: { student: res.data.student },
@@ -51,6 +58,10 @@ export default class Studentlogin extends Component {
       }
     } catch (err) {
       console.log(err.response);
+      this.setState({
+        failedmsg: err.response.data.message,
+        display: true,
+      });
     }
   };
   render() {
@@ -116,6 +127,7 @@ export default class Studentlogin extends Component {
             </FormGroup>
             <FormGroup className="mx-8 flex flex-wrap justify-center">
               <FormText
+                style={{ display: this.state.display ? "block" : "none" }}
                 color="danger"
                 className="text-lg font-semibold uppercase tracking-wide"
               >

@@ -22,6 +22,7 @@ import { RootContext } from "./../../RContext";
 export default class Subjects extends Component {
   static contextType = RootContext;
   state = {
+    cordinatorToken: JSON.parse(sessionStorage.getItem("cordinatorToken")),
     display: true,
     subjects: [],
     subject: "",
@@ -72,7 +73,10 @@ export default class Subjects extends Component {
   async componentDidMount() {
     try {
       const res = await Axios.get(`${this.state.url}/cordinator/subjects`, {
-        headers: { dept: this.state.dept },
+        headers: {
+          dept: this.state.dept,
+          authorization: this.state.cordinatorToken,
+        },
       });
       const result = res.data.Subjects;
       const mapped = result.map((el) => {
@@ -133,6 +137,7 @@ export default class Subjects extends Component {
       }
     }
   }
+
   buttonClicked = () => {
     this.setState({
       display: !this.state.display,
@@ -166,13 +171,17 @@ export default class Subjects extends Component {
         semester: sem,
         section,
       } = this.state;
-      const res = await Axios.post(`${this.state.url}/cordinator/subjects`, {
-        subjectName,
-        subjectCode,
-        dept,
-        sem,
-        section,
-      });
+      const res = await Axios.post(
+        `${this.state.url}/cordinator/subjects`,
+        {
+          subjectName,
+          subjectCode,
+          dept,
+          sem,
+          section,
+        },
+        { headers: { authorization: this.state.cordinatorToken } }
+      );
       console.log(res);
       if (res.status === 201 && res.data.status === "success")
         window.location.reload(false);
@@ -196,7 +205,7 @@ export default class Subjects extends Component {
     try {
       const _id = this.state.deleteId;
       const res = await Axios.delete(`${this.state.url}/cordinator/subjects`, {
-        headers: { _id },
+        headers: { _id, authorization: this.state.cordinatorToken },
       });
 
       if (res.status === 200 && res.data.status === "success") {

@@ -64,12 +64,12 @@ export default class Cordinator extends Component {
         </nav>
         <div className="md:hidden">
           <div
-            className={`h-48 mx-3  flex flex-col items-start px-3 border-2 border-${this.state.color}-500 bg-gray-200 rounded-lg shadow-sm `}
+            className={`h-40 mx-3  flex flex-col items-start px-3 border-2 border-${this.state.color}-500 bg-gray-200 rounded-lg shadow-sm `}
             style={{
               display: this.state.display === true ? "flex" : "none",
             }}
           >
-            <div className="py-2 mt-2 ">
+            <div className="py-1 mt-1 ">
               <Link
                 to="/cordinator/staff"
                 className="uppercase text-gray-700 font-semibold   hover:no-underline tracking-widest hover:text-blue-500  "
@@ -111,7 +111,7 @@ export default class Cordinator extends Component {
                 Students
               </Link>
             </div>
-            <div className="py-2">
+            <div className="pt-2">
               <Link
                 to="/"
                 className="uppercase text-gray-700 font-semibold   hover:no-underline  tracking-widest hover:text-red-500 "

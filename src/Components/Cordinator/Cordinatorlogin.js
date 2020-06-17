@@ -50,6 +50,10 @@ export default class Cordinaotlogin extends Component {
           "dept",
           JSON.stringify(res.data.cordinator.dept)
         );
+        sessionStorage.setItem(
+          "cordinatorToken",
+          JSON.stringify(res.data.cordinatorToken)
+        );
         this.props.history.push("/cordinator/staff");
       }
     } catch (err) {

@@ -29,6 +29,7 @@ export default class Teachers extends Component {
   static contextType = RootContext;
   imgurl = "";
   state = {
+    cordinatorToken: JSON.parse(sessionStorage.getItem("cordinatorToken")),
     details: [],
     display: true,
     tname: "",
@@ -60,7 +61,10 @@ export default class Teachers extends Component {
   async componentDidMount() {
     try {
       const res = await Axios.get(`${this.state.url}/cordinator/staff`, {
-        headers: { dept: this.state.dept },
+        headers: {
+          dept: this.state.dept,
+          authorization: this.state.cordinatorToken,
+        },
       });
       const details = res.data.StaffDetails;
       const base64Flag = "data:image/jpeg;base64,";
@@ -146,6 +150,9 @@ export default class Teachers extends Component {
       }
     }
   }
+  componentWillUnmount() {
+    this.props.history.goForward();
+  }
   collectTeacher = (id, subject1_Id, subject2_Id) => {
     this.setState({
       id,
@@ -159,7 +166,12 @@ export default class Teachers extends Component {
       const id = this.state.id;
       const { subject1_Id, subject2_Id } = this.state;
       const res = await Axios.delete(`${this.state.url}/cordinator/staff`, {
-        headers: { id, subject1_Id, subject2_Id },
+        headers: {
+          id,
+          subject1_Id,
+          subject2_Id,
+          authorization: this.state.cordinatorToken,
+        },
       });
       console.log(res);
       if (res.status === 204) window.location.reload(false);
@@ -212,7 +224,10 @@ export default class Teachers extends Component {
       const res = await Axios.post(
         `${this.state.url}/cordinator/staff`,
         formdata,
-        { enctype: "multipart/form-data" }
+        {
+          enctype: "multipart/form-data",
+          headers: { authorization: this.state.cordinatorToken },
+        }
       );
       if (res.status === 201 && res.data.status === "success")
         window.location.reload(false);
@@ -243,7 +258,12 @@ export default class Teachers extends Component {
           },
         });
       const res = await Axios.patch(`${this.state.url}/cordinator/staff`, {
-        headers: { id, subject1_Id, subject2_Id },
+        headers: {
+          id,
+          subject1_Id,
+          subject2_Id,
+          authorization: this.state.cordinatorToken,
+        },
       });
       if (res.status === 200 && res.data.status === "success")
         return this.props.history.push({
