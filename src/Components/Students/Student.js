@@ -10,6 +10,7 @@ export default class Student extends Component {
   img = "";
   state = {
     url: this.context.url,
+    studentToken: JSON.parse(sessionStorage.getItem("studentToken")),
     student: this.props.location.state.student,
     sem: this.props.location.state.student.sem,
     internals1: [],
@@ -308,17 +309,41 @@ export default class Student extends Component {
         </FormGroup>
 
         {this.state.internals_select === "Internal 1" ? (
-          <div className="studentdisplay-content">{this.state.internals1}</div>
+          this.state.internals1.length > 0 ? (
+            <div className="studentdisplay-content">
+              {this.state.internals1}
+            </div>
+          ) : (
+            <center className={`font-semibold text-${this.state.color}`}>
+              No details available.
+            </center>
+          )
         ) : (
           ""
         )}
         {this.state.internals_select === "Internal 2" ? (
-          <div className="studentdisplay-content">{this.state.internals2}</div>
+          this.state.internals2.length > 0 ? (
+            <div className="studentdisplay-content">
+              {this.state.internals2}
+            </div>
+          ) : (
+            <center className={`font-semibold text-${this.state.color}`}>
+              No details available.
+            </center>
+          )
         ) : (
           ""
         )}
         {this.state.internals_select === "Internal 3" ? (
-          <div className="studentdisplay-content">{this.state.internals3}</div>
+          this.state.internals3.length > 0 ? (
+            <div className="studentdisplay-content">
+              {this.state.internals3}
+            </div>
+          ) : (
+            <center className={`font-semibold text-${this.state.color}`}>
+              No details available.
+            </center>
+          )
         ) : (
           ""
         )}
