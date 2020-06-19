@@ -5,6 +5,7 @@ import { Button, FormGroup } from "reactstrap";
 import "./../../App.css";
 import Select from "react-select";
 import { FaEye } from "react-icons/fa";
+import auths from "./auths";
 export default class Student extends Component {
   static contextType = RootContext;
   img = "";
@@ -259,7 +260,10 @@ export default class Student extends Component {
           <Button
             className="mx-4 float-right my-2"
             tag={Link}
-            onClick={() => sessionStorage.clear()}
+            onClick={() => {
+              sessionStorage.clear();
+              auths.logoutS();
+            }}
             to="/"
             color="danger"
           >

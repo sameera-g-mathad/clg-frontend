@@ -24,7 +24,8 @@ import Cordinator from "./Components/Cordinator/Cordinator";
 import Cordinatorlogin from "./Components/Cordinator/Cordinatorlogin";
 // eslint-disable-next-line
 import { Protected } from "./Protected";
-
+import { ProtectedC } from "./ProtectedC";
+import { ProtectedS } from "./ProtectedS";
 // eslint-disable-next-line
 
 function App() {
@@ -66,15 +67,15 @@ function App() {
         {
           //Cordinator
         }
-        <Route path="/cordinator" component={Cordinator} />
+        <ProtectedC path="/cordinator" component={Cordinator} />
         <Route exact path="/cordinator-login" component={Cordinatorlogin} />
 
         {
           //Student
         }
         <Route exact path="/student-login" component={Studentlogin} />
-        <Route exact path="/student" component={Student} />
-        <Route exact path="/student/internals" component={Internals} />
+        <ProtectedS exact path="/student" component={Student} />
+        <ProtectedS exact path="/student/internals" component={Internals} />
       </Switch>
     </div>
   );

@@ -1,16 +1,16 @@
-class Auth {
+class AuthC {
   constructor() {
     this.authenticated = null;
   }
-  login(token) {
+  loginC(token) {
     const teacher = token.split(" ")[0];
-    if (teacher === "Teacher") this.authenticated = token;
+    if (teacher === "Cordinator") this.authenticated = token;
   }
-  logout() {
+  logoutC() {
     this.authenticated = null;
   }
-  isAuthenticated() {
+  isAuthenticatedC() {
     return this.authenticated;
   }
 }
-export default new Auth();
+export default new AuthC();

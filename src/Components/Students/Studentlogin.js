@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MdVpnKey } from "react-icons/md";
 import { FaUniversity } from "react-icons/fa";
 import Axios from "axios";
+import auths from "./auths";
 import {
   Form,
   FormGroup,
@@ -45,8 +46,9 @@ export default class Studentlogin extends Component {
         studentUsn,
         password,
       });
-      console.log(res);
+
       if (res.status === 200) {
+        auths.loginS(res.data.studentToken);
         sessionStorage.setItem(
           "studentToken",
           JSON.stringify(res.data.studentToken)

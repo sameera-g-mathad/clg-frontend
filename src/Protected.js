@@ -5,10 +5,10 @@ export const Protected = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
+      render={(props) => {
         if (auth.isAuthenticated()) return <Component {...props} />;
         else {
-          return <Redirect to="/" />;
+          return <Redirect to="/staff-login" />;
         }
       }}
     />

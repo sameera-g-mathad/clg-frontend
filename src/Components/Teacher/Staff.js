@@ -9,6 +9,7 @@ export default class Staff extends Component {
   img = "";
   state = {
     url: this.props.match.url,
+    teacherToken: auth.isAuthenticated(),
     teacherid: JSON.parse(sessionStorage.getItem("id")),
     teacher: [],
     subjects: [],
@@ -115,6 +116,7 @@ export default class Staff extends Component {
     return sessionStorage.setItem("subject", JSON.stringify(subject));
   };
   render() {
+    console.log(this.state.teacherToken);
     if (this.state.loading)
       return (
         <div>
