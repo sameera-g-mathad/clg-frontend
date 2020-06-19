@@ -40,8 +40,9 @@ export default class Stafflogin extends Component {
         password,
       });
       if (res.status === 200) {
-        auth.login(res.data.token);
-        localStorage.setItem("id", JSON.stringify(res.data.staff._id));
+        auth.login(res.data.staffToken);
+
+        sessionStorage.setItem("id", JSON.stringify(res.data.staff._id));
         if (auth.isAuthenticated() !== null)
           //this.context.simple();
           this.props.history.push({

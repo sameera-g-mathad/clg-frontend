@@ -9,7 +9,7 @@ export default class Staff extends Component {
   img = "";
   state = {
     url: this.props.match.url,
-    teacherid: JSON.parse(localStorage.getItem("id")),
+    teacherid: JSON.parse(sessionStorage.getItem("id")),
     teacher: [],
     subjects: [],
     loading: true,
@@ -107,7 +107,7 @@ export default class Staff extends Component {
         subjectDetails: [...sub1Res, ...sub2Res],
       });
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   }
   setsubjectDetails = (subject) => {
@@ -117,13 +117,27 @@ export default class Staff extends Component {
   render() {
     if (this.state.loading)
       return (
-        <div className="flex flex-col justify-center items-center">
-          <Spinner
-            color="primary"
-            style={{ width: "100px", height: "100px" }}
-            type="grow"
-          />
-          <h4 className="text-gray-500">Loading...</h4>
+        <div>
+          <div className="flex justify-between  p-3">
+            <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
+              clg website
+            </div>
+            <Link
+              className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
+              to="/"
+              onClick={() => sessionStorage.clear()}
+            >
+              logout
+            </Link>
+          </div>
+          <div className="flex flex-col justify-center items-center">
+            <Spinner
+              color="primary"
+              style={{ width: "100px", height: "100px" }}
+              type="grow"
+            />
+            <h4 className="text-gray-500">Loading...</h4>
+          </div>
         </div>
       );
     return (
