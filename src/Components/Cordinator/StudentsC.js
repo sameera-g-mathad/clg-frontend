@@ -35,7 +35,7 @@ export default class Students extends Component {
     students: [],
     select: 0,
     search: "",
-    studentEmail: "",
+    //studentEmail: "",
     studentName: "",
     studentUsn: "",
     dept: JSON.parse(sessionStorage.getItem("dept")),
@@ -345,7 +345,7 @@ export default class Students extends Component {
     try {
       e.preventDefault();
       if (
-        this.state.studentEmail === "" ||
+       // this.state.studentEmail === "" ||
         this.state.studentName === "" ||
         this.state.studentUsn === "" ||
         this.state.dept === "" ||
@@ -360,7 +360,7 @@ export default class Students extends Component {
         });
       }
       const {
-        studentEmail,
+       // studentEmail,
         studentName,
         studentUsn,
         dept,
@@ -371,7 +371,7 @@ export default class Students extends Component {
       } = this.state;
       const formdata = new FormData();
       formdata.append("photo", this.state.image, this.state.image.name);
-      formdata.append("studentEmail", studentEmail);
+     // formdata.append("studentEmail", studentEmail);
       formdata.append("studentName", studentName);
       formdata.append("studentUsn", studentUsn);
       formdata.append("dept", dept);
@@ -498,7 +498,7 @@ export default class Students extends Component {
             </span>
           </div>
 
-          <FormGroup className="mx-8">
+          {/* <FormGroup className="mx-8">
             <Label
               className="text-lg font-semibold text-secondary capitalize"
               for="student-email"
@@ -514,7 +514,7 @@ export default class Students extends Component {
               autoFocus="on"
               onChange={this.handleChange}
             />
-          </FormGroup>
+          </FormGroup> */}
           <FormGroup className="mx-8">
             <Label
               className="text-lg font-semibold  text-secondary capitalize"

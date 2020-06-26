@@ -13,7 +13,8 @@ export default class Questions extends Component {
 
   // paper=[]
   state = {
-    teacherId: JSON.parse(localStorage.getItem("id")),
+    teacherId: JSON.parse(sessionStorage.getItem("id")),
+    teacherToken: JSON.parse(sessionStorage.getItem("teacherToken")),
     subject: this.location.subject,
     subjectCode: this.location.subjectCode,
     dept: this.location.dept,
@@ -53,7 +54,8 @@ export default class Questions extends Component {
           questions,
           marks,
           questionpaper,
-        }
+        },
+        { headers: { authorization: this.state.teacherToken } }
       );
       console.log(res);
       if (res.status === 200 && res.data.status === "success")

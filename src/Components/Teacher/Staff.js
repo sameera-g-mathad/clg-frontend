@@ -9,7 +9,7 @@ export default class Staff extends Component {
   img = "";
   state = {
     url: this.props.match.url,
-    teacherToken: auth.isAuthenticated(),
+    teacherToken: JSON.parse(sessionStorage.getItem("teacherToken")),
     teacherid: JSON.parse(sessionStorage.getItem("id")),
     teacher: [],
     subjects: [],
@@ -28,7 +28,7 @@ export default class Staff extends Component {
     try {
       const { teacherid } = this.state;
       const res = await Axios.get("http://127.0.0.1:4000/staff", {
-        headers: { teacherid },
+        headers: { teacherid, authorization: this.state.teacherToken },
       });
       const teacherRes = [res.data.staffDetails];
       const sub1Res = [res.data.subject1];
@@ -112,11 +112,10 @@ export default class Staff extends Component {
     }
   }
   setsubjectDetails = (subject) => {
-    sessionStorage.clear();
+    // sessionStorage.clear();
     return sessionStorage.setItem("subject", JSON.stringify(subject));
   };
   render() {
-    console.log(this.state.teacherToken);
     if (this.state.loading)
       return (
         <div>
@@ -143,85 +142,90 @@ export default class Staff extends Component {
         </div>
       );
     return (
-      <div className="teacher-container mx-4 bg-gray-100">
-        <div className="teacher-details  tracking-wider border hover:shadow-lg mt-4  rounded-lg ">
-          <Button
-            className="mx-4 float-right my-2"
-            tag={Link}
+      <div>
+        <div className="flex justify-between  px-3 pt-3">
+          <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
+            clg website
+          </div>
+          <Link
+            className="mx-2 text-black font-semibold capitalize hover:text-black hover:no-underline tracking-wider"
             to="/"
-            color="danger"
             onClick={() => {
-              localStorage.clear();
+              sessionStorage.clear();
               auth.logout();
             }}
           >
-            Logout
-          </Button>
-          {this.state.teacher}
+            logout
+          </Link>
         </div>
-        <div className="teacher-subject1  bg-gray-100 mb-4  hover:shadow-lg rounded-lg  ">
-          <p className="bg-blue-300 w-full rounded-lg text-gray-700 tracking-widest font-semibold  text-lg  uppercase  p-4">
-            subject details:
-          </p>
-          <div className="p-4">
-            {this.state.subjects[0]}
-            <div className="flex justify-end tracking-wider">
-              <Button
-                color="primary"
-                outline
-                tag={Link}
-                to={{
-                  pathname: `${this.state.url}/set-paper`,
-                  state: { subject: this.state.subjectDetails[0] },
-                }}
-              >
-                Set Paper
-              </Button>
-              <Button
-                color="success"
-                outline
-                className="ml-4"
-                onClick={() =>
-                  this.setsubjectDetails(this.state.subjectDetails[0])
-                }
-                tag={Link}
-                to={`${this.state.url}/students`}
-              >
-                Students
-              </Button>
+        <div className="teacher-container mx-4 ">
+          <div className="teacher-details  tracking-wider border hover:shadow-lg mt-4  rounded-lg ">
+            {this.state.teacher}
+          </div>
+          <div className="teacher-subject1  bg-gray-100 mb-4  hover:shadow-lg rounded-lg  ">
+            <p className="bg-blue-300 w-full rounded-lg text-gray-700 tracking-widest font-semibold  text-lg  uppercase  p-4">
+              subject details:
+            </p>
+            <div className="p-4">
+              {this.state.subjects[0]}
+              <div className="flex justify-end tracking-wider">
+                <Button
+                  color="primary"
+                  outline
+                  tag={Link}
+                  to={{
+                    pathname: `${this.state.url}/set-paper`,
+                    state: { subject: this.state.subjectDetails[0] },
+                  }}
+                >
+                  Set Paper
+                </Button>
+                <Button
+                  color="success"
+                  outline
+                  className="ml-4"
+                  onClick={() =>
+                    this.setsubjectDetails(this.state.subjectDetails[0])
+                  }
+                  tag={Link}
+                  to={`${this.state.url}/students`}
+                >
+                  Students
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="teacher-subject2  bg-gray-100  mb-4 hover:shadow-lg rounded-lg ">
-          <p className="bg-green-400 rounded-lg w-full text-gray-700 tracking-widest font-semibold  text-lg  uppercase  p-4">
-            subject details:
-          </p>
-          <div className="p-4">
-            {this.state.subjects[1]}
-            <div className="flex justify-end tracking-wider">
-              <Button
-                color="primary"
-                outline
-                tag={Link}
-                to={{
-                  pathname: `${this.state.url}/set-paper`,
-                  state: { subject: this.state.subjectDetails[1] },
-                }}
-              >
-                Set Paper
-              </Button>
-              <Button
-                color="success"
-                outline
-                className="ml-4"
-                onClick={() =>
-                  this.setsubjectDetails(this.state.subjectDetails[1])
-                }
-                tag={Link}
-                to={`${this.state.url}/students`}
-              >
-                Students
-              </Button>
+          <div className="teacher-subject2  bg-gray-100  mb-4 hover:shadow-lg rounded-lg ">
+            <p className="bg-green-400 rounded-lg w-full text-gray-700 tracking-widest font-semibold  text-lg  uppercase  p-4">
+              subject details:
+            </p>
+            <div className="p-4">
+              {this.state.subjects[1]}
+              <div className="flex justify-end tracking-wider">
+                <Button
+                  color="primary"
+                  outline
+                  tag={Link}
+                  to={{
+                    pathname: `${this.state.url}/set-paper`,
+                    state: { subject: this.state.subjectDetails[1] },
+                  }}
+                >
+                  Set Paper
+                </Button>
+                <Button
+                  color="success"
+                  outline
+                  className="ml-4"
+                  onClick={() =>
+                    this.setsubjectDetails(this.state.subjectDetails[1])
+                  }
+                  tag={Link}
+                  to={`${this.state.url}/students`}
+                >
+                  Students
+                </Button>
+              </div>
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ import {
   Button,
 } from "reactstrap";
 import Axios from "axios";
+import authc from "./authc";
 export default class Cordinaotlogin extends Component {
   static contextType = RootContext;
   state = {
@@ -54,6 +55,7 @@ export default class Cordinaotlogin extends Component {
           "cordinatorToken",
           JSON.stringify(res.data.cordinatorToken)
         );
+        authc.loginC(res.data.cordinatorToken);
         this.props.history.push("/cordinator/staff");
       }
     } catch (err) {

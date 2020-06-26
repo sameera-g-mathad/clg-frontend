@@ -51,7 +51,7 @@ export default class Cordinator extends Component {
           </div>
           <div className="cordinator-half">
             <button
-              className="mb-3 mx-2  py-1"
+              className="mb-3 mx-2  py-1 "
               onClick={() => {
                 this.setState({ display: !this.state.display });
               }}

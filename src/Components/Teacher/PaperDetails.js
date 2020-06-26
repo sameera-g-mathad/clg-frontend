@@ -9,7 +9,8 @@ export default class PaperDetails extends Component {
   match = this.props.match.url;
   subjectDetails = this.props.history.location.state.subject;
   state = {
-    teacherId: JSON.parse(localStorage.getItem("id")),
+    teacherId: JSON.parse(sessionStorage.getItem("id")),
+    teacherToken: JSON.parse(sessionStorage.getItem("teacherToken")),
     subject: this.subjectDetails.subjectName,
     subjectCode: this.subjectDetails.subjectCode,
     sem: this.subjectDetails.sem,
@@ -47,7 +48,15 @@ export default class PaperDetails extends Component {
         section,
       } = this.state;
       const res = await Axios.get(`${this.state.url}/staff/set-paper`, {
-        headers: { teacherId, subject, subjectCode, dept, sem, section },
+        headers: {
+          teacherId,
+          subject,
+          subjectCode,
+          dept,
+          sem,
+          section,
+          authorization: this.state.teacherToken,
+        },
       });
 
       const internals = res.data.found.map((internal) => {
@@ -105,7 +114,7 @@ export default class PaperDetails extends Component {
   render() {
     return (
       <div>
-        <div className="flex justify-between border rounded-lg p-3">
+        <div className="flex justify-between  p-3">
           <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
             clg website
           </div>

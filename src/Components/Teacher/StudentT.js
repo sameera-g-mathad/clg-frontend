@@ -15,6 +15,7 @@ export default class StudentT extends Component {
     loading: true,
     students: [],
     search: "",
+    teacherToken: JSON.parse(sessionStorage.getItem("teacherToken")),
   };
   arrayToImage = (buffer) => {
     let binary = "";
@@ -28,7 +29,7 @@ export default class StudentT extends Component {
     try {
       const { dept, sem, section } = this.subject;
       const res = await Axios.get("http://127.0.0.1:4000/staff/students", {
-        headers: { dept, sem, section },
+        headers: { dept, sem, section, authorization: this.state.teacherToken },
       });
       console.log(res);
       const result = res.data.Students;
@@ -234,7 +235,7 @@ export default class StudentT extends Component {
         loading: false,
       });
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   }
   searchChange = (e) => {

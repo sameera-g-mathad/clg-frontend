@@ -12,7 +12,8 @@ export default class Coanalysis extends Component {
   student = this.props.location.state.student;
   state = {
     url: this.context.url,
-    teacherid: JSON.parse(localStorage.getItem("id")),
+    teacherid: JSON.parse(sessionStorage.getItem("id")),
+    teacherToken: JSON.parse(sessionStorage.getItem("teacherToken")),
     subject: this.props.location.state.subject,
     cofinal: "",
   };
@@ -28,6 +29,7 @@ export default class Coanalysis extends Component {
         headers: {
           teacherId: this.state.teacherid,
           subject: this.state.subject,
+          authorization: this.state.teacherToken,
         },
       });
       const Internals = res.data.Internals;

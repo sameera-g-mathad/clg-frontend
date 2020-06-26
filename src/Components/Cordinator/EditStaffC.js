@@ -247,6 +247,7 @@ export default class EditStaff extends Component {
               onChange={this.handleSem}
               maxLength={1}
               placeholder="Ex: 8"
+              autoComplete="off"
             />
 
             <Label
@@ -265,6 +266,7 @@ export default class EditStaff extends Component {
               onChange={this.handleSection1}
               maxLength={1}
               placeholder="Ex: 'J'"
+              autoComplete="off"
             />
 
             <Label
@@ -310,6 +312,7 @@ export default class EditStaff extends Component {
               onChange={this.handleSem}
               maxLength={1}
               placeholder="Ex: 8"
+              autoComplete="off"
             />
 
             <Label
@@ -328,6 +331,7 @@ export default class EditStaff extends Component {
               onChange={this.handleSection2}
               maxLength={1}
               placeholder="Ex: 'J'"
+              autoComplete="off"
             />
 
             <Label

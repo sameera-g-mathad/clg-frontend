@@ -1,6 +1,6 @@
 class AuthC {
   constructor() {
-    this.authenticated = null;
+    this.authenticated = sessionStorage.getItem("cordinatorToken") || null;
   }
   loginC(token) {
     const teacher = token.split(" ")[0];
