@@ -28,7 +28,8 @@ export default class Internals1 extends Component {
   marks = [];
   img = "";
   state = {
-    teacherid: JSON.parse(localStorage.getItem("id")),
+    teacherid: JSON.parse(sessionStorage.getItem("id")),
+    teacherToken: JSON.parse(sessionStorage.getItem("teacherToken")),
     section: this.location.section,
     sem: this.location.sem,
     dept: this.location.dept,
@@ -152,7 +153,8 @@ export default class Internals1 extends Component {
       const { subject, subjectCode, sem, performance, marks } = this.state;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals1/${this.state.usn}`,
-        { internals1: { subject, subjectCode, sem, performance, marks } }
+        { internals1: { subject, subjectCode, sem, performance, marks } },
+        { headers: { authorization: this.state.teacherToken } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -170,7 +172,8 @@ export default class Internals1 extends Component {
       const subjectCode = this.state.subjectCode;
       const res = await Axios.patch(
         `${this.state.url}/staff/students/internals1/${this.state.usn}`,
-        { internals1: { subject, subjectCode, sem, marks } }
+        { internals1: { subject, subjectCode, sem, marks } },
+        { headers: { authorization: this.state.teacherToken } }
       );
       console.log(res);
       if (res.status === 200) {
@@ -185,7 +188,17 @@ export default class Internals1 extends Component {
       const { teacherid, subject, sem, section, dept, internals } = this.state;
       const res = await Axios.get(
         `${this.state.url}/staff/students/internals1/${this.state.usn}`,
-        { headers: { teacherid, subject, sem, section, dept, internals } }
+        {
+          headers: {
+            teacherid,
+            subject,
+            sem,
+            section,
+            dept,
+            internals,
+            authorization: this.state.teacherToken,
+          },
+        }
       );
 
       const paper = res.data.found;
