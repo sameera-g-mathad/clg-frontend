@@ -262,6 +262,13 @@ body {
 }
 .about-gat2 {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+  justify-content: space-between;
+  align-content: center;
+  grid-gap: 5px;
+}
+.about-dept {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-content: space-between;
   align-content: center;
