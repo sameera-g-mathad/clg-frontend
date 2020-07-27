@@ -14,6 +14,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
+        <meta charset="utf-8" />
         <nav className=" flex justify-between items-center md:m-8 p-3 md:border-2 border-gray-700 rounded-lg ">
           <span className="flex items-center">
             <img src={logo} alt="no logo" className="w-12 h-12" />

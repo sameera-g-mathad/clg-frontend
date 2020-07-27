@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MdVpnKey, MdEmail } from "react-icons/md";
 import { Alert } from "reactstrap";
 import { FiAlertCircle } from "react-icons/fi";
+import logo from "./../images/logo.png";
 import {
   Form,
   FormGroup,
@@ -66,9 +67,12 @@ export default class Cordinaotlogin extends Component {
     return (
       <div className="login-container">
         <div className="login-back  p-3 ">
-          <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
-            clg website
-          </p>
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
           <Link
             className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
             to="/"

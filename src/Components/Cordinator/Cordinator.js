@@ -7,6 +7,7 @@ import Students from "./StudentsC";
 import SingleStudent from "./SingleStudent";
 import updateStudent from "./updateStudent";
 import { FaBars } from "react-icons/fa";
+import logo from "./../images/logo.png";
 export default class Cordinator extends Component {
   state = {
     display: false,
@@ -19,9 +20,12 @@ export default class Cordinator extends Component {
           className=" flex justify-between items-center px-2 pt-3"
           style={{ width: "100%" }}
         >
-          <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
-            clg website
-          </p>
+          <span className="flex items-center">
+              <img src={logo} alt="no logo" className="w-12 h-12" />
+              <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+                gat website
+              </span>
+            </span>
           <div className="cordinator-full">
             <Link
               to="/cordinator/staff"
@@ -51,7 +55,7 @@ export default class Cordinator extends Component {
           </div>
           <div className="cordinator-half">
             <button
-              className="mb-3 mx-2  py-1 "
+              className="mb-3 mx-2  pt-3 "
               onClick={() => {
                 this.setState({ display: !this.state.display });
               }}

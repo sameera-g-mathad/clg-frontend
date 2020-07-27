@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Particles from "react-particles-js";
+import logo from "./../images/logo.png";
 import {
   Form,
   FormGroup,
@@ -68,7 +69,8 @@ export default class Stafflogin extends Component {
     else this.number = 150;
     return (
       <div>
-        <Particles
+        <div className="gat-animation"></div>
+        {/* <Particles
           className="bg-blue-500 "
           height={window.innerHeight}
           params={{
@@ -106,7 +108,7 @@ export default class Stafflogin extends Component {
               },
             },
           }}
-        />
+        /> */}
         <div
           className="staff-container "
           style={{
@@ -118,11 +120,14 @@ export default class Stafflogin extends Component {
           }}
         >
           <div className="staff-back  rounded-lg p-3 ">
-            <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
-              clg website
-            </p>
+            <span className="flex items-center">
+              <img src={logo} alt="no logo" className="w-12 h-12" />
+              <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+                gat website
+              </span>
+            </span>
             <Link
-              className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-widest"
+              className="mx-2  text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest"
               to="/"
             >
               Back

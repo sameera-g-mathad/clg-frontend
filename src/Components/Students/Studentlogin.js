@@ -6,6 +6,7 @@ import { MdVpnKey } from "react-icons/md";
 import { FaUniversity } from "react-icons/fa";
 import Axios from "axios";
 import auths from "./auths";
+import logo from "./../images/logo.png";
 import {
   Form,
   FormGroup,
@@ -70,9 +71,12 @@ export default class Studentlogin extends Component {
     return (
       <div className="login-container">
         <div className="login-back  p-3 ">
-          <p className=" mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
-            clg website
-          </p>
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
           <Link
             className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
             to="/"
