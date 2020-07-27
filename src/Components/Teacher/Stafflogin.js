@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Particles from "react-particles-js";
+//import Particles from "react-particles-js";
 import logo from "./../images/logo.png";
+import image1 from "./../images/image1.jpg";
 import {
   Form,
   FormGroup,
@@ -69,7 +70,14 @@ export default class Stafflogin extends Component {
     else this.number = 150;
     return (
       <div>
-        <div className="gat-animation"></div>
+        <div 
+        className="gat-animation" 
+        style={{
+            backgroundImage: 'url("' + image1 + '")',
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            opacity: 0.75,
+          }}></div>
         {/* <Particles
           className="bg-blue-500 "
           height={window.innerHeight}

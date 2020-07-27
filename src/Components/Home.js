@@ -11,7 +11,7 @@ import image1 from "./images/image1.jpg";
 import image2 from "./images/image2.jpg";
 import image3 from "./images/image3.jpg";
 import image4 from "./images/image4.jpg";
-import image5 from "./images/image5.jpg";
+import gallery from "./images/gallery.jpg";
 export default class Home extends Component {
   state = {
     display: false,
@@ -19,7 +19,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <nav className=" flex justify-between items-center md:m-8 p-3 md:border-2 border-gray-700 rounded-lg ">
           <span className="flex items-center">
             <img src={logo} alt="no logo" className="w-12 h-12" />
@@ -115,7 +115,13 @@ export default class Home extends Component {
           >
             <span className="flex justify-center mb-2">
               <span className="uppercase font-bold text-2xl text-light tracking-widest">
-                about gat &#128515;
+                about gat{" "}
+                <span
+                  role="img"
+                  aria-label="SMILING FACE WITH OPEN MOUTHabout gat"
+                >
+                  &#128515;
+                </span>
               </span>
             </span>
             <span>
@@ -232,7 +238,11 @@ export default class Home extends Component {
             </div>
             <div className="my-4">
               <p className="text-center tracking-widest text-lg font-bold text-white uppercase">
-                watch us here &#128521;!!
+                watch us here{" "}
+                <span role="img" aria-label="WINKING FACE">
+                  &#128521;
+                </span>
+                !!
               </p>
               <span className="flex justify-center ">
                 <iframe
@@ -243,12 +253,37 @@ export default class Home extends Component {
                   src="https://www.youtube.com/embed/54PaHnh9Pg0"
                   frameBorder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </span>
             </div>
           </div>
-
+          <div
+            className="overflow-hidden gat-animation-container"
+            style={{
+              backgroundImage: 'url("' + gallery + '")',
+              backgroundPositionX: "50%",
+              backgroundPositionY: "50%",
+            }}
+          >
+            <span className="flex justify-center mb-2">
+              <span className="uppercase font-bold text-2xl pt-2 text-light tracking-widest">
+                gallery
+                <span
+                  role="img"
+                  aria-label="SMILING FACE WITH OPEN MOUTHabout gat"
+                >
+                  &#128151;
+                </span>
+              </span>
+            </span>
+            <div className="flex gat-animation ">
+              <img style={{ width: "100%" }} src={image1} alt="nothing found" />
+              <img style={{ width: "100%" }} src={image2} alt="nothing found" />
+              <img style={{ width: "100%" }} src={image3} alt="nothing found" />
+              <img style={{ width: "100%" }} src={image4} alt="nothing found" />
+            </div>
+          </div>
           <div
             style={{
               backgroundImage: 'url("' + deptback + '")',
@@ -257,7 +292,13 @@ export default class Home extends Component {
           >
             <span className="flex justify-center py-2">
               <p className="uppercase font-bold text-2xl text-light tracking-widest">
-                about ise &#128525;
+                about ise{" "}
+                <span
+                  role="img"
+                  aria-label="SMILING FACE WITH HEART-SHAPED EYES"
+                >
+                  &#128525;
+                </span>
               </p>
             </span>
             <span className=" flex flex-col md:flex-row justify-between">
@@ -334,9 +375,11 @@ export default class Home extends Component {
               </span>
             </span>
           </div>
-          {
-            //jdsfa;l
-          }
+          <div className="flex justify-center bg-indigo-600 h-16 items-center">
+            <span className="uppercase font-bold text-xl text-light tracking-widest">
+              by ise department
+            </span>
+          </div>
         </div>
       </div>
     );

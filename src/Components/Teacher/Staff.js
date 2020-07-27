@@ -5,7 +5,6 @@ import auth from "./auth";
 import "./../../App.css";
 import logo from "./../images/logo.png";
 import image1 from "./../images/image1.jpg";
-import triangler from "./../images/triangler.jpg";
 import Axios from "axios";
 export default class Staff extends Component {
   img = "";

@@ -276,30 +276,62 @@ body {
   grid-gap: 5px;
 }
 .gat-animation {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  animation: gat 20s infinite 5s ease-in alternate;
-  z-index: -1;
+  position: relative;
+  left: 0;
+  width: 400%;
+  animation: gat 30s infinite 2s ease-in-out;
+  animation-fill-mode: forwards;
+}
+.gat-animation-container {
+  height: 650px;
 }
 @keyframes gat {
-  10% {
-    background-image: url("./../src/Components/images/image1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.75;
+  0% {
+    left: 0%;
+  }
+  20% {
+    left: 0%;
+  }
+  25% {
+    left: -100%;
+  }
+  45% {
+    left: -100%;
   }
   50% {
-    background-image: url("./../src/Components/images/image2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.75;
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  75% {
+    left: -300%;
+  }
+  95% {
+    left: -300%;
   }
   100% {
-    background-image: url("./../src/Components/images/image3.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.75;
+    left: 0%;
+  }
+}
+@media (max-width: 1000px) {
+  .gat-animation {
+    width: 100%;
+    height: 550px;
+  }
+}
+@media (max-width: 1500px) {
+  .gat-animation {
+    width: 100%;
+    height: 500px;
+  }
+}
+@media (max-width: 500px) {
+  .gat-animation-container {
+    height: 400px;
+  }
+  .gat-animation {
+    width: 100%;
+    height: 300px;
   }
 }

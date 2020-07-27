@@ -7,6 +7,7 @@ import { FaUniversity } from "react-icons/fa";
 import Axios from "axios";
 import auths from "./auths";
 import logo from "./../images/logo.png";
+import image2 from "./../images/image2.jpg" 
 import {
   Form,
   FormGroup,
@@ -70,7 +71,12 @@ export default class Studentlogin extends Component {
   render() {
     return (
       <div>
-        <div className="gat-animation"></div>
+        <div className="gat-animation" style={{
+            backgroundImage: 'url("' + image2 + '")',
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            opacity: 0.75,
+          }}></div>
         <div className="login-container">
           <div className="login-back  p-3 ">
             <span className="flex items-center">
