@@ -289,3 +289,22 @@ body {
     opacity: 0.75;
   }
 }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-flow: dense;
+  justify-content: center;
+  grid-auto-rows: 200px;
+}
+.image {
+  opacity: 0.75;
+  height: 200px;
+}
+.image:hover {
+  animation: fade 2.5s ease-out 1;
+}
+@keyframes fade {
+  50% {
+    opacity: 1;
+  }
+}

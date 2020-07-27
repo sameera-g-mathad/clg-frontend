@@ -7,6 +7,10 @@ import logo from "./images/logo.png";
 import triback from "./images/triangleb.jpg";
 import videoback from "./images/triangler.jpg";
 import deptback from "./images/triangleg.jpg";
+import image1 from "./images/image1.jpg";
+import image2 from "./images/image2.jpg";
+import image3 from "./images/image3.jpg";
+import image5 from "./images/image5.jpg";
 export default class Home extends Component {
   state = {
     display: false,
@@ -243,7 +247,27 @@ export default class Home extends Component {
               </span>
             </div>
           </div>
-          <div></div>
+          <div>
+            <span className="flex justify-center mb-2">
+              <span className="uppercase font-bold text-2xl text-light tracking-widest">
+                gallery
+              </span>
+            </span>
+            <div className="gallery">
+              <div className="image m-2  ">
+                <img src={image1} alt="nothing found" />
+              </div>
+              <div className="image m-2 ">
+                <img src={image2} alt="nothing found" />
+              </div>
+              <div className="image m-2 ">
+                <img src={image3} alt="nothing found" />
+              </div>
+              <div className="image m-2 ">
+                <img src={image5} alt="nothing found" />
+              </div>
+            </div>
+          </div>
           <div
             style={{
               backgroundImage: 'url("' + deptback + '")',
