@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import Particles from "react-particles-js";
 import logo from "./../images/logo.png";
 import image1 from "./../images/image1.jpg";
 import {
@@ -70,53 +69,20 @@ export default class Stafflogin extends Component {
     else this.number = 150;
     return (
       <div>
-        <div 
-        className="gat-animation" 
-        style={{
+        <div
+          style={{
             backgroundImage: 'url("' + image1 + '")',
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             opacity: 0.75,
-          }}></div>
-        {/* <Particles
-          className="bg-blue-500 "
-          height={window.innerHeight}
-          params={{
-            particles: {
-              number: {
-                value: this.number,
-              },
-
-              size: {
-                value: 2,
-              },
-              color: {
-                value: ["#BD10E0", "#B8E986", "#50E3C2", "#FFD300", "#E86363"],
-              },
-              lineLinked: {
-                enable: true,
-                color: {
-                  value: [
-                    "#BD10E0",
-                    "#B8E986",
-                    "#50E3C2",
-                    "#FFD300",
-                    "#E86363",
-                  ],
-                },
-              },
-            },
-            interactivity: {
-              detect_on: "window",
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-              },
-            },
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
           }}
-        /> */}
+        ></div>
+
         <div
           className="staff-container "
           style={{
@@ -143,10 +109,14 @@ export default class Stafflogin extends Component {
           </div>
           <div className="staff-login  ">
             <Form
-              className="staff-form border bg-gray-200 rounded rounded-lg  hover:shadow-lg"
+              style={{ borderRadius: "30px" }}
+              className="staff-form border bg-gray-300   hover:shadow-lg"
               onSubmit={this.submit}
             >
-              <h4 className="bg-blue-500 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
+              <h4
+                style={{ borderRadius: "20px" }}
+                className="bg-blue-500 text-gray-900 w-full p-3  uppercase tracking-widest mb-2"
+              >
                 Login
               </h4>
 

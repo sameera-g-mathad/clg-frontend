@@ -7,7 +7,7 @@ import { FaUniversity } from "react-icons/fa";
 import Axios from "axios";
 import auths from "./auths";
 import logo from "./../images/logo.png";
-import image2 from "./../images/image2.jpg" 
+import image2 from "./../images/image2.jpg";
 import {
   Form,
   FormGroup,
@@ -71,13 +71,29 @@ export default class Studentlogin extends Component {
   render() {
     return (
       <div>
-        <div className="gat-animation" style={{
+        <div
+          style={{
             backgroundImage: 'url("' + image2 + '")',
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             opacity: 0.75,
-          }}></div>
-        <div className="login-container">
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        ></div>
+        <div
+          className="login-container"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        >
           <div className="login-back  p-3 ">
             <span className="flex items-center">
               <img src={logo} alt="no logo" className="w-12 h-12" />
@@ -94,10 +110,14 @@ export default class Studentlogin extends Component {
           </div>
           <div className="login-content">
             <Form
-              className=" border bg-gray-200 rounded rounded-lg  hover:shadow-lg"
+              style={{ borderRadius: "30px" }}
+              className=" border bg-gray-300  hover:shadow-lg"
               onSubmit={this.submit}
             >
-              <h4 className="bg-red-500 text-gray-900 w-full p-3 rounded-lg uppercase tracking-widest mb-2">
+              <h4
+                style={{ borderRadius: "20px" }}
+                className="bg-red-500 text-gray-900 w-full p-3  uppercase tracking-widest mb-2"
+              >
                 Login
               </h4>
               <FormGroup className="mx-8 my-4">
