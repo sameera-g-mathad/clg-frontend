@@ -1,6 +1,6 @@
 class AuthS {
   constructor() {
-    this.authenticated = null;
+    this.authenticated = sessionStorage.getItem("studentToken") || null;
   }
   loginS(token) {
     const student = token.split(" ")[0];

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Label, FormGroup, Input, Button, FormText } from "reactstrap";
 import { RootContext } from "./../../RContext";
 import Axios from "axios";
+import logo from "./../images/logo.png";
 export default class PaperDetails extends Component {
   static contextType = RootContext;
   match = this.props.match.url;
@@ -114,10 +115,13 @@ export default class PaperDetails extends Component {
   render() {
     return (
       <div>
-        <div className="flex justify-between  p-3">
-          <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
-            clg website
-          </div>
+        <div className="flex justify-between items-center  p-3">
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
           <Link
             className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
             to="/staff"

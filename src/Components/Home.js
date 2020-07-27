@@ -10,6 +10,7 @@ import deptback from "./images/triangleg.jpg";
 import image1 from "./images/image1.jpg";
 import image2 from "./images/image2.jpg";
 import image3 from "./images/image3.jpg";
+import image4 from "./images/image4.jpg";
 import image5 from "./images/image5.jpg";
 export default class Home extends Component {
   state = {
@@ -240,34 +241,14 @@ export default class Home extends Component {
                   height="360"
                   title="gat video"
                   src="https://www.youtube.com/embed/54PaHnh9Pg0"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
               </span>
             </div>
           </div>
-          <div>
-            <span className="flex justify-center mb-2">
-              <span className="uppercase font-bold text-2xl text-light tracking-widest">
-                gallery
-              </span>
-            </span>
-            <div className="gallery">
-              <div className="image m-2  ">
-                <img src={image1} alt="nothing found" />
-              </div>
-              <div className="image m-2 ">
-                <img src={image2} alt="nothing found" />
-              </div>
-              <div className="image m-2 ">
-                <img src={image3} alt="nothing found" />
-              </div>
-              <div className="image m-2 ">
-                <img src={image5} alt="nothing found" />
-              </div>
-            </div>
-          </div>
+
           <div
             style={{
               backgroundImage: 'url("' + deptback + '")',

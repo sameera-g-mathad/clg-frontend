@@ -6,6 +6,7 @@ import "./../../App.css";
 import Select from "react-select";
 import { FaEye } from "react-icons/fa";
 import auths from "./auths";
+import logo from "./../images/logo.png";
 export default class Student extends Component {
   static contextType = RootContext;
   img = "";
@@ -254,21 +255,27 @@ export default class Student extends Component {
     };
     return (
       <div>
-        <div
-          className={`p-2 py-4 mx-3 mt-2 shadow-sm bg-gray-700 border-2 border-${this.state.color} rounded-lg `}
-        >
-          <Button
-            className="mx-4 float-right my-2"
-            tag={Link}
+        <div className="flex justify-between items-center p-3">
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
+          <Link
+            className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
+            to="/"
             onClick={() => {
               sessionStorage.clear();
               auths.logoutS();
             }}
-            to="/"
-            color="danger"
           >
-            Logout
-          </Button>
+            logout
+          </Link>
+        </div>
+        <div
+          className={`p-2 py-4 mx-3 mt-2 shadow-sm bg-gray-700 border-2 border-${this.state.color} rounded-lg `}
+        >
           <div className="flex items-center flex-wrap">
             <img
               className="rounded-full w-32 ml-2 sm:mr-12"

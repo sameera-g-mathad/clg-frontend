@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import { Input, Alert } from "reactstrap";
 import "./../../App.css";
+import logo from "./../images/logo.png";
 import { FaLightbulb } from "react-icons/fa";
 import { RootContext } from "./../../RContext";
 export default class Internals extends Component {

@@ -3,7 +3,9 @@ import { Button, Spinner } from "reactstrap";
 import { Link } from "react-router-dom";
 import auth from "./auth";
 import "./../../App.css";
-
+import logo from "./../images/logo.png";
+import image1 from "./../images/image1.jpg";
+import triangler from "./../images/triangler.jpg";
 import Axios from "axios";
 export default class Staff extends Component {
   img = "";
@@ -46,13 +48,13 @@ export default class Staff extends Component {
               src={this.img}
             />
             <div className="ml-4">
-              <p className="text-lg font-semibold text-gray-700 uppercase hover:underline">
+              <p className="text-lg font-semibold text-white uppercase hover:underline">
                 Name : {teacher.name}
               </p>
-              <p className="text-lg font-semibold text-gray-700  hover:underline">
+              <p className="text-lg font-semibold text-white  hover:underline">
                 EMAIL : {teacher.email}
               </p>
-              <p className="text-lg font-semibold text-gray-700 uppercase hover:underline">
+              <p className="text-lg font-semibold text-white uppercase hover:underline">
                 dept : "{teacher.dept}"
               </p>
             </div>
@@ -120,9 +122,12 @@ export default class Staff extends Component {
       return (
         <div>
           <div className="flex justify-between  p-3">
-            <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
-              clg website
-            </div>
+            <span className="flex items-center">
+              <img src={logo} alt="no logo" className="w-12 h-12" />
+              <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+                gat website
+              </span>
+            </span>
             <Link
               className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
               to="/"
@@ -143,10 +148,13 @@ export default class Staff extends Component {
       );
     return (
       <div>
-        <div className="flex justify-between  px-3 pt-3">
-          <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
-            clg website
-          </div>
+        <div className="flex justify-between items-center  px-3 pt-3">
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
           <Link
             className="mx-2 text-black font-semibold capitalize hover:text-black hover:no-underline tracking-wider"
             to="/"
@@ -159,7 +167,15 @@ export default class Staff extends Component {
           </Link>
         </div>
         <div className="teacher-container mx-4 ">
-          <div className="teacher-details  tracking-wider border hover:shadow-lg mt-4  rounded-lg ">
+          <div
+            className="teacher-details  tracking-wider border hover:shadow-lg mt-4  rounded-lg "
+            style={{
+              backgroundImage: 'url("' + image1 + '")',
+              backgroundColor: "transparent",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+            }}
+          >
             {this.state.teacher}
           </div>
           <div className="teacher-subject1  bg-gray-100 mb-4  hover:shadow-lg rounded-lg  ">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Spinner, Button, FormGroup } from "reactstrap";
 import Axios from "axios";
+import logo from "./../images/logo.png";
 import "./../../App.css";
 import { FaSearch } from "react-icons/fa";
 
@@ -258,10 +259,13 @@ export default class StudentT extends Component {
       );
     return (
       <div>
-        <div className="flex justify-between border rounded-lg p-3">
-          <div className="flex justify-center mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wider">
-            clg website
-          </div>
+        <div className="flex justify-between items-center p-3">
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
           <Link
             className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-wide"
             to="/staff"
