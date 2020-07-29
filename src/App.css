@@ -236,6 +236,10 @@ body {
   justify-content: center;
   align-content: center;
 }
+.login-form {
+  display: grid;
+  justify-items: center;
+}
 .studentdisplay-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

@@ -107,21 +107,32 @@ export default class Cordinaotlogin extends Component {
           </div>
           <div className="login-content">
             <Form
-              style={{ borderRadius: "30px" }}
-              className=" border bg-gray-200  hover:shadow-lg"
+              style={{ borderRadius: "20px" }}
+              className="login-form border bg-white hover:shadow-lg"
               onSubmit={this.submit}
             >
               <h4
                 style={{ borderRadius: "20px" }}
-                className="bg-yellow-400 text-gray-900 w-full p-3  uppercase tracking-widest mb-2"
+                className="bg-yellow-400 text-gray-900 w-full p-3  capitalize tracking-widest mb-2"
               >
                 Login
               </h4>
-              <FormGroup className="mx-8 my-4">
-                <Label className="text-lg font-semibold text-gray-800 tracking-wider uppercase">
+              <FormGroup className="mx-8 my-4 w-full px-3 ">
+                <Label className="text-md font-semibold text-gray-800 tracking-wider capitalize">
                   email:
                 </Label>
-                <InputGroup>
+                <span className="flex items-center bg-white pr-4 border-b-2 hover:border-yellow-500 hover:text-yellow-600 text-gray-500  fill-current">
+                  <MdEmail className="text-2xl" />
+                  <input
+                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    type="email"
+                    name="email"
+                    placeholder="yourmail@email.com"
+                    autoComplete="off"
+                    onChange={this.handleChange}
+                  />
+                </span>
+                {/* <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <MdEmail className="text-yellow-400" />
@@ -135,13 +146,23 @@ export default class Cordinaotlogin extends Component {
                     autoComplete="off"
                     onChange={this.handleChange}
                   />
-                </InputGroup>
+                </InputGroup> */}
               </FormGroup>
-              <FormGroup className="mx-8 ">
-                <Label className="text-lg font-semibold text-gray-800 tracking-wider uppercase">
+              <FormGroup className="mx-8 w-full px-3">
+                <Label className="text-md font-semibold text-gray-800 tracking-wider capitalize">
                   password:
                 </Label>
-                <InputGroup>
+                <span className="flex items-center bg-white pr-4 border-b-2 hover:border-yellow-500 hover:text-yellow-600 text-gray-500  fill-current">
+                  <MdVpnKey className="text-2xl" />
+                  <input
+                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    onChange={this.handleChange}
+                  />
+                </span>
+                {/* <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <MdVpnKey className="text-yellow-400" />
@@ -154,7 +175,7 @@ export default class Cordinaotlogin extends Component {
                     name="password"
                     onChange={this.handleChange}
                   />
-                </InputGroup>
+                </InputGroup> */}
               </FormGroup>
               <Alert
                 isOpen={this.state.failed}
@@ -170,7 +191,7 @@ export default class Cordinaotlogin extends Component {
                 </span>
               </Alert>
               <FormGroup className="flex justify-center">
-                <Button className="m-6  px-4" type="submit" color="success">
+                <Button className="m-3  px-4" type="submit" color="success">
                   Login
                 </Button>
               </FormGroup>

@@ -21,11 +21,11 @@ export default class Cordinator extends Component {
           style={{ width: "100%" }}
         >
           <span className="flex items-center">
-              <img src={logo} alt="no logo" className="w-12 h-12" />
-              <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
-                gat website
-              </span>
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
             </span>
+          </span>
           <div className="cordinator-full">
             <Link
               to="/cordinator/staff"
@@ -55,7 +55,7 @@ export default class Cordinator extends Component {
           </div>
           <div className="cordinator-half">
             <button
-              className="mb-3 mx-2  pt-3 "
+              className="mb-3 mx-2  pt-3 focus:outline-none"
               onClick={() => {
                 this.setState({ display: !this.state.display });
               }}

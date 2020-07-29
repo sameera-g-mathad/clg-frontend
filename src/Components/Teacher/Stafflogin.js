@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../images/logo.png";
 import image1 from "./../images/image1.jpg";
+// eslint-disable-next-line
 import {
   Form,
   FormGroup,
@@ -93,7 +94,7 @@ export default class Stafflogin extends Component {
             height: "100%",
           }}
         >
-          <div className="staff-back  rounded-lg p-3 ">
+          <div className="staff-back   p-3 ">
             <span className="flex items-center">
               <img src={logo} alt="no logo" className="w-12 h-12" />
               <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
@@ -109,25 +110,37 @@ export default class Stafflogin extends Component {
           </div>
           <div className="staff-login  ">
             <Form
-              style={{ borderRadius: "30px" }}
-              className="staff-form border bg-gray-300   hover:shadow-lg"
+              style={{ borderRadius: "20px" }}
+              className="staff-form border bg-white  hover:shadow-lg"
               onSubmit={this.submit}
             >
               <h4
                 style={{ borderRadius: "20px" }}
-                className="bg-blue-500 text-gray-900 w-full p-3  uppercase tracking-widest mb-2"
+                className="bg-blue-500 text-gray-900 w-full p-3  capitalize tracking-widest mb-2"
               >
                 Login
               </h4>
 
-              <FormGroup className="mx-8 my-4">
+              <FormGroup className="mx-8 my-4 w-full px-3">
                 <Label
-                  className="text-lg font-semibold text-gray-800 tracking-wider uppercase"
+                  className="text-md font-semibold text-gray-800 tracking-wider capitalize"
                   for="email"
                 >
                   Email:
                 </Label>
-                <InputGroup>
+                <span className="flex items-center bg-white pr-4 border-b-2 hover:border-blue-500 hover:text-blue-500 text-gray-500  fill-current">
+                  <MdEmail className="text-2xl" />
+                  <input
+                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="yourmail@email.com"
+                    autoComplete="off"
+                    onChange={this.change}
+                  />
+                </span>
+                {/* <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <MdEmail className="text-blue-500" />
@@ -142,17 +155,28 @@ export default class Stafflogin extends Component {
                     bsSize="lg"
                     onChange={this.change}
                   />
-                </InputGroup>
+                </InputGroup> */}
               </FormGroup>
 
-              <FormGroup className="mx-8">
+              <FormGroup className="mx-8 w-full px-3">
                 <Label
-                  className="text-lg font-semibold text-gray-800 tracking-wider uppercase"
+                  className="text-md font-semibold text-gray-800 tracking-wider capitalize"
                   for="pass"
                 >
                   Password:
                 </Label>
-                <InputGroup>
+                <span className="flex items-center bg-white pr-4 border-b-2 hover:border-blue-500 hover:text-blue-500 text-gray-500  fill-current">
+                  <MdVpnKey className="text-2xl" />
+                  <input
+                    className="m-2 font-semibold focus:outline-none w-3/4 "
+                    type="password"
+                    id="pass"
+                    name="password"
+                    placeholder="Password"
+                    onChange={this.change}
+                  />
+                </span>
+                {/* <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <MdVpnKey className="text-blue-500" />
@@ -166,7 +190,7 @@ export default class Stafflogin extends Component {
                     bsSize="lg"
                     onChange={this.change}
                   />
-                </InputGroup>
+                </InputGroup> */}
               </FormGroup>
               <FormGroup className="mx-8 text-xl">
                 <FormFeedback
@@ -186,7 +210,7 @@ export default class Stafflogin extends Component {
                   type="button"
                   color="info"
                   tag={Link}
-                  to="/staffEmail"
+                  to="/resetpassword"
                 >
                   Reset Password
                 </Button>

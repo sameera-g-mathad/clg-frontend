@@ -110,21 +110,32 @@ export default class Studentlogin extends Component {
           </div>
           <div className="login-content">
             <Form
-              style={{ borderRadius: "30px" }}
-              className=" border bg-gray-300  hover:shadow-lg"
+              style={{ borderRadius: "20px" }}
+              className="login-form border bg-white  hover:shadow-lg"
               onSubmit={this.submit}
             >
               <h4
                 style={{ borderRadius: "20px" }}
-                className="bg-red-500 text-gray-900 w-full p-3  uppercase tracking-widest mb-2"
+                className="bg-red-500 text-gray-900 w-full p-3  capitalize tracking-widest mb-2"
               >
                 Login
               </h4>
-              <FormGroup className="mx-8 my-4">
-                <Label className="text-lg font-semibold text-gray-800 tracking-wider uppercase">
+              <FormGroup className="mx-8 my-4 w-full px-3">
+                <Label className="text-md font-semibold text-gray-800 tracking-wider capitalize">
                   usn:
                 </Label>
-                <InputGroup>
+                <span className="flex items-center bg-white pr-4 border-b-2 hover:border-red-500 hover:text-red-500 text-gray-500  fill-current">
+                  <FaUniversity className="text-2xl" />
+                  <input
+                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    type="email"
+                    name="usn"
+                    placeholder="1ga16is000"
+                    onChange={this.handleChange}
+                    autoComplete="off"
+                  />
+                </span>
+                {/* <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <FaUniversity className="text-red-500" />
@@ -138,13 +149,23 @@ export default class Studentlogin extends Component {
                     onChange={this.handleChange}
                     autoComplete="off"
                   />
-                </InputGroup>
+                </InputGroup> */}
               </FormGroup>
-              <FormGroup className="mx-8 ">
-                <Label className="text-lg font-semibold text-gray-800 tracking-wider uppercase">
+              <FormGroup className="mx-8 w-full px-3 ">
+                <Label className="text-md font-semibold text-gray-800 tracking-wider capitalize">
                   password:
                 </Label>
-                <InputGroup>
+                <span className="flex items-center bg-white pr-4 border-b-2 hover:border-red-500 hover:text-red-500 text-gray-500  fill-current">
+                  <MdVpnKey className="text-2xl" />
+                  <input
+                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    type="password"
+                    name="pass"
+                    placeholder="Password"
+                    onChange={this.handleChange}
+                  />
+                </span>
+                {/* <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <MdVpnKey className="text-red-500" />
@@ -157,7 +178,7 @@ export default class Studentlogin extends Component {
                     placeholder="Password"
                     onChange={this.handleChange}
                   />
-                </InputGroup>
+                </InputGroup> */}
               </FormGroup>
               <FormGroup className="mx-8 flex flex-wrap justify-center">
                 <FormText
@@ -169,7 +190,7 @@ export default class Studentlogin extends Component {
                 </FormText>
               </FormGroup>
               <FormGroup className="flex justify-center">
-                <Button className="m-4  px-4 " type="submit" color="success">
+                <Button className="m-3  px-4 " type="submit" color="success">
                   Login
                 </Button>
               </FormGroup>
