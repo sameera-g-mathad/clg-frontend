@@ -16,6 +16,7 @@ class SetNewPassword extends Component {
     message: "",
     failed: false,
     url: this.context.url,
+    resetToken: this.props.match.params.resetToken,
     toggle1: false,
     toggle2: false,
   };
@@ -27,7 +28,30 @@ class SetNewPassword extends Component {
   };
   submit = async () => {
     try {
-    } catch (err) {}
+      if (this.state.confirmpassword === "" || this.state.newpassword === "")
+        return this.setState({
+          message: "fill all the fields.",
+          failed: true,
+        });
+      if (
+        this.state.confirmpassword.length < 10 ||
+        this.state.newpassword.length < 10
+      )
+        return this.setState({
+          message: "length of the password must be 8 charaters or greater.",
+          failed: true,
+        });
+      if (this.state.confirmpassword === this.state.newpassword) {
+        const password = this.state.newpassword;
+        const res = await Axios.patch(
+          `${this.state.url}/resetPassword/${this.state.resetToken}`,
+          { password }
+        );
+        console.log(res);
+      }
+    } catch (err) {
+      console.log(err.response);
+    }
   };
   render() {
     return (
@@ -39,14 +63,8 @@ class SetNewPassword extends Component {
               gat website
             </span>
           </span>
-          <Link
-            className="mx-2 text-black font-semibold uppercase hover:text-black hover:no-underline tracking-widest"
-            to="/staff-login"
-          >
-            Back
-          </Link>
         </div>
-        <div className="flex justify-center items-center  ">
+        <div className="flex justify-center items-center mt-10 sm:mt-0 ">
           <div
             style={{ borderRadius: "20px" }}
             className="border-2  hover:border-blue-600 w-full mx-2 sm:mx-0 sm:w-1/3  py-2"
@@ -69,6 +87,7 @@ class SetNewPassword extends Component {
                   placeholder="New password"
                   value={this.state.resetEmail}
                   onChange={this.handleChange}
+                  minLength={8}
                 />
                 <button
                   onClick={() => {
