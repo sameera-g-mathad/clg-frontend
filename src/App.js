@@ -14,6 +14,7 @@ import Internals2 from "./Components/Teacher/Internals2";
 import Internals3 from "./Components/Teacher/Internals3";
 import Coanalysis from "./Components/Teacher/Coanalysis";
 import ResetPassword from "./Components/Teacher/ResetPassword";
+import SetNewPassword from "./Components/Teacher/SetNewPassword";
 //students
 import Studentlogin from "./Components/Students/Studentlogin";
 import Student from "./Components/Students/Student";
@@ -26,6 +27,7 @@ import Cordinatorlogin from "./Components/Cordinator/Cordinatorlogin";
 import { Protected } from "./Protected";
 import { ProtectedC } from "./ProtectedC";
 import { ProtectedS } from "./ProtectedS";
+
 // eslint-disable-next-line
 
 function App() {
@@ -63,7 +65,12 @@ function App() {
           component={Internals3}
         />
         <Route exact path="/staff/co-analysis/:id" component={Coanalysis} />
-        <Route exact path="/resetpassword" component={ResetPassword} />
+        <Route exact path="/resetPassword" component={ResetPassword} />
+        <Route
+          exact
+          path="/resetPassword/:resetToken"
+          component={SetNewPassword}
+        />
         {
           //Cordinator
         }

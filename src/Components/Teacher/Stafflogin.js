@@ -216,7 +216,7 @@ export default class Stafflogin extends Component {
                   type="button"
                   color="info"
                   tag={Link}
-                  to="/resetpassword"
+                  to="/resetPassword"
                 >
                   Reset Password
                 </Button>

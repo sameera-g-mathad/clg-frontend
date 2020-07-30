@@ -33,6 +33,11 @@ class ResetPassword extends Component {
         email,
       });
       console.log(res);
+      if (res.status === 200)
+        return this.setState({
+          failedmsg: "email sent successfully .",
+          failed: true,
+        });
     } catch (err) {
       console.log(err.response);
       if (err.response.status === 404) {
