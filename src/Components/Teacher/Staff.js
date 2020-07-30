@@ -112,6 +112,9 @@ export default class Staff extends Component {
       console.log(err.response);
     }
   }
+  componentWillUnmount() {
+    this.props.history.goForward();
+  }
   setsubjectDetails = (subject) => {
     // sessionStorage.clear();
     return sessionStorage.setItem("subject", JSON.stringify(subject));
@@ -120,7 +123,7 @@ export default class Staff extends Component {
     if (this.state.loading)
       return (
         <div>
-          <div className="flex justify-between  p-3">
+          <div className="flex justify-between items-center p-3">
             <span className="flex items-center">
               <img src={logo} alt="no logo" className="w-12 h-12" />
               <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">

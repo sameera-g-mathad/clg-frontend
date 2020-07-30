@@ -239,6 +239,9 @@ export default class StudentT extends Component {
       console.log(err.response);
     }
   }
+  componentWillUnmount() {
+    this.props.history.goForward();
+  }
   searchChange = (e) => {
     const { name, value } = e.target;
     this.setState({

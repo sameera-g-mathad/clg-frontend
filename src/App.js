@@ -15,6 +15,7 @@ import Internals3 from "./Components/Teacher/Internals3";
 import Coanalysis from "./Components/Teacher/Coanalysis";
 import ResetPassword from "./Components/Teacher/ResetPassword";
 import SetNewPassword from "./Components/Teacher/SetNewPassword";
+import PasswordUpdated from "./Components/Teacher/PasswordUpdated";
 //students
 import Studentlogin from "./Components/Students/Studentlogin";
 import Student from "./Components/Students/Student";
@@ -70,6 +71,11 @@ function App() {
           exact
           path="/resetPassword/:resetToken"
           component={SetNewPassword}
+        />
+        <Route
+          exact
+          path="/passwordUpdated"
+          component={PasswordUpdated}
         />
         {
           //Cordinator

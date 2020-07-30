@@ -48,6 +48,9 @@ class SetNewPassword extends Component {
           { password }
         );
         console.log(res);
+        if (res.status === 200) {
+          this.props.history.push("/passwordUpdated");
+        }
       }
     } catch (err) {
       console.log(err.response);
