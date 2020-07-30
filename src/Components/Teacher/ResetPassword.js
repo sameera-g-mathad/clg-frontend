@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 import logo from "./../images/logo.png";
 import logoMain from "./../images/logoMain.png";
+import Axios from "axios";
 import { Button } from "reactstrap";
+import { RootContext } from "./../../RContext";
 class ResetPassword extends Component {
+  static contextType = RootContext;
   state = {
     resetEmail: "",
     failedmsg: "",
     failed: false,
+    url: this.context.url,
   };
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,12 +21,27 @@ class ResetPassword extends Component {
       [name]: value,
     });
   };
-  submit = () => {
-    if (this.state.resetEmail === "")
-      return this.setState({
-        failedmsg: "email cannot be empty .",
-        failed: true,
+  submit = async () => {
+    try {
+      if (this.state.resetEmail === "")
+        return this.setState({
+          failedmsg: "email cannot be empty .",
+          failed: true,
+        });
+      const email = this.state.resetEmail;
+      const res = await Axios.post(`${this.state.url}/resetPassword`, {
+        email,
       });
+      console.log(res);
+    } catch (err) {
+      console.log(err.response);
+      if (err.response.status === 404) {
+        return this.setState({
+          failedmsg: err.response.data.message,
+          failed: true,
+        });
+      }
+    }
   };
   render() {
     return (
@@ -57,6 +76,7 @@ class ResetPassword extends Component {
               <span className="flex items-center border-b-2 pb-1 hover:border-blue-500 text-gray-500 hover:text-blue-500 fill-current ">
                 <MdEmail className="text-2xl" />
                 <input
+                  style={{ background: "none" }}
                   type="email"
                   className="focus:outline-none w-full ml-3 text-lg font-semibold"
                   name="resetEmail"

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../images/logo.png";
+import logoMain from "./../images/logoMain.png";
 import image1 from "./../images/image1.jpg";
 // eslint-disable-next-line
 import {
@@ -95,7 +96,7 @@ export default class Stafflogin extends Component {
           }}
         >
           <div className="staff-back   p-3 ">
-            <span className="flex items-center">
+            <span className="flex items-center ">
               <img src={logo} alt="no logo" className="w-12 h-12" />
               <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
                 gat website
@@ -111,15 +112,18 @@ export default class Stafflogin extends Component {
           <div className="staff-login  ">
             <Form
               style={{ borderRadius: "20px" }}
-              className="staff-form border bg-white  hover:shadow-lg"
+              className="staff-form border  bg-white  hover:shadow-lg"
               onSubmit={this.submit}
             >
-              <h4
+              <span className="flex justify-center mt-2">
+                <img src={logoMain} alt="nothing found" />
+              </span>
+              {/* <h4
                 style={{ borderRadius: "20px" }}
                 className="bg-blue-500 text-gray-900 w-full p-3  capitalize tracking-widest mb-2"
               >
                 Login
-              </h4>
+              </h4> */}
 
               <FormGroup className="mx-8 my-4 w-full px-3">
                 <Label
@@ -131,7 +135,8 @@ export default class Stafflogin extends Component {
                 <span className="flex items-center bg-white pr-4 border-b-2 hover:border-blue-500 hover:text-blue-500 text-gray-500  fill-current">
                   <MdEmail className="text-2xl" />
                   <input
-                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    style={{ background: "none" }}
+                    className="m-2 font-semibold focus:outline-none w-3/4 focus:text-blue-500"
                     type="email"
                     id="email"
                     name="email"
@@ -168,7 +173,8 @@ export default class Stafflogin extends Component {
                 <span className="flex items-center bg-white pr-4 border-b-2 hover:border-blue-500 hover:text-blue-500 text-gray-500  fill-current">
                   <MdVpnKey className="text-2xl" />
                   <input
-                    className="m-2 font-semibold focus:outline-none w-3/4 "
+                    style={{ background: "none" }}
+                    className="m-2 font-semibold focus:outline-none w-3/4 focus:text-blue-500"
                     type="password"
                     id="pass"
                     name="password"

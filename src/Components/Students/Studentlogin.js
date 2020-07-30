@@ -7,6 +7,7 @@ import { FaUniversity } from "react-icons/fa";
 import Axios from "axios";
 import auths from "./auths";
 import logo from "./../images/logo.png";
+import logoMain from "./../images/logoMain.png";
 import image2 from "./../images/image2.jpg";
 import {
   Form,
@@ -111,24 +112,28 @@ export default class Studentlogin extends Component {
           <div className="login-content">
             <Form
               style={{ borderRadius: "20px" }}
-              className="login-form border bg-white  hover:shadow-lg"
+              className="login-form border  bg-white  hover:shadow-lg"
               onSubmit={this.submit}
             >
-              <h4
+              <span className="flex justify-center mt-2">
+                <img src={logoMain} alt="nothing found" />
+              </span>
+              {/* <h4
                 style={{ borderRadius: "20px" }}
                 className="bg-red-500 text-gray-900 w-full p-3  capitalize tracking-widest mb-2"
               >
                 Login
-              </h4>
+              </h4> */}
               <FormGroup className="mx-8 my-4 w-full px-3">
                 <Label className="text-md font-semibold text-gray-800 tracking-wider capitalize">
                   usn:
                 </Label>
                 <span className="flex items-center bg-white pr-4 border-b-2 hover:border-red-500 hover:text-red-500 text-gray-500  fill-current">
-                  <FaUniversity className="text-2xl" />
+                  <FaUniversity className="text-2xl " />
                   <input
-                    className="m-2 font-semibold focus:outline-none w-3/4"
-                    type="email"
+                    style={{ background: "none" }}
+                    className="m-2 font-semibold focus:outline-none w-3/4 focus:text-red-500"
+                    type="text"
                     name="usn"
                     placeholder="1ga16is000"
                     onChange={this.handleChange}
@@ -158,7 +163,8 @@ export default class Studentlogin extends Component {
                 <span className="flex items-center bg-white pr-4 border-b-2 hover:border-red-500 hover:text-red-500 text-gray-500  fill-current">
                   <MdVpnKey className="text-2xl" />
                   <input
-                    className="m-2 font-semibold focus:outline-none w-3/4"
+                    style={{ background: "none" }}
+                    className="m-2 font-semibold focus:outline-none w-3/4 focus:text-red-500"
                     type="password"
                     name="pass"
                     placeholder="Password"
