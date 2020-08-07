@@ -7,6 +7,7 @@ import Select from "react-select";
 import { FaEye } from "react-icons/fa";
 import auths from "./auths";
 import logo from "./../images/logo.png";
+import image2 from "./../images/image1.jpg";
 export default class Student extends Component {
   static contextType = RootContext;
   img = "";
@@ -275,6 +276,12 @@ export default class Student extends Component {
         </div>
         <div
           className={`p-2 py-4 mx-3 mt-2 shadow-sm bg-gray-700 border-2 border-${this.state.color} rounded-lg `}
+          style={{
+            backgroundImage: 'url("' + image2 + '")',
+            backgroundColor: "transparent",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
         >
           <div className="flex items-center flex-wrap">
             <img

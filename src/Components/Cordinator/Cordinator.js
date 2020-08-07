@@ -21,7 +21,7 @@ export default class Cordinator extends Component {
           style={{ width: "100%" }}
         >
           <span className="flex items-center">
-            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <img src={logo} alt="no logo" className="w-12 h-12 ml-2" />
             <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
               gat website
             </span>
@@ -68,7 +68,7 @@ export default class Cordinator extends Component {
         </nav>
         <div className="md:hidden">
           <div
-            className={`h-40 mx-3  flex flex-col items-start px-3 border-2 border-${this.state.color}-500 bg-gray-200 rounded-lg shadow-sm `}
+            className={`h-40 mx-3 mt-2 flex flex-col items-start px-3 border-2 border-${this.state.color}-500 bg-gray-200 rounded-lg shadow-sm `}
             style={{
               display: this.state.display === true ? "flex" : "none",
             }}

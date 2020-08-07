@@ -4,6 +4,7 @@ import { Input, Alert } from "reactstrap";
 import "./../../App.css";
 import { FaLightbulb } from "react-icons/fa";
 import { RootContext } from "./../../RContext";
+import logo from "./../images/logo.png";
 export default class Internals extends Component {
   static contextType = RootContext;
   details = this.props.location.state;
@@ -161,6 +162,14 @@ export default class Internals extends Component {
     this.img = base64flag + imgstr;
     return (
       <div>
+        <div className="flex justify-between items-center p-3">
+          <span className="flex items-center">
+            <img src={logo} alt="no logo" className="w-12 h-12" />
+            <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+              gat website
+            </span>
+          </span>
+        </div>
         <div
           className={`p-2 py-4 mx-3 mt-2 shadow bg-gray-700 border-2  border-${this.color} rounded-lg `}
         >

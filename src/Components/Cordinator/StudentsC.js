@@ -741,7 +741,7 @@ export default class Students extends Component {
           </ModalHeader>
           <ModalBody className="text-gray-700 font-semibold capitalize">
             do you want to update {this.state.updatestudentName} to{" "}
-            {this.state.updatestudentSem} sem and {this.state.updatestudentYear}
+            {this.state.updatestudentSem} sem and {this.state.updatestudentYear} year.
           </ModalBody>
           <ModalFooter>
             <Button
