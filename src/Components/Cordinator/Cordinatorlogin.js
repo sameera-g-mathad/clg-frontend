@@ -12,9 +12,13 @@ import {
   Form,
   FormGroup,
   Label,
+  // eslint-disable-next-line
   InputGroup,
+  // eslint-disable-next-line
   InputGroupAddon,
+  // eslint-disable-next-line
   InputGroupText,
+  // eslint-disable-next-line
   Input,
   Button,
 } from "reactstrap";
@@ -197,7 +201,14 @@ export default class Cordinaotlogin extends Component {
                 </span>
               </Alert>
               <FormGroup className="flex justify-center">
-                <Button className="m-3  px-4" type="submit" color="success">
+                <Button
+                  className="m-3  px-4"
+                  type="submit"
+                  color="success"
+                  disabled={
+                    this.state.password === "global12345" ? true : false
+                  }
+                >
                   Login
                 </Button>
               </FormGroup>

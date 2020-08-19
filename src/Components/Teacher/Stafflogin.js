@@ -9,10 +9,14 @@ import {
   FormGroup,
   Button,
   Label,
+  // eslint-disable-next-line
   Input,
   FormFeedback,
+  // eslint-disable-next-line
   InputGroup,
+  // eslint-disable-next-line
   InputGroupAddon,
+  // eslint-disable-next-line
   InputGroupText,
 } from "reactstrap";
 import "./../../App.css";
@@ -208,7 +212,14 @@ export default class Stafflogin extends Component {
                 </FormFeedback>
               </FormGroup>
               <FormGroup className="flex">
-                <Button className="m-3" type="submit" color="success">
+                <Button
+                  className="m-3"
+                  type="submit"
+                  color="success"
+                  disabled={
+                    this.state.password === "global12345" ? true : false
+                  }
+                >
                   Login
                 </Button>
                 <Button
