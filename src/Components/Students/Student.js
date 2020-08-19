@@ -116,16 +116,24 @@ export default class Student extends Component {
             key={el._id}
             className=" m-3  pl-3 p-2 bg-gray-700 rounded-lg border-b-4 hover:shadow-lg border-green-400"
           >
-            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               subject : {el.subject}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               subject-code : {el.subjectCode}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               sem : {el.sem}
             </p>
-            <p className="capitalize text-lg text-gray-800 tracking-wider font-semibold text-green-400 hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               marks :{" "}
               {el.marks < 0 ? (
                 <span className="text-red-600">Ab</span>
@@ -169,16 +177,24 @@ export default class Student extends Component {
             key={el._id}
             className=" m-3 p-2  pl-3 bg-gray-700 rounded-lg border-b-4 hover:shadow-lg border-orange-400"
           >
-            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               subject : {el.subject}
             </p>
-            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               subject-code : {el.subjectCode}
             </p>
-            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               sem : {el.sem}
             </p>
-            <p className="capitalize text-lg text-orange-400 tracking-wider font-semibold hover:underline">
+            <p
+              className={`capitalize text-lg text-${this.state.color} tracking-wider font-semibold hover:underline`}
+            >
               marks :{" "}
               {el.marks < 0 ? (
                 <span className="text-red-600">Ab</span>
@@ -309,6 +325,16 @@ export default class Student extends Component {
                 className={`capitalize text-lg text-${this.state.color} tracking-widest font-semibold hover:underline`}
               >
                 section : "{this.state.student.section}"
+              </p>
+              <p
+                className={`capitalize text-lg text-${this.state.color} tracking-widest font-semibold hover:underline`}
+              >
+                section : "{this.state.student.year}"
+              </p>
+              <p
+                className={`capitalize text-lg text-${this.state.color} tracking-widest font-semibold hover:underline`}
+              >
+                section : "{this.state.student.sem}"
               </p>
             </div>
           </div>

@@ -6,6 +6,7 @@ import "./../../App.css";
 import axios from "axios";
 import { GoAlert } from "react-icons/go";
 import { RootContext } from "./../../RContext";
+import logo from "./../images/logo.png";
 export default class Questions extends Component {
   static contextType = RootContext;
   location = this.props.location.state;
@@ -155,6 +156,12 @@ export default class Questions extends Component {
       : (disable = false);
     return (
       <div className="m-4">
+        <span className="flex items-center ">
+          <img src={logo} alt="no logo" className="w-12 h-12" />
+          <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+            gat website
+          </span>
+        </span>
         <div className="questions-container border m-4 rounded-lg bg-gray-200 shadow">
           <div className="uppercase tracking-wide font-bold text-gray-700">
             Subject:"{this.state.subject}"

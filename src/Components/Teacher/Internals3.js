@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import { FaLightbulb } from "react-icons/fa";
 import { RootContext } from "./../../RContext";
+import logo from "./../images/logo.png";
 //import error from "./error.png";
 
 import "./../../App.css";
@@ -386,6 +387,12 @@ export default class Internals2 extends Component {
     }
     return (
       <div>
+        <span className="flex items-center m-4">
+          <img src={logo} alt="no logo" className="w-12 h-12" />
+          <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+            gat website
+          </span>
+        </span>
         <div className=" border rounded-lg  m-4 sm:flex  p-4 sm:p-0 ">
           <div className="flex items-center mb-2 sm:mr-8 sm:mb-0">
             <img

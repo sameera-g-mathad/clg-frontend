@@ -257,14 +257,17 @@ export default class Teachers extends Component {
             id,
           },
         });
-      const res = await Axios.patch(`${this.state.url}/cordinator/staff`, {
-        headers: {
-          id,
-          subject1_Id,
-          subject2_Id,
-          authorization: this.state.cordinatorToken,
+      const res = await Axios.patch(
+        `${this.state.url}/cordinator/staff`,
+        {
+          headers: {
+            id,
+            subject1_Id,
+            subject2_Id,
+          },
         },
-      });
+        { headers: { authorization: this.state.cordinatorToken } }
+      );
       if (res.status === 200 && res.data.status === "success")
         return this.props.history.push({
           pathname: `/cordinator/staff/${this.state.id}`,

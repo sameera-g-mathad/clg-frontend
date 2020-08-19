@@ -68,6 +68,7 @@ export default class StudentT extends Component {
             </div>
             <hr />
             <div className="flex flex-col justify-evenly">
+              {(this.internals1 = "")}
               <div className="p-2 internals-content">
                 <span className="capitalize text-lg text-gray-800 font-semibold hover:underline">
                   internals 1 :
@@ -115,6 +116,8 @@ export default class StudentT extends Component {
                   Add
                 </Button>
               </div>
+
+              {(this.internals2 = "")}
               <div className="p-2  internals-content">
                 <span className="capitalize text-lg text-gray-800 font-semibold hover:underline">
                   internals 2 :
@@ -161,6 +164,8 @@ export default class StudentT extends Component {
                   Add
                 </Button>
               </div>
+
+              {(this.internals3 = "")}
               <div className="p-2  internals-content">
                 <span className="capitalize text-lg text-gray-800 font-semibold hover:underline">
                   internals 3 :
@@ -207,6 +212,7 @@ export default class StudentT extends Component {
                   Add
                 </Button>
               </div>
+
               {this.internals1 !== "" &&
               this.internals2 !== "" &&
               this.internals3 !== "" ? (

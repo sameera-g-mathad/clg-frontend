@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { RootContext } from "./../../RContext";
 import Axios from "axios";
+import logo from "./../images/logo.png";
 export default class Coanalysis extends Component {
   static contextType = RootContext;
   internals1 = "";
@@ -277,6 +278,12 @@ export default class Coanalysis extends Component {
     this.img = imgage64falg + imgstr;
     return (
       <div>
+        <span className="flex items-center m-4">
+          <img src={logo} alt="no logo" className="w-12 h-12" />
+          <span className=" mx-2 text-dark font-semibold uppercase hover:text-black hover:no-underline tracking-widest">
+            gat website
+          </span>
+        </span>
         <div className=" border rounded-lg  m-4 sm:flex  p-4 sm:p-0 ">
           <div className="flex items-center mb-2 sm:mr-16 sm:mb-0">
             <img
